@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_options (tclient.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File tclient.rb, line 257</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_options</span>
+  <span class="ruby-comment cmt"># parse options</span>
+  <span class="ruby-keyword kw">begin</span>
+    <span class="ruby-comment cmt"># The myopts specified on the command line will be collected in *myopts*.</span>
+    <span class="ruby-comment cmt"># We set default values here.</span>
+    <span class="ruby-identifier">myopts</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">port</span> = <span class="ruby-value">4000</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">address</span> = <span class="ruby-value str">'localhost'</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">curses</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">echo</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">verbose</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">trace</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/win32/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">win32</span> = <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">win32</span> = <span class="ruby-keyword kw">false</span>
+
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-constant">BANNER</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-node">&quot;Usage: ruby #{$0} [options]&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-p&quot;</span>, <span class="ruby-value str">&quot;--port PORT&quot;</span>, <span class="ruby-constant">Integer</span>,
+        <span class="ruby-value str">&quot;Select the port of the mud&quot;</span>,
+        <span class="ruby-value str">&quot;  (defaults to 4000)&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">port</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-a&quot;</span>, <span class="ruby-value str">&quot;--address URL&quot;</span>, <span class="ruby-constant">String</span>,
+        <span class="ruby-value str">&quot;Select the address of the mud&quot;</span>,
+        <span class="ruby-value str">&quot;  (defaults to \'localhost\')&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">address</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-e&quot;</span>, <span class="ruby-value str">&quot;--[no-]echo&quot;</span>, <span class="ruby-value str">&quot;Run in server echo mode&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">echo</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-t&quot;</span>, <span class="ruby-value str">&quot;--[no-]trace&quot;</span>, <span class="ruby-value str">&quot;Trace execution&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">trace</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-c&quot;</span>, <span class="ruby-value str">&quot;--[no-]curses&quot;</span>, <span class="ruby-value str">&quot;Run with curses support&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">curses</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-v&quot;</span>, <span class="ruby-value str">&quot;--[no-]verbose&quot;</span>, <span class="ruby-value str">&quot;Run verbosely&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">verbose</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;-h&quot;</span>, <span class="ruby-value str">&quot;--help&quot;</span>, <span class="ruby-value str">&quot;Show this message&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">help</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;--version&quot;</span>, <span class="ruby-value str">&quot;Show version&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;TeensyClient #{Version}&quot;</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-constant">ARGV</span>)
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">myopts</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ERROR - #{$!}&quot;</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;For help...&quot;</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot; ruby #{$0} --help&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword kw">end</span>
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

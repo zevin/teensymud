@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Dumper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File dbdump.rb, line 37</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+    <span class="ruby-ivar">@opts</span> = <span class="ruby-identifier">get_options</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">dbtype</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:dbm</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'dbm'</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:gdbm</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'gdbm'</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sdbm</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'sdbm'</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sqlite</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'sqlite'</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sqlite3</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'sqlite3'</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@dbtop</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@db</span> = {}
+    <span class="ruby-ivar">@count</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

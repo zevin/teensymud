@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>put (CacheManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/cache.rb, line 203</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put</span>(<span class="ruby-identifier">obj</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:writes</span>)
+    <span class="ruby-identifier">hv</span> = <span class="ruby-identifier">hash</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">id</span>)
+
+    <span class="ruby-comment cmt"># search the cache</span>
+    <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ce</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">oid</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:cache_write_hits</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">dirty?</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">object_id</span>  <span class="ruby-comment cmt"># be safe</span>
+        <span class="ruby-comment cmt"># Be extra careful here.  It's possible we could have two objects</span>
+        <span class="ruby-comment cmt"># with the same object id but with different Ruby object_ids.</span>
+        <span class="ruby-comment cmt"># Most likely this is a bug, but we should handle it here..</span>
+        <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;Duplicate object id's in cache!&quot;</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;insert - #{obj.inspect}&quot;</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;cache - #{obj.inspect}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># need to try putting hot hit to the head of the list?</span>
+      <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">dirty!</span>
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># get and remove the last entry off this list</span>
+    <span class="ruby-identifier">ch</span> = <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">pop</span>
+    <span class="ruby-comment cmt"># if its dirty we write it to the database</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">dirty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">ch</span>.<span class="ruby-identifier">dead?</span>
+      <span class="ruby-comment cmt"># errors possible - check in store module</span>
+      <span class="ruby-ivar">@db</span>[<span class="ruby-identifier">ch</span>.<span class="ruby-identifier">oid</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">ch</span>.<span class="ruby-identifier">obj</span>)
+      <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:database_writes</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">noswap?</span>  <span class="ruby-comment cmt"># here we have a problem we can't use this</span>
+        <span class="ruby-comment cmt"># first push it back onto the list</span>
+        <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">unshift</span> <span class="ruby-identifier">ch</span>
+        <span class="ruby-comment cmt"># get ourselves a brand new</span>
+        <span class="ruby-identifier">ch</span> = <span class="ruby-constant">CacheEntry</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-comment cmt"># problem solved</span>
+        <span class="ruby-comment cmt"># the depth of any list chains will be cache_depth + # noswap entries</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># assign our new object to the cache entry</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">oid</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">dirty!</span>
+    <span class="ruby-comment cmt"># push it to the head of the list</span>
+    <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">unshift</span> <span class="ruby-identifier">ch</span>
+
+    <span class="ruby-keyword kw">return</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

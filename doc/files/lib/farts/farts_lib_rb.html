@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: farts_lib.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>farts_lib.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/farts/farts_lib.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Mar 15 19:06:10 GMT-5:00 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="613,113,701,161"      href="../../../classes/Farts/SyntaxNode.html" alt="SyntaxNode">
+  <area shape="RECT" coords="28,209,145,257"      href="../../../classes/Farts/LiteralSyntaxNode.html" alt="LiteralSyntaxNode">
+  <area shape="RECT" coords="169,209,297,257"      href="../../../classes/Farts/ProgramSyntaxNode.html" alt="ProgramSyntaxNode">
+  <area shape="RECT" coords="321,209,425,257"      href="../../../classes/Farts/CallSyntaxNode.html" alt="CallSyntaxNode">
+  <area shape="RECT" coords="449,209,580,257"      href="../../../classes/Farts/CommentSyntaxNode.html" alt="CommentSyntaxNode">
+  <area shape="RECT" coords="604,209,710,257"      href="../../../classes/Farts/EndSyntaxNode.html" alt="EndSyntaxNode">
+  <area shape="RECT" coords="734,209,865,257"      href="../../../classes/Farts/AttributeSyntaxNode.html" alt="AttributeSyntaxNode">
+  <area shape="RECT" coords="889,209,1020,257"      href="../../../classes/Farts/LocalVarSyntaxNode.html" alt="LocalVarSyntaxNode">
+  <area shape="RECT" coords="1044,209,1137,257"      href="../../../classes/Farts/IfSyntaxNode.html" alt="IfSyntaxNode">
+  <area shape="RECT" coords="1161,209,1294,257"      href="../../../classes/Farts/CommandSyntaxNode.html" alt="CommandSyntaxNode">
+  <area shape="RECT" coords="377,17,468,65"      href="../../../classes/Racc/Parser.html" alt="Racc::Parser">
+  <area shape="RECT" coords="386,113,458,161"      href="../../../classes/Farts/Parser.html" alt="Parser">
+  <area shape="RECT" coords="496,17,594,65"      href="../../../classes/StringScanner.html" alt="StringScanner">
+  <area shape="RECT" coords="509,113,581,161"      href="../../../classes/Farts/Lexer.html" alt="Lexer">
+  <area shape="RECT" coords="192,113,269,161"      href="../../../classes/Farts/Interpreter.html" alt="Interpreter">
+  <area shape="RECT" coords="32,113,104,161"      href="../../../classes/Farts/Lib.html" alt="Lib">
+  <area shape="RECT" coords="17,91,1305,268"      href="../../../classes/Farts.html" alt="Farts">
+</map>
+<img src="../../../dot/f_22.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <table>
+<tr><td valign="top">file:</td><td>farts_lib.rb
+
+</td></tr>
+<tr><td valign="top">author:</td><td>Jon A. Lambert
+
+</td></tr>
+<tr><td valign="top">version:</td><td>2.4.0
+
+</td></tr>
+<tr><td valign="top">date:</td><td>09/11/2005
+
+</td></tr>
+</table>
+<p>
+This source code copyright (C) 2005 by Jon A. Lambert All rights reserved.
+</p>
+<p>
+Released under the terms of the TeensyMUD Public License See LICENSE file
+for additional information.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

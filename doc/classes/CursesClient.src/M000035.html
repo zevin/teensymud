@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (CursesClient)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File tclient.rb, line 68</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">init_screen</span>
+    <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">cbreak</span>
+    <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">noecho</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">echo</span>
+    <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">nl</span>
+    <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">stdscr</span>.<span class="ruby-identifier">scrollok</span>(<span class="ruby-keyword kw">true</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">$opts</span>.<span class="ruby-identifier">win32</span>  <span class="ruby-comment cmt"># Need workaround for these</span>
+      <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">stdscr</span>.<span class="ruby-identifier">keypad</span>(<span class="ruby-keyword kw">true</span>)
+      <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">timeout</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-constant">Curses</span>.<span class="ruby-identifier">start_color</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

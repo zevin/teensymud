@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>edit_parser (Cmd)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File cmd/teensy/cmd_edit.rb, line 74</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_parser</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">args</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;What??&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.h/</span>
+      <span class="ruby-identifier">sendto</span> <span class="ruby-value str">&quot;@edit help (commands on blank line):\n.r /old/new/     - replace a substring\n.h               - get help (this info)\n.s               - show string so far\n.ww [width]      - word wrap string (width optional)\n                   defaults to 76\n.c               - clear string so far\n.ld &lt;num&gt;        - delete line &lt;num&gt;\n.li &lt;num&gt; &lt;txt&gt;  - insert &lt;txt&gt; before line &lt;num&gt;\n.lr &lt;num&gt; &lt;txt&gt;  - replace line &lt;num&gt; with &lt;txt&gt;\n@                - end string\n&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.c/</span>
+      <span class="ruby-ivar">@editstr</span> = <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.s/</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">edit_display</span>(<span class="ruby-ivar">@editstr</span>))
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.r\s+\/(.+)?\/(.+)?\//</span>
+      <span class="ruby-ivar">@editstr</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">$1</span>, <span class="ruby-value str">'\2'</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.ww\s+(\d+)/</span>, <span class="ruby-regexp re">/^\.ww/</span>
+      <span class="ruby-ivar">@editstr</span> = <span class="ruby-identifier">word_wrap</span>(<span class="ruby-ivar">@editstr</span>, <span class="ruby-identifier">$1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">76</span> )
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.ld\s+(\d+)/</span>
+      <span class="ruby-identifier">idx</span> = <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">idx</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">lines</span> = <span class="ruby-ivar">@editstr</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">idx</span>)
+      <span class="ruby-ivar">@editstr</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.li\s+(\d+)\s+(.*)?$/</span>
+      <span class="ruby-identifier">idx</span> = <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">idx</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">nl</span> = <span class="ruby-identifier">$2</span>
+      <span class="ruby-identifier">lines</span> = <span class="ruby-ivar">@editstr</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">idx</span>, <span class="ruby-identifier">nl</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-ivar">@editstr</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\.lr\s+(\d+)\s+(.*)?$/</span>
+      <span class="ruby-identifier">idx</span> = <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">idx</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">nl</span> = <span class="ruby-identifier">$2</span>
+      <span class="ruby-identifier">lines</span> = <span class="ruby-ivar">@editstr</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">idx</span>] = <span class="ruby-identifier">nl</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n&quot;</span>
+      <span class="ruby-ivar">@editstr</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^@/</span>
+      <span class="ruby-ivar">@mode</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@editobj</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">world</span>.<span class="ruby-identifier">msgs</span>.<span class="ruby-identifier">object_id</span>  <span class="ruby-comment cmt"># detect sysmsgs</span>
+        <span class="ruby-ivar">@editobj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value str">&quot;[]=&quot;</span>, <span class="ruby-ivar">@editfield</span>, <span class="ruby-ivar">@editstr</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@editobj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-ivar">@editfield</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;=&quot;</span>, <span class="ruby-ivar">@editstr</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^\./</span>
+      <span class="ruby-identifier">sendto</span> <span class="ruby-value str">&quot;Invalid command.&quot;</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@editstr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

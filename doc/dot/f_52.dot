@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/storage/xmlstore.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    XmlStore [
+        fontcolor = black,
+        URL = "classes/XmlStore.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "XmlStore"
+    ]
+
+    Store [
+        URL = "classes/Store.html",
+        label = "Store"
+    ]
+
+    Store -> XmlStore [
+
+    ]
+
+}
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (Loader)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File dbload.rb, line 116</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+
+    <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load_file</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">ifile</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@dbtop</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dbtop</span>
+      <span class="ruby-ivar">@db</span>[<span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span>]=<span class="ruby-identifier">o</span>
+      <span class="ruby-ivar">@count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">dbtype</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sdbm</span>
+      <span class="ruby-constant">SDBM</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">ofile</span>, <span class="ruby-value">0666</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">db</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">db</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">v</span>)}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:gdbm</span>
+      <span class="ruby-constant">GDBM</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">ofile</span>, <span class="ruby-value">0666</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">db</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">db</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">v</span>)}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:dbm</span>
+      <span class="ruby-constant">DBM</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">ofile</span>, <span class="ruby-value">0666</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">db</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">db</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">v</span>)}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sqlite</span>
+      <span class="ruby-identifier">db</span> = <span class="ruby-constant">SQLite</span><span class="ruby-operator">::</span><span class="ruby-constant">Database</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">ofile</span>)
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">db</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value str">&quot;drop table tmud;&quot;</span>)
+      <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">db</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value str">&quot;create table tmud (id integer primary key, data text);&quot;</span>)
+      <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">db</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">v</span>)}
+      <span class="ruby-identifier">db</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sqlite3</span>
+      <span class="ruby-identifier">db</span> = <span class="ruby-constant">SQLite3</span><span class="ruby-operator">::</span><span class="ruby-constant">Database</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">ofile</span>)
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">db</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value str">&quot;drop table tmud;&quot;</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">db</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value str">&quot;create table tmud (id integer primary key, data text);&quot;</span>)
+      <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">db</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">v</span>)}
+      <span class="ruby-identifier">db</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Highest object in use   : #{@dbtop}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Count of objects dumped : #{@count}&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

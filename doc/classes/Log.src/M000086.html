@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Log)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/utility/log.rb, line 28</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+    <span class="ruby-constant">Logger</span>[<span class="ruby-value str">'global'</span>].<span class="ruby-identifier">level</span> = <span class="ruby-constant">DEBUG</span>
+    <span class="ruby-identifier">fmt</span> = <span class="ruby-constant">PatternFormatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:pattern</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;%d [%5l] (%c) %M&quot;</span>,
+                               <span class="ruby-identifier">:date_pattern</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;%y-%m-%d %H:%M:%S&quot;</span>)
+    <span class="ruby-constant">StderrOutputter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'stderr'</span>, <span class="ruby-identifier">:level</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">INFO</span>, <span class="ruby-identifier">:formatter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fmt</span>)
+    <span class="ruby-constant">FileOutputter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'server'</span>, <span class="ruby-identifier">:level</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">DEBUG</span>, <span class="ruby-identifier">:formatter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fmt</span>,
+         <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'logfile'</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">'logs/server.log'</span> ,
+         <span class="ruby-identifier">:trunc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'false'</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

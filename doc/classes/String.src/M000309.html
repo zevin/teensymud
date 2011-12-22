@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>encrypt (String)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/utility/utility.rb, line 44</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">encrypt</span>
+    <span class="ruby-identifier">alphabet</span> = <span class="ruby-value str">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./'</span>
+    <span class="ruby-identifier">salt</span> = <span class="ruby-node">&quot;#{alphabet[rand(64)].chr}#{alphabet[rand(64)].chr}&quot;</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">crypt</span>(<span class="ruby-identifier">salt</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

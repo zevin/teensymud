@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: VT100Codes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">VT100Codes</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/network/protocol/vt100codes_rb.html">
+                lib/network/protocol/vt100codes.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="17,17,111,61"      href="VT100Codes.html" alt="VT100Codes">
+</map>
+<img src="../dot/m_41_0.png" usemap="#map" border=0 alt="Module: VT100Codes">
+    </div>
+
+    <div id="description">
+      <p>
+This module contains the contants used for Telnet
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSI</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;\e[&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SGR2CODE</td>
+          <td>=</td>
+          <td class="context-item-value">{ &quot;0&quot;, &quot;[RESET]&quot;, &quot;1&quot;, &quot;[B]&quot;, &quot;2&quot;, &quot;[D]&quot;, &quot;4&quot;, &quot;[U]&quot;,                &quot;5&quot;, &quot;[BLINK]&quot;, &quot;7&quot;, &quot;[I]&quot;, &quot;8&quot;, &quot;[HIDDEN]&quot;,                &quot;30&quot;, &quot;[COLOR Black]&quot;, &quot;31&quot;, &quot;[COLOR Red]&quot;,                &quot;32&quot;, &quot;[COLOR Green]&quot;, &quot;33&quot;, &quot;[COLOR Yellow]&quot;,                &quot;34&quot;, &quot;[COLOR Blue]&quot;,  &quot;35&quot;, &quot;[COLOR Magenta]&quot;,                &quot;36&quot;, &quot;[COLOR Cyan]&quot;,  &quot;37&quot;, &quot;[COLOR White]&quot;,                &quot;40&quot;, &quot;[COLOR=bgblack]&quot;, &quot;41&quot;, &quot;[COLOR=bgred]&quot;,                &quot;42&quot;, &quot;[COLOR=bggreen]&quot;, &quot;43&quot;, &quot;[COLOR=bgyellow]&quot;,                &quot;44&quot;, &quot;[COLOR=bgblue]&quot;,  &quot;45&quot;, &quot;[COLOR=bgmagenta]&quot;,                &quot;46&quot;, &quot;[COLOR=bgcyan]&quot;,  &quot;47&quot;, &quot;[COLOR=bgwhite]&quot; }</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VTKeys</td>
+          <td>=</td>
+          <td class="context-item-value">{ /\[SCROLLDOWN\]/mi, &quot;\eD&quot;,              /\[SCROLLUP\]/mi, &quot;\eM&quot;,              /\[UP (\d+)?\]/mi, &quot;\e$A&quot;, /\[DOWN (\d+)?\]/mi, &quot;\e$B&quot;,              /\[RIGHT (\d+)?\]/mi, &quot;\e$C&quot;, /\[LEFT (\d+)?\]/mi, &quot;\e$D&quot;,              /\[CURSAVE\]/mi, &quot;\e7&quot;, /\[CURREST\]/mi, &quot;\e8&quot;,              /\[RESET\]/mi, &quot;\ec&quot;,              /\[TAB\]/mi, &quot;\t&quot;, /\[BELL\]/mi, &quot;\a&quot;, /\[BS\]/mi, &quot;\b&quot;,              /\[POS (\d+)\]/mi, CSI+&quot;$G&quot;,              /\[HOME (\d+)?,(\d+)?\]/mi, CSI+&quot;$;$H&quot;,              /\[CURSOR (\d+)?,(\d+)?\]/mi, CSI+&quot;$;$R&quot;,              /\[SCRREG (\d+)?,(\d+)?\]/mi, CSI+&quot;$;$r&quot;,              /\[SCRRESET\]/mi, CSI+&quot;r&quot;,              /\[CLEAR\]/mi, CSI+&quot;2J&quot;, /\[CURREPT\]/mi, CSI+&quot;6n&quot;,              /\[CLEARLINE\]/mi, CSI+&quot;2K&quot;,              /\[INSERT\]/mi, CSI+&quot;2~&quot;, /\[END\]/mi, CSI+&quot;8~&quot;,              /\[PAGEUP\]/mi, CSI+&quot;5~&quot;, /\[PAGEDOWN\]/mi, CSI+&quot;6~&quot;,              /\[F1\]/mi, CSI+&quot;11~&quot;, /\[F2\]/mi, CSI+&quot;12~&quot;,              /\[F3\]/mi, CSI+&quot;13~&quot;, /\[F4\]/mi, CSI+&quot;14~&quot;,              /\[F5\]/mi, CSI+&quot;15~&quot;, /\[F6\]/mi, CSI+&quot;17~&quot;,              /\[F7\]/mi, CSI+&quot;18~&quot;, /\[F8\]/mi, CSI+&quot;19~&quot;,              /\[F9\]/mi, CSI+&quot;20~&quot;, /\[F10\]/mi, CSI+&quot;21~&quot; }</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

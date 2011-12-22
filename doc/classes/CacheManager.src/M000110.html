@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (CacheManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/cache.rb, line 112</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">db</span>)
+    <span class="ruby-ivar">@cwidth</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'cache_width'</span>]
+    <span class="ruby-ivar">@cdepth</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'cache_depth'</span>]
+
+    <span class="ruby-ivar">@db</span> =  <span class="ruby-identifier">db</span>
+    <span class="ruby-ivar">@st</span> = <span class="ruby-constant">CacheStats</span>.<span class="ruby-identifier">new</span>
+
+    <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@cwidth</span>) {<span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>}
+    <span class="ruby-ivar">@cwidth</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@cdepth</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">CacheEntry</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:cache_size</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

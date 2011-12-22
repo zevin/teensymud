@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>write (PacketIO)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/packetio.rb, line 83</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">msg</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">msg</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">msg</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-ivar">@outbuffer</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">msg</span>.<span class="ruby-identifier">length</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">&quot;N&quot;</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">msg</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">n</span> = <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">send</span>(<span class="ruby-ivar">@outbuffer</span>, <span class="ruby-value">0</span>)
+    <span class="ruby-comment cmt"># save unsent data for next call</span>
+    <span class="ruby-ivar">@outbuffer</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">n</span>)
+    <span class="ruby-ivar">@outbuffer</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+    <span class="ruby-ivar">@outbuffer</span> = <span class="ruby-value str">&quot;&quot;</span>  <span class="ruby-comment cmt"># Does it really matter?</span>
+    <span class="ruby-identifier">raise</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

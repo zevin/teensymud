@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/core/world.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    World [
+        fontcolor = black,
+        URL = "classes/World.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "World"
+    ]
+
+    Root [
+        URL = "classes/Root.html",
+        label = "Root"
+    ]
+
+    Root -> World [
+
+    ]
+
+}
+

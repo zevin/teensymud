@@ -1,0 +1,146 @@
+= Teensy Markup Language
+
+== Introduction
+Teensy Markup Language is a general mechanism used to markup mud text.  Markup directives are translated to the best format the client can handle whether it be VTxxx/ANSI, HTML, MXP, ZMP or raw text.  If the client cannot handle a particular directive, then it is stripped from the stream before sending it to the client. 
+
+== Syntax
+Markup is placed inline in strings using keywords in brackets.  Keywords are case insensitive.  Normal use of brackets is allowed and needs no special escaping.
+
+== Text Markup
+
+=== [COLOR name] or [COLOR name ON name]
+ 
+Color changes the foreground and background color of the enclosed text.  The first form specifies only the foreground, the latter both foreground and background.  Color is terminated to the default value using [/COLOR].  The names of the colors are those names valid under SVG 1.0.  See colors.rb module.
+
+Example:
+  [color fuchsia on blue]Hello World[/color]
+  
+=== [CLASS name]
+
+Classes are used to tag text as to belonging to an arbitrary category.  A class may be used by the client to color text, send it to a window or area, or otherwise process it differently.  A class is terminated by [/CLASS].  For clients with no capability, a class directive may be translated server side into other directives like color or windows.
+
+Example:
+  [class speech]Bubba says, "Hi Biffy"[/class]
+  [class description]The sword has a ruby encrusted hilt.[/class]
+
+=== [FONT name]
+
+Font changes the character font of the enclosed text.  Names are not currently not checked, just passed to the client.  A font change is terminated using [/FONT].
+
+Example:
+  [font wingdings]your text[/font]
+  
+=== [SIZE name]
+
+Size changes the size of the characters of the enclosed text.  Names are not currently not checked and are just passed to the client.  The may be relative sizes like +1 or -2.  A size change is terminated using [/SIZE].
+
+Example:
+  [size +3]My big text[/size]
+  
+=== [B] or [BOLD]
+
+This directs the enclosed text to be marked as bold.  It's terminated by [/B] or [/BOLD]
+
+Example:
+  [b]My bolded text[/b]
+  
+=== [I] or [ITALICS]
+
+This directs the enclosed text to be marked as italics.  It's terminated by [/I] or [/ITALICS]
+
+Example:
+  [i]My italicized text[/i]
+
+=== [U] or [UNDERLINE]
+
+This directs the enclosed text to be marked as underlined.  It's terminated by [/U] or [/UNDERLINE]
+
+Example:
+  [u]My underlined text[/u]
+  
+== Display Control
+
+Some of these are meaningless when sent to the client, and are more likely to be received.  The terminalfilter protocol layer will translate these VT100 codes to this format before sending on the the player parser.  All are unterminated.
+
+=== [SCROLLDOWN]
+
+Client scroll down a line.
+
+=== [SCROLLUP]
+
+Client scroll up a line.
+
+=== [UP n] | [DOWN n] | [RIGHT n] | [LEFT n]
+
+Move the cursor up, down, right or left n positions.
+
+Example:
+  [up 5]text[down 5]more text
+
+=== [TAB] | "\t"
+
+Client hit the tab key, or send client tab.
+
+=== [BELL] | "\b"
+
+Send client annoying belltone, or client sent us annoying belltone.
+
+=== [BS] | "\b"
+
+Send client a backspace.
+
+=== [HOME n,n]
+
+Client hit home key, or tell client to move the cursor to row, col
+
+Example:
+  [HOME 15,40]Center of screen
+
+=== [CURREPT| | [CURSOR n,n]
+
+Ask client to tell us the position of the cursor.  
+Client sends us the position of the cursor in row, col.
+
+=== [CLEAR]
+
+Clear the client screen
+
+=== [CLEARLINE]
+
+Clear the current line
+
+=== [CURSAVE] | [CURREST]
+
+Ask client to save cursor or restore the saved cursor
+
+Example:
+  [CURSAVE][HOME 1,1]Title[CURREST]
+
+=== [SCRREG n,n] 
+
+Tell client to setup a scroll region with start and end rows.
+
+=== [SCRRESET] 
+
+Clear the setup scroll region.
+
+=== [INSERT]
+
+Client hit insert key.
+
+=== [END]
+
+Client hit end key.
+
+=== [PAGEDOWN]
+
+Client hit page down key.
+
+=== [PAGEUP]
+
+Client hit page down key.
+
+=== [Fn]
+
+Client hit function key.  We support F1-F10
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>update (Account)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/core/account.rb, line 62</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>(<span class="ruby-identifier">msg</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">msg</span>
+    <span class="ruby-comment cmt"># Handle disconnection from server</span>
+    <span class="ruby-comment cmt"># Note that publishing a :quit event (see #disconnect) will return a</span>
+    <span class="ruby-comment cmt">#  :disconnected event when server has closed the connection.</span>
+    <span class="ruby-comment cmt"># Guest accounts and characters are deleted here.</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:disconnected</span>
+      <span class="ruby-ivar">@conn</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">unsubscribe_all</span>
+      <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">makeswap</span>(<span class="ruby-identifier">id</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@character</span>
+        <span class="ruby-identifier">world</span>.<span class="ruby-identifier">connected_characters</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">world</span>.<span class="ruby-identifier">connected_characters</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pid</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">add_event</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{name} has disconnected.&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">makeswap</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">account</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Guest/i</span>
+          <span class="ruby-identifier">world</span>.<span class="ruby-identifier">all_characters</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>)
+          <span class="ruby-identifier">delete_object</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@character</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Guest/i</span>
+        <span class="ruby-identifier">world</span>.<span class="ruby-identifier">all_accounts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">delete_object</span>(<span class="ruby-identifier">id</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># Issued when a NAWS event occurs</span>
+    <span class="ruby-comment cmt"># Currently this clears and resets the screen.  Ideally it should attempt</span>
+    <span class="ruby-comment cmt"># to redraw it.</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:termsize</span>
+      <span class="ruby-ivar">@termsize</span> = <span class="ruby-ivar">@conn</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">:termsize</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">vtsupport?</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-node">&quot;[home #{@termsize[1]},1][clearline][cursave]&quot;</span> <span class="ruby-operator">+</span>
+          <span class="ruby-node">&quot;[home 1,1][scrreset][clear][scrreg 1,#{@termsize[1]-3}][currest]&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># Negotiation with client done.  Start talking to it.</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:initdone</span>
+      <span class="ruby-ivar">@echo</span> = <span class="ruby-ivar">@conn</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">:echo</span>)
+      <span class="ruby-ivar">@termsize</span> = <span class="ruby-ivar">@conn</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">:termsize</span>)
+      <span class="ruby-ivar">@terminal</span> = <span class="ruby-ivar">@conn</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">:terminal</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">vtsupport?</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-node">&quot;[home #{@termsize[1]},1][clearline][cursave]&quot;</span> <span class="ruby-operator">+</span>
+          <span class="ruby-node">&quot;[home 1,1][scrreset][clear][scrreg 1,#{@termsize[1]-3}][currest]&quot;</span>)
+        <span class="ruby-identifier">sendmsg</span>(<span class="ruby-constant">LOGO</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">sendmsg</span>(<span class="ruby-constant">BANNER</span>)
+      <span class="ruby-identifier">sendmsg</span>(<span class="ruby-identifier">append_echo</span>(<span class="ruby-value str">&quot;login&gt; &quot;</span>))
+      <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">:name</span>
+    <span class="ruby-comment cmt"># This is a message from our user</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+      <span class="ruby-identifier">parse_messages</span>(<span class="ruby-identifier">msg</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Account#update unknown message - #{msg.inspect}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">rescue</span>
+    <span class="ruby-comment cmt"># We squash and print out all exceptions here.  There is no reason to</span>
+    <span class="ruby-comment cmt"># throw these back at the Connection.</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">$!</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

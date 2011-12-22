@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cmd_set (Cmd)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File cmd/teensy/cmd_set.rb, line 21</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cmd_set</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">args</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;What??&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/desc\s+#(\d+)\s+(.*)/</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-value">0</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No object.&quot;</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">o</span>.<span class="ruby-identifier">desc</span> = <span class="ruby-identifier">$2</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Object #&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; description set.&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/key\s+#(\d+)\s+(.*)/</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-value">0</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No object.&quot;</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">o</span>.<span class="ruby-identifier">key</span> = <span class="ruby-identifier">$2</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Object #&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; key set.&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/timer\s+#(\d+)\s+(on|off)\s+(.*)/</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No object.&quot;</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$2</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'on'</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$3</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/(\w+)\s+(\d+)/</span>
+            <span class="ruby-identifier">world</span>.<span class="ruby-identifier">set_timer</span>(<span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>)
+            <span class="ruby-identifier">sendto</span>(<span class="ruby-node">&quot;Object ##{o.id} registered with timer.&quot;</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Bad symbol or missing time&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$3</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/(\w+)/</span>
+            <span class="ruby-identifier">world</span>.<span class="ruby-identifier">unset_timer</span>(<span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_sym</span>)
+            <span class="ruby-identifier">sendto</span>(<span class="ruby-node">&quot;Object ##{o.id} unregistered with timer.&quot;</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Bad symbol&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;What??&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

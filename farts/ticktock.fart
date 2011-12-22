@@ -1,0 +1,5 @@
+if rand(50)
+  echoat "3 ***TICK!***"
+else
+  echoat "3 ***TOCK!***"
+endif

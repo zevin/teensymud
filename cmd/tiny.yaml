@@ -1,0 +1,23 @@
+#
+# file::    tiny.yaml
+# author::  Jon A. Lambert
+# version:: 2.9.0
+# date::    03/10/2006
+#
+# This source code copyright (C) 2005, 2006 by Jon A. Lambert
+# All rights reserved.
+#
+# Released under the terms of the TeensyMUD Public License
+# See LICENSE file for additional information.
+#
+
+# These are the character commands for the Tiny interface
+--- 
+- !ruby/object:Command 
+  cmd: :cmd_get
+  help: Pick up an object.
+  name: get
+- !ruby/object:Command 
+  cmd: :cmd_shutdown
+  help: Shut down the server.
+  name: @shutdown

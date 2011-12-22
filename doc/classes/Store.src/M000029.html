@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>stats (Store)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/store.rb, line 134</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stats</span>
+    <span class="ruby-identifier">rooms</span> = <span class="ruby-identifier">objs</span> = <span class="ruby-identifier">scripts</span> = <span class="ruby-identifier">characters</span> = <span class="ruby-identifier">accounts</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">val</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Room</span>
+        <span class="ruby-identifier">rooms</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Character</span>
+        <span class="ruby-identifier">characters</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">GameObject</span>
+        <span class="ruby-identifier">objs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Script</span>
+        <span class="ruby-identifier">scripts</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Account</span>
+        <span class="ruby-identifier">accounts</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">stats</span>=<span class="ruby-value str">&quot;[COLOR Cyan]\n---* Database Statistics *---\n  Rooms      - \#{rooms}\n  Objects    - \#{objs}\n  Scripts    - \#{scripts}\n  Accounts   - \#{accounts}\n  Characters - \#{characters}\n  Total Objects - \#{rooms+objs+characters+accounts+scripts}\n  Highest OID in use - \#{@dbtop}\n---*                     *---\n[/COLOR]\n&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

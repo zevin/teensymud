@@ -1,0 +1,210 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/farts/farts_lexer.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Farts__SyntaxNode -> Farts__LiteralSyntaxNode [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__ProgramSyntaxNode [
+
+    ]
+
+    Racc__Parser [
+        URL = "classes/Racc/Parser.html",
+        label = "Racc::Parser"
+    ]
+
+    Racc__Parser -> Farts__Parser [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__CallSyntaxNode [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__CommentSyntaxNode [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__EndSyntaxNode [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__AttributeSyntaxNode [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__LocalVarSyntaxNode [
+
+    ]
+
+    StringScanner [
+        URL = "classes/StringScanner.html",
+        label = "StringScanner"
+    ]
+
+    StringScanner -> Farts__Lexer [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__IfSyntaxNode [
+
+    ]
+
+    Farts__SyntaxNode -> Farts__CommandSyntaxNode [
+
+    ]
+
+    subgraph cluster_Farts {
+        fillcolor = palegreen1
+        URL = "classes/Farts.html"
+        fontname = Arial
+        color = blue
+        label = "Farts"
+        style = filled
+        Farts [
+            shape = plaintext,
+            height = 0.01,
+            width = 0.01,
+            label = ""
+        ]
+
+        Farts__LiteralSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/LiteralSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "LiteralSyntaxNode"
+        ]
+
+        Farts__ProgramSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/ProgramSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "ProgramSyntaxNode"
+        ]
+
+        Farts__Parser [
+            fontcolor = black,
+            URL = "classes/Farts/Parser.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Parser"
+        ]
+
+        Farts__CallSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/CallSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "CallSyntaxNode"
+        ]
+
+        Farts__Interpreter [
+            fontcolor = black,
+            URL = "classes/Farts/Interpreter.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Interpreter"
+        ]
+
+        Farts__CommentSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/CommentSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "CommentSyntaxNode"
+        ]
+
+        Farts__EndSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/EndSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "EndSyntaxNode"
+        ]
+
+        Farts__AttributeSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/AttributeSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "AttributeSyntaxNode"
+        ]
+
+        Farts__LocalVarSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/LocalVarSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "LocalVarSyntaxNode"
+        ]
+
+        Farts__SyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/SyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "SyntaxNode"
+        ]
+
+        Farts__Lib [
+            fontcolor = black,
+            URL = "classes/Farts/Lib.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Lib"
+        ]
+
+        Farts__Lexer [
+            fontcolor = black,
+            URL = "classes/Farts/Lexer.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Lexer"
+        ]
+
+        Farts__IfSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/IfSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "IfSyntaxNode"
+        ]
+
+        Farts__CommandSyntaxNode [
+            fontcolor = black,
+            URL = "classes/Farts/CommandSyntaxNode.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "CommandSyntaxNode"
+        ]
+
+    }
+
+}
+

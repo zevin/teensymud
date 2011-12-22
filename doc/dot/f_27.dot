@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/network/lineio.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    LineIO [
+        fontcolor = black,
+        URL = "classes/LineIO.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "LineIO"
+    ]
+
+    SockIO [
+        URL = "classes/SockIO.html",
+        label = "SockIO"
+    ]
+
+    SockIO -> LineIO [
+
+    ]
+
+}
+

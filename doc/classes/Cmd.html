@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Cmd</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Cmd</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/cmd/teensy/cmd_chat_rb.html">
+                cmd/teensy/cmd_chat.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_color_rb.html">
+                cmd/teensy/cmd_color.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_drop_rb.html">
+                cmd/teensy/cmd_drop.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_dumpcache_rb.html">
+                cmd/teensy/cmd_dumpcache.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_edit_rb.html">
+                cmd/teensy/cmd_edit.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_emote_rb.html">
+                cmd/teensy/cmd_emote.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_gc_rb.html">
+                cmd/teensy/cmd_gc.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_get_rb.html">
+                cmd/teensy/cmd_get.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_go_rb.html">
+                cmd/teensy/cmd_go.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_hello_rb.html">
+                cmd/teensy/cmd_hello.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_help_rb.html">
+                cmd/teensy/cmd_help.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_inv_rb.html">
+                cmd/teensy/cmd_inv.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_kill_rb.html">
+                cmd/teensy/cmd_kill.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_look_rb.html">
+                cmd/teensy/cmd_look.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_memstats_rb.html">
+                cmd/teensy/cmd_memstats.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_object_rb.html">
+                cmd/teensy/cmd_object.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_quit_rb.html">
+                cmd/teensy/cmd_quit.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_reload_rb.html">
+                cmd/teensy/cmd_reload.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_room_rb.html">
+                cmd/teensy/cmd_room.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_say_rb.html">
+                cmd/teensy/cmd_say.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_script_rb.html">
+                cmd/teensy/cmd_script.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_set_rb.html">
+                cmd/teensy/cmd_set.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_show_rb.html">
+                cmd/teensy/cmd_show.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_shutdown_rb.html">
+                cmd/teensy/cmd_shutdown.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_stats_rb.html">
+                cmd/teensy/cmd_stats.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_status_rb.html">
+                cmd/teensy/cmd_status.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_trigger_rb.html">
+                cmd/teensy/cmd_trigger.rb
+                </a>
+        <br />
+                <a href="../files/cmd/teensy/cmd_who_rb.html">
+                cmd/teensy/cmd_who.rb
+                </a>
+        <br />
+                <a href="../files/cmd/tiny/cmd_get_rb.html">
+                cmd/tiny/cmd_get.rb
+                </a>
+        <br />
+                <a href="../files/cmd/tiny/cmd_shutdown_rb.html">
+                cmd/tiny/cmd_shutdown.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="17,17,111,61"      href="Cmd.html" alt="Cmd">
+</map>
+<img src="../dot/m_91_0.png" usemap="#map" border=0 alt="Module: Cmd">
+    </div>
+
+    <div id="description">
+      <table>
+<tr><td valign="top">file:</td><td>cmd_shutdown.rb
+
+</td></tr>
+<tr><td valign="top">author:</td><td>Jon A. Lambert
+
+</td></tr>
+<tr><td valign="top">version:</td><td>2.9.0
+
+</td></tr>
+<tr><td valign="top">date:</td><td>01/19/2006
+
+</td></tr>
+</table>
+<p>
+This source code copyright (C) 2005, 2006 by Jon A. Lambert All rights
+reserved.
+</p>
+<p>
+Released under the terms of the TeensyMUD Public License See LICENSE file
+for additional information.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000356">cmd_chat</a>&nbsp;&nbsp;
+      <a href="#M000357">cmd_color</a>&nbsp;&nbsp;
+      <a href="#M000358">cmd_drop</a>&nbsp;&nbsp;
+      <a href="#M000359">cmd_dumpcache</a>&nbsp;&nbsp;
+      <a href="#M000360">cmd_edit</a>&nbsp;&nbsp;
+      <a href="#M000364">cmd_emote</a>&nbsp;&nbsp;
+      <a href="#M000365">cmd_gc</a>&nbsp;&nbsp;
+      <a href="#M000387">cmd_get</a>&nbsp;&nbsp;
+      <a href="#M000366">cmd_get</a>&nbsp;&nbsp;
+      <a href="#M000367">cmd_go</a>&nbsp;&nbsp;
+      <a href="#M000368">cmd_hello</a>&nbsp;&nbsp;
+      <a href="#M000369">cmd_help</a>&nbsp;&nbsp;
+      <a href="#M000370">cmd_inv</a>&nbsp;&nbsp;
+      <a href="#M000371">cmd_kill</a>&nbsp;&nbsp;
+      <a href="#M000372">cmd_look</a>&nbsp;&nbsp;
+      <a href="#M000373">cmd_memstats</a>&nbsp;&nbsp;
+      <a href="#M000374">cmd_object</a>&nbsp;&nbsp;
+      <a href="#M000375">cmd_quit</a>&nbsp;&nbsp;
+      <a href="#M000376">cmd_reload</a>&nbsp;&nbsp;
+      <a href="#M000377">cmd_room</a>&nbsp;&nbsp;
+      <a href="#M000378">cmd_say</a>&nbsp;&nbsp;
+      <a href="#M000379">cmd_script</a>&nbsp;&nbsp;
+      <a href="#M000380">cmd_set</a>&nbsp;&nbsp;
+      <a href="#M000381">cmd_show</a>&nbsp;&nbsp;
+      <a href="#M000382">cmd_shutdown</a>&nbsp;&nbsp;
+      <a href="#M000388">cmd_shutdown</a>&nbsp;&nbsp;
+      <a href="#M000383">cmd_stats</a>&nbsp;&nbsp;
+      <a href="#M000384">cmd_status</a>&nbsp;&nbsp;
+      <a href="#M000385">cmd_trigger</a>&nbsp;&nbsp;
+      <a href="#M000386">cmd_who</a>&nbsp;&nbsp;
+      <a href="#M000361">edit_display</a>&nbsp;&nbsp;
+      <a href="#M000363">edit_parser</a>&nbsp;&nbsp;
+      <a href="#M000362">word_wrap</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000356" class="method-detail">
+        <a name="M000356"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000356.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000356.html');return false;">
+          <span class="method-name">cmd_chat</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends &lt;message&gt; to all characters in the game
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000357" class="method-detail">
+        <a name="M000357"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000357.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000357.html');return false;">
+          <span class="method-name">cmd_color</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+toggles colors on or off
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000358" class="method-detail">
+        <a name="M000358"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000358.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000358.html');return false;">
+          <span class="method-name">cmd_drop</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+drops all objects in your inventory into the room
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000359" class="method-detail">
+        <a name="M000359"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000359.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000359.html');return false;">
+          <span class="method-name">cmd_dumpcache</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Look command displays the contents of a room
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000360" class="method-detail">
+        <a name="M000360"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000360.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000360.html');return false;">
+          <span class="method-name">cmd_edit</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+@edits a string field on an object Syntax:
+</p>
+<pre>
+  @edit #&lt;id&gt; &lt;field&gt;
+  @edit sysmsg &lt;field&gt;
+</pre>
+<p>
+(ex. @edit 1 desc
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000364" class="method-detail">
+        <a name="M000364"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000364.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000364.html');return false;">
+          <span class="method-name">cmd_emote</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends &lt;message&gt; to all characters in the room
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000365" class="method-detail">
+        <a name="M000365"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000365.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000365.html');return false;">
+          <span class="method-name">cmd_gc</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This command runs garbage collection
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000387" class="method-detail">
+        <a name="M000387"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000387.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000387.html');return false;">
+          <span class="method-name">cmd_get</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+gets all objects in the room into your inventory
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000366" class="method-detail">
+        <a name="M000366"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000366.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000366.html');return false;">
+          <span class="method-name">cmd_get</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+gets all objects in the room into your inventory
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000367" class="method-detail">
+        <a name="M000367"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000367.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000367.html');return false;">
+          <span class="method-name">cmd_go</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends &lt;message&gt; to all characters in the room
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000368.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000368.html');return false;">
+          <span class="method-name">cmd_hello</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The hello social command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000369.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000369.html');return false;">
+          <span class="method-name">cmd_help</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The help command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000370.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000370.html');return false;">
+          <span class="method-name">cmd_inv</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The inventory command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000371.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000371.html');return false;">
+          <span class="method-name">cmd_kill</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This kills a character anywhere - it&#8217;s link death (30% chance)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000372.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000372.html');return false;">
+          <span class="method-name">cmd_look</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Look command displays the contents of a room
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000373.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000373.html');return false;">
+          <span class="method-name">cmd_memstats</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The memory stats command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000374.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000374.html');return false;">
+          <span class="method-name">cmd_object</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sets the description for an object (ex. @set 1 A beautiful rose.)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000375.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000375.html');return false;">
+          <span class="method-name">cmd_quit</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The quit command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000376.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000376.html');return false;">
+          <span class="method-name">cmd_reload</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This reloads the commands
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000377.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000377.html');return false;">
+          <span class="method-name">cmd_room</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+creates a new room and autolinks the exits using the exit names provided.
+(ex. @room My <a href="Room.html">Room</a> north south)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000378" class="method-detail">
+        <a name="M000378"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000378.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000378.html');return false;">
+          <span class="method-name">cmd_say</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sends &lt;message&gt; to all characters in the room
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000379" class="method-detail">
+        <a name="M000379"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000379.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000379.html');return false;">
+          <span class="method-name">cmd_script</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+adds, deletes, lists, or a script Syntax:
+</p>
+<pre>
+  @script add &lt;lang&gt; &lt;progname&gt;|&lt;code&gt;
+  @script del #&lt;scriptid&gt;
+  @script show #&lt;scriptid&gt;
+</pre>
+<p>
+(ex. @script add fart myprog) (ex. @script add boolexp 234|42&amp;34 )
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000380" class="method-detail">
+        <a name="M000380"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000380.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000380.html');return false;">
+          <span class="method-name">cmd_set</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sets the description or timer for an object Syntax:
+</p>
+<pre>
+  @set desc #&lt;id&gt; &lt;description&gt;
+  @set key #&lt;id&gt; &lt;description&gt;
+  @set timer #&lt;id&gt; &lt;on|off&gt;
+</pre>
+<p>
+(ex. @set desc 1 A beautiful rose.)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000381" class="method-detail">
+        <a name="M000381"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000381.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000381.html');return false;">
+          <span class="method-name">cmd_show</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+displays object Syntax:
+</p>
+<pre>
+  @show #&lt;oid&gt;|me
+</pre>
+<p>
+(ex. @show me)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000382" class="method-detail">
+        <a name="M000382"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000382.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000382.html');return false;">
+          <span class="method-name">cmd_shutdown</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The shutdown command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000388" class="method-detail">
+        <a name="M000388"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000388.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000388.html');return false;">
+          <span class="method-name">cmd_shutdown</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The shutdown command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000383" class="method-detail">
+        <a name="M000383"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000383.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000383.html');return false;">
+          <span class="method-name">cmd_stats</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The database stats command
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000384" class="method-detail">
+        <a name="M000384"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000384.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000384.html');return false;">
+          <span class="method-name">cmd_status</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+displays session information
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000385" class="method-detail">
+        <a name="M000385"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000385.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000385.html');return false;">
+          <span class="method-name">cmd_trigger</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+adds, deletes, or shows triggers on an object Syntax:
+</p>
+<pre>
+  @trigger add #&lt;id&gt; #&lt;scriptid&gt; &lt;eventtype&gt;
+  @trigger del #&lt;id&gt; &lt;eventtype&gt;
+  @trigger show #&lt;id&gt;
+</pre>
+<p>
+(ex. @trigger add 1 myprog arrive)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000386" class="method-detail">
+        <a name="M000386"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000386.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000386.html');return false;">
+          <span class="method-name">cmd_who</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+shows a list of all connected characters
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000361" class="method-detail">
+        <a name="M000361"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000361.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000361.html');return false;">
+          <span class="method-name">edit_display</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000363" class="method-detail">
+        <a name="M000363"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000363.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000363.html');return false;">
+          <span class="method-name">edit_parser</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000362" class="method-detail">
+        <a name="M000362"></a>
+
+        <div class="method-heading">
+          <a href="Cmd.src/M000362.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmd.src/M000362.html');return false;">
+          <span class="method-name">word_wrap</span><span class="method-args">(s, len)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

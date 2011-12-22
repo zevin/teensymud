@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (ProtocolStack)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/protocol/protocolstack.rb, line 38</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">conn</span>)
+    <span class="ruby-ivar">@conn</span> = <span class="ruby-identifier">conn</span>
+    <span class="ruby-ivar">@server</span> = <span class="ruby-ivar">@conn</span>.<span class="ruby-identifier">server</span>
+    <span class="ruby-ivar">@filters</span> = []  <span class="ruby-comment cmt"># Filter order is critical as lowest level protocol is first.</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_filters</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:debugfilter</span>
+      <span class="ruby-ivar">@filters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">DebugFilter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_filters</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:telnetfilter</span>
+      <span class="ruby-ivar">@filters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TelnetFilter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-ivar">@server</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_filters</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:terminalfilter</span>
+      <span class="ruby-ivar">@filters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TerminalFilter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_filters</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:colorfilter</span>
+      <span class="ruby-ivar">@filters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ColorFilter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_filters</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:filter</span>
+      <span class="ruby-ivar">@filters</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Filter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Shared variables to facilitate inter-filter communication.</span>
+    <span class="ruby-ivar">@sga_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@echo_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@binary_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@zmp_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@eorec_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@color_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@urgent_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@hide_on</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@terminal</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@twidth</span> = <span class="ruby-value">80</span>
+    <span class="ruby-ivar">@theight</span> = <span class="ruby-value">23</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

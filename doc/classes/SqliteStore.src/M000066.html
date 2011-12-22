@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (SqliteStore)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/sqlitestore.rb, line 31</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">dbfile</span>)
+    <span class="ruby-keyword kw">super</span>()
+    <span class="ruby-ivar">@dbfile</span> = <span class="ruby-node">&quot;#{dbfile}.sqlite&quot;</span>
+
+    <span class="ruby-comment cmt"># check if database exists and build it if not</span>
+    <span class="ruby-identifier">build_database</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Loading world...&quot;</span>
+
+    <span class="ruby-comment cmt"># open database and sets @dbtop to highest object id</span>
+    <span class="ruby-ivar">@db</span> = <span class="ruby-constant">SQLite</span><span class="ruby-operator">::</span><span class="ruby-constant">Database</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@dbfile</span>)
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">cache_size</span> = <span class="ruby-value">1000</span>;     <span class="ruby-comment cmt"># default is 2000 1.5K pages</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">synchronous</span> = <span class="ruby-value">0</span>;       <span class="ruby-comment cmt"># dangerous if OS crash, but fast</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">type_translation</span> = <span class="ruby-keyword kw">true</span>;
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value str">&quot;select id from tmud;&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@dbtop</span> = <span class="ruby-identifier">i</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dbtop</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">CacheManager</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@db</span>)
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Database '#{@dbfile}' loaded...highest id = #{@dbtop}.&quot;</span>
+<span class="ruby-comment cmt">#    log.debug @db.inspect</span>
+  <span class="ruby-keyword kw">rescue</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-identifier">$!</span>
+    <span class="ruby-identifier">raise</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

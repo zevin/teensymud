@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse (Character)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/core/character.rb, line 53</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">m</span>)
+    <span class="ruby-ivar">@account</span>.<span class="ruby-identifier">prompt</span>
+    <span class="ruby-comment cmt"># handle edit mode</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@mode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:edit</span>
+      <span class="ruby-identifier">edit_parser</span> <span class="ruby-identifier">m</span>
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># match legal command</span>
+    <span class="ruby-identifier">m</span><span class="ruby-operator">=~</span><span class="ruby-regexp re">/([A-Za-z0-9_@?&quot;'#!\]\[]+)(.*)/</span>
+    <span class="ruby-identifier">cmd</span>=<span class="ruby-identifier">$1</span>
+    <span class="ruby-identifier">arg</span>=<span class="ruby-identifier">$2</span>
+    <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">strip!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">cmd</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Huh?&quot;</span>)
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># look for a command in our spanking new table</span>
+    <span class="ruby-identifier">c</span> = <span class="ruby-identifier">world</span>.<span class="ruby-identifier">cmds</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">cmd</span>)
+
+
+    <span class="ruby-comment cmt"># add any exits to our command list</span>
+    <span class="ruby-comment cmt"># escape certain characters in cmd</span>
+    <span class="ruby-identifier">check</span> = <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\?/</span>,<span class="ruby-value str">&quot;\\?&quot;</span>)
+    <span class="ruby-identifier">check</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\#/</span>,<span class="ruby-value str">&quot;\\#&quot;</span>)
+    <span class="ruby-identifier">check</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\[/</span>,<span class="ruby-value str">&quot;\\[&quot;</span>)
+    <span class="ruby-identifier">check</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\]/</span>,<span class="ruby-value str">&quot;\\]&quot;</span>)
+    <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">location</span>).<span class="ruby-identifier">exits</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">exid</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">ext</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">exid</span>)
+      <span class="ruby-identifier">ext</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/;/</span>).<span class="ruby-identifier">grep</span>(<span class="ruby-node">/^#{check}/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ex</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">c</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Command</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:cmd_go</span>,<span class="ruby-node">&quot;go #{ex}&quot;</span>,<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">ex</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;parse commands - '#{c.inspect}', arguments - '#{arg}', check - '#{check}'&quot;</span>
+
+    <span class="ruby-comment cmt"># there are three possibilities here</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span>   <span class="ruby-comment cmt"># no commands found</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Huh?&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>   <span class="ruby-comment cmt"># command found</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">c</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">arg</span>)
+    <span class="ruby-keyword kw">else</span>     <span class="ruby-comment cmt"># ambiguous command - tell luser about them.</span>
+      <span class="ruby-identifier">ln</span> = <span class="ruby-value str">&quot;Which did you mean, &quot;</span>
+      <span class="ruby-identifier">c</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">ln</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;\'&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\'&quot;</span>
+        <span class="ruby-identifier">x</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">name</span> <span class="ruby-value">? </span><span class="ruby-identifier">ln</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;?&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">ln</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot; or &quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">ln</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+    <span class="ruby-comment cmt"># keep character alive after exceptions</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-identifier">$!</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>property (Module)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/properties.rb, line 26</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">property</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sym</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Configuration</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">options</span>[<span class="ruby-value str">'props_are_accessors_only'</span>]
+      <span class="ruby-identifier">attr_accessor</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sym</span>)
+??
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">sym</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;def \#{s}\n@props ||= {}\nif options['safe_read'] &amp;&amp; !@props[:\#{s}].kind_of?(Numeric)\nEngine.instance.db.mark(self.id)\n@props[:updated_on] = Time.now\nend\n@props[:\#{s}]\nend\ndef \#{s}=(val)\n@props ||= {}\nEngine.instance.db.mark(self.id)\n@props[:updated_on] = Time.now\n@props[:\#{s}] = val\nend\n&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;def to_yaml_properties\n['@props']\nend\ndef id\n@props ||= {}\n@props[:id] ||= Engine.instance.db.getid\nend\ndef _dump(depth)\nMarshal.dump(@props)\nend\ndef self._load(str)\nobj = allocate\nobj.instance_variable_set(:@props,Marshal.load(str))\nobj\nend\n&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

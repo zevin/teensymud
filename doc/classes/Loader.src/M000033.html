@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_options (Loader)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File dbload.rb, line 61</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_options</span>
+
+    <span class="ruby-comment cmt"># The myopts specified on the command line will be collected in *myopts*.</span>
+    <span class="ruby-comment cmt"># We set default values here.</span>
+    <span class="ruby-identifier">myopts</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ifile</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">dbtype</span> = <span class="ruby-keyword kw">nil</span>
+
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-node">&quot;Database Loader #{VERSION}&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-node">&quot;Usage: ruby #{$0} [options]&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;Options:&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-i&quot;</span>, <span class="ruby-value str">&quot;--ifile FILE&quot;</span>, <span class="ruby-constant">String</span>,
+              <span class="ruby-value str">&quot;Select the yaml file to read&quot;</span>,
+              <span class="ruby-value str">&quot;  defaults to same as database&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ifile</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-o&quot;</span>, <span class="ruby-value str">&quot;--ofile FILE&quot;</span>, <span class="ruby-constant">String</span>,
+              <span class="ruby-value str">&quot;Select the database file to write&quot;</span>,
+              <span class="ruby-value str">&quot;  extension determined automatically&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-t&quot;</span>, <span class="ruby-value str">&quot;--type DBTYPE&quot;</span>, <span class="ruby-constant">DATABASES</span>,
+              <span class="ruby-value str">&quot;Select the database type - required (no default)&quot;</span>,
+              <span class="ruby-node">&quot;  One of: #{DATABASES.join(&quot;, &quot;)}&quot;</span>,
+              <span class="ruby-value str">&quot;    Example: -t gdbm&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">dbtype</span><span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;-h&quot;</span>, <span class="ruby-value str">&quot;--help&quot;</span>, <span class="ruby-value str">&quot;Show this message&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">help</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;-v&quot;</span>, <span class="ruby-value str">&quot;--version&quot;</span>, <span class="ruby-value str">&quot;Show version&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Database Loader #{VERSION}&quot;</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-constant">ARGV</span>)
+    <span class="ruby-identifier">raise</span>(<span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">MissingArgument</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;-t&quot;</span>)) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">dbtype</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">raise</span>(<span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span>, <span class="ruby-value str">&quot;Must specify input file!&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ifile</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span> = <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ifile</span>.<span class="ruby-identifier">dup</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;.gdbm&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">dbtype</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:gdbm</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;.sqlite&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">dbtype</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:sqlite</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ofile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;.sqlite3&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">dbtype</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:sqlite3</span>
+    <span class="ruby-identifier">myopts</span>.<span class="ruby-identifier">ifile</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;.yaml&quot;</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">myopts</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ERROR - #{$!}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;For help...&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot; ruby #{$0} --help&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

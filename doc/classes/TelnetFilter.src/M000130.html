@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>init_subneg (TelnetFilter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/protocol/telnetfilter.rb, line 308</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">init_subneg</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@init_tries</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>
+    <span class="ruby-ivar">@init_tries</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@wopts</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@sneg_opts</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opt</span>)
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) Subnegotiation attempt for option #{opt}.&quot;</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TTYPE</span>
+        <span class="ruby-identifier">who</span> = <span class="ruby-identifier">:him</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">who</span> = <span class="ruby-identifier">:us</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">desired?</span>(<span class="ruby-identifier">opt</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">enabled?</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">who</span>)
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TTYPE</span>
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sendmsg</span>(<span class="ruby-constant">IAC</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SB</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TTYPE</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">IAC</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SE</span>.<span class="ruby-identifier">chr</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ZMP</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) ZMP successfully negotiated.&quot;</span> )
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sendmsg</span>(<span class="ruby-node">&quot;#{IAC.chr}#{SB.chr}#{ZMP.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;zmp.check#{NUL.chr}color.#{NUL.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;#{IAC.chr}#{SE.chr}&quot;</span>)
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sendmsg</span>(<span class="ruby-node">&quot;#{IAC.chr}#{SB.chr}#{ZMP.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;zmp.ident#{NUL.chr}TeensyMUD#{NUL.chr}#{Version}#{NUL.chr}A sexy mud server#{NUL.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;#{IAC.chr}#{SE.chr}&quot;</span>)
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sendmsg</span>(<span class="ruby-node">&quot;#{IAC.chr}#{SB.chr}#{ZMP.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;zmp.ping#{NUL.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;#{IAC.chr}#{SE.chr}&quot;</span>)
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sendmsg</span>(<span class="ruby-node">&quot;#{IAC.chr}#{SB.chr}#{ZMP.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;zmp.input#{NUL.chr}\n     I see you support...\n     ZMP protocol\n#{NUL.chr}&quot;</span> <span class="ruby-operator">+</span>
+            <span class="ruby-node">&quot;#{IAC.chr}#{SE.chr}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@sneg_opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">opt</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@init_tries</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) Telnet init_subneg option - Timed out after #{@init_tries} tries.&quot;</span>)
+      <span class="ruby-ivar">@sneg_opts</span> = []
+      <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">set_initdone</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">terminal</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">terminal</span> = <span class="ruby-value str">&quot;dumb&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

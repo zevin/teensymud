@@ -1,0 +1,41 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/storage/cache.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    CacheStats [
+        fontcolor = black,
+        URL = "classes/CacheStats.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "CacheStats"
+    ]
+
+    CacheManager [
+        fontcolor = black,
+        URL = "classes/CacheManager.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "CacheManager"
+    ]
+
+    CacheEntry [
+        fontcolor = black,
+        URL = "classes/CacheEntry.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "CacheEntry"
+    ]
+
+}
+

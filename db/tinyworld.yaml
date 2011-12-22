@@ -1,0 +1,5703 @@
+--- 
+- !ruby/object:World 
+  props: 
+    :created_on: 2006-03-09 22:45:33.695862 -05:00
+    :updated_on: 2006-03-09 22:45:33.695862 -05:00
+    :owner: 0
+    :msgs: {}
+    :timer_list: []
+    :all_accounts: 
+    - 334
+    - 336
+    - 338
+    - 340
+    :all_characters: 
+    - 267
+    - 268
+    - 269
+    - 270
+    :admins: 
+    - 267
+    :builders: 
+    - 267
+    - 268
+    :name: World
+    :desc: This is the World object.
+    :id: 0
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: This is where Abdul plies his trade.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Abdul's
+    :exits: 
+    - 77
+    :msgfail: "|"
+    :id: 1
+    :contents: 
+    - 254
+- !ruby/object:Script 
+  props: 
+    :src: "216"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 2
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Crafty Camel
+    :id: 272
+- !ruby/object:Room 
+  props: 
+    :msgsucc: Akhbar is offering to sell a vat of yoghurt in exchange for a bushel of corn.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are just inside the entrance of the tent of the crafty camel. It seems that the goods sold here are of low quality.
+    :owner: 270
+    :triggers: 
+      :describe: 272
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Crafty Camel
+    :exits: 
+    - 158
+    - 153
+    - 95
+    :msgfail: "Jeff has a special today: buy a goat for a bushel of corn.|"
+    :id: 2
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|is briefly visible through the mist."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in a dense mist that seems to go on forever. If you drop an object here, or set its home to be here, you probably won't be able to find it again. For some strange reason, you can sense which way is north here.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Limbo
+    :exits: 
+    - 137
+    - 133
+    - 129
+    - 125
+    - 116
+    - 110
+    - 106
+    - 101
+    - 96
+    - 58
+    :msgfail: "|"
+    :id: 3
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 4
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Wizard's Room
+    :id: 273
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a few, choice tomes enscribed with weighty runes, a door labeled "Lobby", and a full-length mirror.
+    :owner: 267
+    :triggers: 
+      :describe: 273
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Wizard's Room
+    :exits: 
+    - 179
+    - 66
+    - 62
+    :msgfail: Thunderclouds gather over your head. Blazing letters swim before your eyes, saying "Mortal, get thee hence!"|
+    :id: 4
+    :contents: 
+    - 201
+    - 192
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: The sultry Cleopatra offers her wares here--she's some piece of asp!
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Cleopatra's
+    :exits: 
+    - 81
+    :msgfail: "|"
+    :id: 5
+    :contents: 
+    - 218
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: This corner of the tent is owned by Jeff.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Jeff's
+    :exits: 
+    - 164
+    :msgfail: "|"
+    :id: 6
+    :contents: 
+    - 216
+- !ruby/object:Script 
+  props: 
+    :src: "218"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 7
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Omar's Oasis
+    :id: 274
+- !ruby/object:Room 
+  props: 
+    :msgsucc: Abdul, in one corner of the tent, indicates that he would trade a dangerous-looking scimitar for a vat of tasty yoghurt.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: This tent is less run-down than the Crafty Camel. Omar himself is a short fellow in a fez, with a smile that shows a mouthful of gold teeth.
+    :owner: 270
+    :triggers: 
+      :describe: 274
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Omar's Oasis
+    :exits: 
+    - 75
+    - 71
+    - 65
+    :msgfail: "In the far corner of the tent, Cleopatra has a horse for sale. Price: a quantity of cultured dairy product.|"
+    :id: 7
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in a dilapidated corner of the tent that smells like rancid milk.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Akhbars
+    :exits: 
+    - 168
+    :msgfail: "|"
+    :id: 8
+    :contents: 
+    - 214
+- !ruby/object:Script 
+  props: 
+    :src: "!(261)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 9
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Shop of the Desert.
+    :id: 275
+- !ruby/object:Room 
+  props: 
+    :msgsucc: Samreny catches your eye with an ancient scarab he has for sale. He says he would part with it for a scimitar, and that he couldn't sell it to his own grandmother for less!|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: This tent is obviously the poshest in the bazaar. Rich furnighings are everywhere, and the smell of American Express Platinum Cards fills the tent.
+    :owner: 270
+    :triggers: 
+      :describe: 275
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Shop of the Desert.
+    :exits: 
+    - 121
+    - 115
+    - 109
+    :msgfail: "Ali Baba, a rug merchant, has a beautiful persian rug on display. His asking price is a scimitar, for he claims magical properties for his rug: \"May the beard of my aged grandfather blow away in the wind if I am lying!\"|"
+    :id: 9
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are surrounded by dusty library stacks. You can go left, right, or back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 93
+    - 89
+    - 83
+    :msgfail: "|"
+    :id: 10
+    :contents: 
+    - 258
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are at the top of a very deep fiery pit, into which robed, chanting priests throw offerings. A wide stone staircase descends toward the town square to the south. A small doorway opens north into the temple. You sense that it might be profitable to make a small sacrifice yourself.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Temple of Arkteks-t'leep
+    :exits: 
+    - 49
+    - 144
+    - 169
+    - 73
+    :msgfail: "|"
+    :id: 11
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(-1)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: buds
+    :id: 276
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: -------- Bud's Cafe, an Ostentatious Eatery -------- (ring bell for service)
+    :owner: 269
+    :triggers: 
+      :describe: 276
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: buds
+    :exits: 
+    - 84
+    - 64
+    - 50
+    - 111
+    - 79
+    - 59
+    :msgfail: "|"
+    :id: 12
+    :contents: 
+    - 203
+    - 209
+    - 202
+    - 205
+    - 196
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Ali Baba, the rug merchant, has his goods spread out in this corner of the tent.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Ali Baba's
+    :exits: 
+    - 105
+    :msgfail: "|"
+    :id: 13
+    :contents: 
+    - 257
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are surrounded by dusty library stacks. You can go left, right, or back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 107
+    - 103
+    - 98
+    :msgfail: "|"
+    :id: 14
+    :contents: 
+    - 199
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are now in Samreny's Scarab City. It smells of shish-kebab.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Samreny's
+    :exits: 
+    - 126
+    :msgfail: "|"
+    :id: 15
+    :contents: 
+    - 261
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are surrounded by dusty library stacks. You can go left, right, or back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 123
+    - 118
+    - 112
+    :msgfail: "|"
+    :id: 16
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in the town square. All around you, peasants haggle over their wares as unwashed urchins scramble through the legs of tables topped with smelly produce. There are exits in all directions.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Town Square
+    :exits: 
+    - 87
+    - 82
+    - 78
+    - 76
+    - 68
+    :msgfail: "|"
+    :id: 17
+    :contents: 
+    - 250
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in the overflow room for less-popular volumes of the Oxford English Dictionary. There is a single door in this room, labeled "exit."
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary Overflow Room
+    :exits: 
+    - 70
+    :msgfail: "|"
+    :id: 18
+    :contents: 
+    - 247
+    - 251
+    - 234
+    - 231
+    - 206
+    - 235
+    - 230
+    - 195
+    - 260
+    - 207
+    - 211
+    - 215
+    - 256
+    - 213
+    - 245
+    - 243
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are surrounded by dusty library stacks. You can go left, right, or back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 135
+    - 131
+    - 127
+    :msgfail: "|"
+    :id: 19
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are surrounded by dusty library stacks. You can go left, right, or back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 152
+    - 147
+    - 140
+    :msgfail: "|"
+    :id: 20
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are surrounded by dusty library stacks. You can go left, right, or back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 170
+    - 165
+    - 159
+    :msgfail: "|"
+    :id: 21
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are on a landing deep below the Library. From here you can go back up to the Reference room, or continue down on the stairs. The down staircase is covered with dust and in poor repair.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Landing on Stairway
+    :exits: 
+    - 86
+    - 80
+    :msgfail: "|"
+    :id: 22
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are at a dead end deep in the bowels of the dusty library stacks. From here you can only go back the way you came.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives
+    :exits: 
+    - 172
+    :msgfail: "|"
+    :id: 23
+    :contents: 
+    - 197
+    - 263
+    - 193
+    - 236
+    - 262
+    - 190
+    - 237
+    - 264
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Darooha's Hideout
+    :exits: 
+    - 90
+    :msgfail: "|"
+    :id: 24
+    :contents: 
+    - 269
+    - 210
+- !ruby/object:Room 
+  props: 
+    :msgsucc: On the other side of the room is a door to the rest room. In back of you is the entrance of the cafe.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You're standing at the entrance of a white dining room. All of the "dinner guests" (as Bud likes to call them) are dressed in white, and are drinking, eating and talking pleasantly.
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white room
+    :exits: 
+    - 97
+    - 88
+    :msgfail: "|"
+    :id: 25
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in the Wizard's private laboratory. To your left is a full-length mirror. To your other left is a closet door. There is something very odd about this place...
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Wizard's Secret Laboratory
+    :exits: 
+    - 130
+    - 114
+    - 149
+    - 142
+    :msgfail: "|"
+    :id: 26
+    :contents: 
+    - 268
+    - 248
+    - 266
+    - 246
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You're in a small rest room. There are doors here to the punk room the Warhol room, the white room and the black room.
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: rest room
+    :exits: 
+    - 69
+    - 163
+    - 146
+    - 134
+    - 122
+    - 102
+    :msgfail: "|"
+    :id: 27
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in the room holding the Library's collection of encyclopedias. There is a single door in this room, labeled "Exit."
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Encyclopedia Collection
+    :exits: 
+    - 100
+    :msgfail: "|"
+    :id: 28
+    :contents: 
+    - 259
+    - 238
+    - 255
+    - 194
+    - 232
+    - 225
+- !ruby/object:Room 
+  props: 
+    :msgsucc: Across the room is a door to the rest room. In back of you is the entrance of the cafe.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You're standing at the entrance of a black dining room. All of the dinner guests are dressed in black, and are drinking, eating and talking pleasantly.
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black room
+    :exits: 
+    - 60
+    - 117
+    :msgfail: "|"
+    :id: 29
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in an comfortable study decorated in the Victorian style.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Wizard's Study
+    :exits: 
+    - 120
+    :msgfail: "|"
+    :id: 30
+    :contents: 
+    - 267
+    - 191
+- !ruby/object:Room 
+  props: 
+    :msgsucc: The pounding-screeching sounds (emanating from eight one meter diameter Ed-209 diesel powered speakers) is to heavy metal as heavy metal is to Mozart. Beyond the punkers, you see a room with a view. In back of you is the rest room.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You're standing at the entrance of the punk dining room. The people (giving the benefit of the doubt) in the room present the most dazzling array of punkdome you've ever seen.
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: punk room
+    :exits: 
+    - 187
+    - 151
+    :msgfail: "|"
+    :id: 31
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: At the other side of the room is a room with an expansive view of the sea. In back of you is the rest room.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You're standing in the door of the Warhol room. Everybody is smoking and drinking and talking, and making videos of each other, and wearing a black tie and a white jacket. But most peculiar of all, everybody looks exactly like Andy Warhol.
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: warhol room
+    :exits: 
+    - 175
+    - 167
+    :msgfail: "|"
+    :id: 32
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You in a deep underground cave, on top of a large pile of junk. Above you flames come out of fissures in the rock and rush up into a hole cut in the ceiling.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Junkpile
+    :exits: 
+    - 51
+    - 184
+    - 161
+    - 155
+    :msgfail: "|"
+    :id: 33
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(257)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 34
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The middle of the desert
+    :id: 277
+- !ruby/object:Room 
+  props: 
+    :msgsucc: The sheik thanks you for the fine rug, and offers to take you in to town with him.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in the middle of a vast desert with sand as far as the eye can see in all directions. Luckily for you, a large caravan is passing through right now.
+    :owner: 270
+    :triggers: 
+      :describe: 277
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The middle of the desert
+    :exits: 
+    - 162
+    - 156
+    :msgfail: The sheik offers to take you back to town, in exchange for the fine rug you have.|
+    :id: 34
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: This is the departure point for Easward Ho Desert Tours. The town lies to the north and west of here. You can join one of their relaxing tours by mounting one of the remaining camels.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Eastward Ho Caravan Tours
+    :exits: 
+    - 185
+    - 180
+    :msgfail: "|"
+    :id: 35
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are on the second floor of a comfortable but messy house in Squirrel hill.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 1452 Barnsdale Street
+    :exits: 
+    - 74
+    - 55
+    - 174
+    :msgfail: "|"
+    :id: 36
+    :contents: 
+    - 270
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are at an Oasis at the edge of a vast desert, which stretches out to the north, east and west. Date palms grow by the blue water here. To the south, you can see some fields of golden grain.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Oasis
+    :exits: 
+    - 150
+    - 143
+    - 138
+    - 177
+    - 173
+    :msgfail: "|"
+    :id: 37
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You enter a room with an expansive view of the sea. Pungent scent of savory magret de canard a l'orange (your favorite) floats through the room. You enjoy a marvelous dinner, and the waiter offers you any bottles of wine you can find.
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: view room
+    :exits: 
+    - 47
+    - 181
+    - 178
+    :msgfail: "|"
+    :id: 38
+    :contents: 
+    - 200
+    - 198
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in the lobby of the library. You see three doors, labeled "1. Reference", "2. Circulating", and "3. Wizardry", plus an exit to the south.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Library lobby
+    :exits: 
+    - 52
+    - 48
+    - 183
+    - 176
+    :msgfail: "|"
+    :id: 39
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "257"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The grand bazaar
+    :id: 278
+- !ruby/object:Room 
+  props: 
+    :msgsucc: As you step into the bazaar, the rug seems to flutter, even though there is no breeze blowing.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are standing in a bazaar, where merchants come to trade their stuff. Don't leave your goods unattended here! Some fields lie to the North, with tents to the East, South and West.
+    :owner: 270
+    :triggers: 
+      :describe: 278
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The grand bazaar
+    :exits: 
+    - 145
+    - 99
+    - 94
+    - 91
+    - 85
+    - 188
+    - 182
+    - 72
+    - 67
+    - 63
+    - 57
+    :msgfail: "The tents have signs: \"Visit the CRAFTY CAMEL; admission one bushel of wheat.\"....\"Come trade at OMAR's OASIS; admission one goat.\"....\"Browse at the SHOP OF THE DESERT; admission one horse.|"
+    :id: 40
+    :contents: []
+
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see endless miles of musty books, and doors labeled "Lobby", "1. Oxford English Dictionary of Commands", "2. Encyclopedias", and "3. Archives".
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Reference Room
+    :exits: 
+    - 171
+    - 92
+    - 53
+    - 186
+    - 54
+    :msgfail: "|"
+    :id: 41
+    :contents: 
+    - 229
+    - 227
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: This room contains the main volumes of the Oxford English Dictionary. Further in lie the supplements, and back out is the Reference Room of the Library.
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary Room
+    :exits: 
+    - 61
+    - 189
+    :msgfail: "|"
+    :id: 42
+    :contents: 
+    - 265
+    - 241
+    - 217
+    - 220
+    - 222
+    - 224
+    - 226
+    - 228
+    - 233
+    - 244
+    - 239
+    - 249
+    - 252
+    - 253
+    - 204
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are standing between a corn field and a wheat field. An oasis shimmers to the north, and a group of tents lies to the south of you. You might be able to harvest some of the grain growing here.
+    :owner: 270
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: In the fields
+    :exits: 
+    - 154
+    - 119
+    - 113
+    - 108
+    - 104
+    :msgfail: "|"
+    :id: 43
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "208"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 44
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: wheat field
+    :id: 279
+- !ruby/object:Room 
+  props: 
+    :msgsucc: There's not much to be gleaned here.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You are in a large wheat field north of the bazaar. There is a corn field to the West.
+    :owner: 270
+    :triggers: 
+      :describe: 279
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: wheat field
+    :exits: 
+    - 160
+    - 132
+    - 128
+    - 124
+    :msgfail: About a bushel of wheat can be harvested.|
+    :id: 44
+    :contents: 
+    - 208
+- !ruby/object:Room 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see endless miles of musty books, and a door labeled "Lobby". A sign says "Contributions gratefully accepted."
+    :owner: 267
+    :triggers: {}
+
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Circulating Room
+    :exits: 
+    - 56
+    :msgfail: "|"
+    :id: 45
+    :contents: 
+    - 223
+    - 221
+    - 219
+    - 242
+- !ruby/object:Script 
+  props: 
+    :src: "212"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 46
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: corn field
+    :id: 280
+- !ruby/object:Room 
+  props: 
+    :msgsucc: The pickings are quite slim now.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You stand in a field of waving corn, north of the bazaar. There is wheat growing to the East.
+    :owner: 270
+    :triggers: 
+      :describe: 280
+    :location: 
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: corn field
+    :exits: 
+    - 166
+    - 148
+    - 141
+    - 136
+    :msgfail: A bushel of ripe ears are available.|
+    :id: 46
+    :contents: 
+    - 212
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: All things are but images of the Tao, and thus all things can be returned to the Tao. It furthers one to accept the necessity of sacrifice.
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"Tao Te Ching\" by Lao-Tzu"
+    :msgfail: "|"
+    :id: 190
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 191
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: desk
+    :id: 281
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see an ornately-carved antique roll-top desk.
+    :owner: 267
+    :triggers: 
+      :pre_get: 281
+    :location: 30
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: desk
+    :msgfail: The desk is far too heavy to lift.|strains and heaves at the Wizard's desk, but cannot lift it.
+    :id: 191
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 192
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Compleat Book of Magical Invocations
+    :id: 282
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Words of Power: @dump, @shutdown, @teleport [<victim>=] <destination>, @wall <message>, @force <victim> = <command>, @chown <object> = <player>, @toad <player>"
+    :owner: 267
+    :triggers: 
+      :pre_get: 282
+    :location: 4
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Compleat Book of Magical Invocations
+    :msgfail: Ghostly hands snatch the book from your grasp. The magic mirror booms "FOOLISH MORTAL! SEEK NOT THAT WHICH YOU CAN NEVER HOPE TO COMPREHEND!"|
+    :id: 192
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Every object is a monad unto itself; it has its place that cannot be shaken by the actions of other monads. Though for a time a monad may appear to be displaced, it cannot be removed forever.
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"The Monadology\" by Gottfried Leibniz"
+    :msgfail: "|"
+    :id: 193
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 194
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Three, Stickiness
+    :id: 283
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: If a thing is STICKY, it immediately goes home when dropped. If a room is STICKY, its dropto is delayed until the last person leaves the room. Stickiness is not meaningful for players or exits.
+    :owner: 267
+    :triggers: 
+      :pre_get: 283
+    :location: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Three, Stickiness
+    :msgfail: That volume is stuck to the floor.|
+    :id: 194
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 195
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Unlink"
+    :id: 284
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @unlink <direction> Remove the link on the exit in the specified <direction>. The exit may then be relinked by any player using the \"@link\" command."
+    :owner: 267
+    :triggers: 
+      :pre_get: 284
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Unlink"
+    :msgfail: You cannot unlink the chain binding this volume to the wall.|
+    :id: 195
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 196
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: notice
+    :id: 285
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: The management keeps a supply of two jackets and two ties for the use of our patrons. If you borrow these, please return them to this room before you leave the cafe. Thank you. --The management
+    :owner: 269
+    :triggers: 
+      :pre_get: 285
+    :location: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: notice
+    :msgfail: "|"
+    :id: 196
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Every endeavour has four effects, one on the wise man who proceeds effectively, one on the fool who fails to act, one on those whose wisdom is increased by the example of the Alchemist, and one on those who rightly chide the fool.
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"On Alchemy\" by Paracelsus"
+    :msgfail: "|"
+    :id: 197
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "209"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 198
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: red wine
+    :id: 286
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: A bottle of Chateau le feet Rothchild, 1954
+    :owner: 269
+    :triggers: 
+      :pre_get: 286
+    :location: 38
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: red wine
+    :msgfail: The waiter whispers in your ear that it would offend some of the patrons if you were to carry such a magnificant bottle of red wine unless you were wearing a white jacket.|
+    :id: 198
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: The key to realizing the existential nature of Being lies in angst, in the feeling of nausea that comes from the recognition of the contingent nature of existence.
+    :owner: 267
+    :triggers: {}
+
+    :location: 14
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"No Exit\" by Sartre"
+    :msgfail: "|"
+    :id: 199
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "205"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 200
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white wine
+    :id: 287
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: A bottle of 1962 Cordon Blu
+    :owner: 269
+    :triggers: 
+      :pre_get: 287
+    :location: 38
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white wine
+    :msgfail: The waiter gently indicates that it is not appropriate to carry such a good bottle of champaign without wearing a black jacket.|
+    :id: 200
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 201
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Lost Book of Undocumented Commands
+    :id: 288
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "goto <dir>, take <thing>, read <thing>, @link <object> = <room #> (set home), @link <room> = <room #> (set drop-to), @unlink <room> (remove drop-to), @open <direction>[;<direction>]* = <room #> (combined open and link)"
+    :owner: 267
+    :triggers: 
+      :pre_get: 288
+    :location: 4
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Lost Book of Undocumented Commands
+    :msgfail: The book documents all and only those commands which are not documented. But then it must document no commands, otherwise it contradicts its title! Therefor, you reason, the book must be empty, and not worthing picking up.|
+    :id: 201
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(203)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 202
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black tie
+    :id: 289
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "You see a black tie with a tag on the back reading: \"If found, return to Bud's Cafe, Town Square SW.\""
+    :owner: 269
+    :triggers: 
+      :pre_get: 289
+    :location: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black tie
+    :msgfail: You can't wear two ties at once!|
+    :id: 202
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(202)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 203
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white tie
+    :id: 290
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "You see a white tie with a tag on the back reading: \"If found, return to Bud's Cafe, Town Square SW.\""
+    :owner: 269
+    :triggers: 
+      :pre_get: 290
+    :location: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white tie
+    :msgfail: You can't wear two ties at once!|
+    :id: 203
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 204
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, Index
+    :id: 291
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Commands described in the main volumes are drop, get, give, go, gripe, help, inventory, look, move, password, rob, and say. Other commands are described in the supplements.
+    :owner: 267
+    :triggers: 
+      :pre_get: 291
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, Index
+    :msgfail: A little old lady comes out from behind the Reference desk and twists your ear until you drop the book.|
+    :id: 204
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(209)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 205
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black jacket
+    :id: 292
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "You see a black jacket with a tag inside the collar reading: \"If found return to Bud's Cafe, Town Square SW.\""
+    :owner: 269
+    :triggers: 
+      :pre_get: 292
+    :location: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black jacket
+    :msgfail: You can't wear two jackets at once!|
+    :id: 205
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 206
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Set"
+    :id: 293
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @set <object> = <flag>, @set <object> = !<flag>. Sets (first form) or resets (second form) <flag> on <object>. Current flags are DARK, LINK_OK, STICKY, TEMPLE, and WIZARD."
+    :owner: 267
+    :triggers: 
+      :pre_get: 293
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Set"
+    :msgfail: That volume is set firmly into the floor.|
+    :id: 206
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 207
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Create"
+    :id: 294
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @create <name> [= <cost>]. Create a thing with the specified name. Creation costs either <cost> pennies or 10 pennies, whichever is greater. The value of a thing is proportional to its cost."
+    :owner: 267
+    :triggers: 
+      :pre_get: 294
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Create"
+    :msgfail: A little old lady comes out from behind the Reference Desk and beats you with her cane until you drop the book.|
+    :id: 207
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 44
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a bushel of wheat
+    :msgfail: "|"
+    :id: 208
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(205)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 209
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white jacket
+    :id: 295
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "You see a white jacket with a tag inside the collar reading: \"If found return to Bud's Cafe, Town Square SW.\""
+    :owner: 269
+    :triggers: 
+      :pre_get: 295
+    :location: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white jacket
+    :msgfail: You can't wear two jackets at the same time!|
+    :id: 209
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Ok WIZARD, it's time to get to work on 15-211.. (1) get an andrew account. (2) get a GOOD version of lint working there. (ask doug for advice) (3) check out debugging on andrew (4) check out profiling .
+    :owner: 269
+    :triggers: {}
+
+    :location: 24
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Note to the Wiz
+    :msgfail: "|"
+    :id: 210
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 211
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Describe"
+    :id: 296
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "@Syntax: describe <what>=<description>. <what> can be a room, thing, player, or direction. Set the description a player sees when they use the command \"look <what>\""
+    :owner: 267
+    :triggers: 
+      :pre_get: 296
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Describe"
+    :msgfail: An indescribable force binds that volume to the floor.|
+    :id: 211
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 46
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a bushel of corn
+    :msgfail: "|"
+    :id: 212
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 213
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Dig"
+    :id: 297
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @dig <name>. Create a new room with the specified name, and print the room's number."
+    :owner: 267
+    :triggers: 
+      :pre_get: 297
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Dig"
+    :msgfail: That volume is securely dug in to the floor.|
+    :id: 213
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 8
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a vat of yoghurt
+    :msgfail: "|"
+    :id: 214
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 215
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Fail"
+    :id: 298
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @fail <object> [= <message>]. Without a message argument, clear the fail message on object, otherwise set it. The fail message is printed when a player unsuccessfully attempts to use the object."
+    :owner: 267
+    :triggers: 
+      :pre_get: 298
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Fail"
+    :msgfail: You fail to pick that volume up.|
+    :id: 215
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 6
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a goat
+    :msgfail: "|"
+    :id: 216
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 217
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Drop"
+    :id: 299
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: drop <object>. Drop the specified object."
+    :owner: 267
+    :triggers: 
+      :pre_get: 299
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Drop"
+    :msgfail: A little old lady comes out from behind the Reference Desk and scolds you until you drop the book.|
+    :id: 217
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 5
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a fine Arabian horse
+    :msgfail: "|"
+    :id: 218
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "\"I wonder who that man is, Frank,\" whispered blond Joe Hardy, peering curiously from a second-floor window of their home. \"He looks worried.\" His brother glanced down at the stranger departing from the front door. \"Let's ask ..."
+    :owner: 270
+    :triggers: {}
+
+    :location: 45
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "a copy of the Hardy Boys book: While the Clock Ticked"
+    :msgfail: "|"
+    :id: 219
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 220
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Get"
+    :id: 300
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: get <object>. Get the specified object."
+    :owner: 267
+    :triggers: 
+      :pre_get: 300
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Get"
+    :msgfail: A little old lady comes out from behind the Reference Desk and kicks you in the shins until you release the book.|
+    :id: 220
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "... \"I consent to what you both desire,\" and lowered her eyes to her hands, which were waiting unclasped in the hollows of her knees, then added in a murmur: \"I should like to know whether I shall be whipped...\""
+    :owner: 270
+    :triggers: {}
+
+    :location: 45
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Story of "O", by Pauline Reage
+    :msgfail: "|"
+    :id: 221
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 222
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Give"
+    :id: 301
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: give <player>=<amount>. Give <player> the specified number of pennies."
+    :owner: 267
+    :triggers: 
+      :pre_get: 301
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Give"
+    :msgfail: That volume is firmly bolted to the floor.|
+    :id: 222
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: -- IMPORTANT NOTE -- In studying Dianetics, be very, very certain you never go past a word you do not fully understand. The only reason a person gives up a study or becomes confused is that he has gone past a word that was not understood.
+    :owner: 270
+    :triggers: {}
+
+    :location: 45
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "DIANETICS: The Modern Science of Mental Health, by L. Ron Hubbard"
+    :msgfail: "|"
+    :id: 223
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 224
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Go"
+    :id: 302
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: go <direction>, go home. Go in the specified direction. Go home is a special command that returns you to your starting location. If the direction is fully specified, the verb go may be omitted."
+    :owner: 267
+    :triggers: 
+      :pre_get: 302
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Go"
+    :msgfail: That volume is too heavy to go anywhere.|
+    :id: 224
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 225
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume One, Control
+    :id: 303
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "There are three rules for determining control: 1. You control anything you own. 2. A wizard controls anything. 3. Anybody controls an unlinked exit (even if it is locked). Builders should watch out for (3)."
+    :owner: 267
+    :triggers: 
+      :pre_get: 303
+    :location: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume One, Control
+    :msgfail: When you try to pick that up, you suddenly lose control of you balance and drop it.|
+    :id: 225
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 226
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Gripe"
+    :id: 304
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: gripe <message>. Send <message> to the system maintainer."
+    :owner: 267
+    :triggers: 
+      :pre_get: 304
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Gripe"
+    :msgfail: A little old lady comes out from behind the Reference Desk and sticks you with her hairpin.|
+    :id: 226
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 227
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: desk
+    :id: 305
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a very large, antique oak desk, piled high with more books.
+    :owner: 267
+    :triggers: 
+      :pre_get: 305
+    :location: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: desk
+    :msgfail: The desk is much too heavy to ever lift. However, while you try, a little old lady comes out from behind the desk and staples a sign reading "Kick me" to your forehead.|
+    :id: 227
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 228
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Help"
+    :id: 306
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: help. Prints a short help message."
+    :owner: 267
+    :triggers: 
+      :pre_get: 306
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Help"
+    :msgfail: You can't help letting that volume slip through your fingers.|
+    :id: 228
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 229
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: little old lady
+    :id: 307
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: A little old blue-haired prune-faced librarian is sitting quietly behind the desk.
+    :owner: 267
+    :triggers: 
+      :pre_get: 307
+    :location: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: little old lady
+    :msgfail: The little old lady cries "Get away, you evil masher," scolds, kicks, sticks, spikes, sprays, beats, threatens, and staples you, shouts for the Library Police, crushes your knuckles with a ruler, and hits you with her lead-lined purse.|
+    :id: 229
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 230
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Link"
+    :id: 308
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @link <direction>=<room number>. Link exit specified by <direction> to room specified by <room number>. Exit must be unlinked, and you must own the target room if its LINK_OK attribute is not set."
+    :owner: 267
+    :triggers: 
+      :pre_get: 308
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Link"
+    :msgfail: That volume is attached to the floor with a chain of thick steel links.|
+    :id: 230
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 231
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Ofail"
+    :id: 309
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @ofail <object> [= <message>]. Without a message argument, clear the ofail message on <object>, otherwise set it. The ofail message, prefixed by the player's name, is shown to others when the player fails to use <object>."
+    :owner: 267
+    :triggers: 
+      :pre_get: 309
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Ofail"
+    :msgfail: You fail to pick that volume up.|fails to pick up the volume labeled "Ofail"
+    :id: 231
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 232
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Two, Linkability
+    :id: 310
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You can link to a room if you control it, or if the room is set to be LINK_OK. Being able to link to a room means that you can set the homes of objects (or yourself) to that room, and can set the destination of exits to that room. See the OED on "@link" for more info.
+    :owner: 267
+    :triggers: 
+      :pre_get: 310
+    :location: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Two, Linkability
+    :msgfail: That volume is linked to the floor, and is not unlinkable.|
+    :id: 232
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 233
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Inventory"
+    :id: 311
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: inventory. List what you are carrying."
+    :owner: 267
+    :triggers: 
+      :pre_get: 311
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Inventory"
+    :msgfail: A little old lady comes out from behind the Reference Desk and drives her spiked heel through your foot.|
+    :id: 233
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 234
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Examine"
+    :id: 312
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: examine <name>, examine #<number>. Print a detailed description of object specified by <name> or by <number>. You must control the object to examine it."
+    :owner: 267
+    :triggers: 
+      :pre_get: 312
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Examine"
+    :msgfail: Upon examining the weighty tome, you notice that it is too heavy to lift.|
+    :id: 234
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 235
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Lock"
+    :id: 313
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @lock <object>=<key>, @lock <object>=!<key>. Set a key for an object. First form requires that a player have <key> to use <object>; second form requires that a player not have <key>. If <key> starts with *, lock to named player."
+    :owner: 267
+    :triggers: 
+      :pre_get: 313
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Lock"
+    :msgfail: That volume is locked to the floor.|
+    :id: 235
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: If a tree falls in the forest, and there are none to hear it, has it indeed fallen? To be is to be perceived; thus as the last perceiver leaves, might not what he thought to leave behind leave also?
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"A Treatise Concerning the Principles of Human Knowledge\" by Berkeley"
+    :msgfail: "|"
+    :id: 236
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Once there was an ass, placed exactly between two identical piles of hay; lacking the means to decide between them, he starved. How much more fortunate are we, who choose randomly between identical alternatives!
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"The Parable of the Ass\" by Jean Buridan"
+    :msgfail: "|"
+    :id: 237
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 238
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Five, Dropto's
+    :id: 314
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: When the '@link' command is used on a room, it sets a dropto location for that room. Any object dropped in the room (if it is not STICKY; cf. vol. 3) will go to that location. If the room is set to be STICKY, the effect of the dropto will be delayed until the last player leaves the room. The special location 'home' may be used as a dropto, as in '@link here = home'; in that case objects dropped in the room will go to their homes.
+    :owner: 267
+    :triggers: 
+      :pre_get: 314
+    :location: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Five, Dropto's
+    :msgfail: You try to pick up volume Five, but drop it immediately.|
+    :id: 238
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 239
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Move"
+    :id: 315
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: move <direction>, move home. See \"Go\""
+    :owner: 267
+    :triggers: 
+      :pre_get: 315
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Move"
+    :msgfail: A little old lady comes out from behind the Reference Desk and sprays tear gas into your face.|
+    :id: 239
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 240
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Wizard's Pointy Hat
+    :id: 316
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: You put on your hat. Suddenly you feel much better.|puts on his hat.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a pointy hat covered with obscure mystic symbols.
+    :owner: 267
+    :triggers: 
+      :pre_get: 316
+    :location: 267
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: The Wizard's Pointy Hat
+    :msgfail: The hat runs away from you when you try to pick it up.|tries to pick up the Wizard's hat, but it runs away.
+    :id: 240
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 241
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Kill"
+    :id: 317
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: kill <player> [= <cost>]. Kill the specified player. Killing costs either <cost> pennies or 10 pennies, whichever is greater. The probability of success is proportional to the cost."
+    :owner: 267
+    :triggers: 
+      :pre_get: 317
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Kill"
+    :msgfail: A little old lady comes out from behind the reference desk and pumps two rounds of buckshot into your chest.|
+    :id: 241
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "@dig: 10p. @create: 10p (or more). @open: 1p. @link: 1p, +1p to the previous owner if you didn't already own the exit. Sacrifice value of an object is (cost/5)-1."
+    :owner: 267
+    :triggers: {}
+
+    :location: 45
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Construction Price List
+    :msgfail: "|"
+    :id: 242
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 243
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Name"
+    :id: 318
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @name <object> = <name>, @name <player> = <name> <password>. Change the name of the specified object. Can also be used to specify a new direction list for an exit (cf. open). For a player, requires player's password."
+    :owner: 267
+    :triggers: 
+      :pre_get: 318
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Name"
+    :msgfail: A little old lady comes out from behind the Reference Desk and hits you with her lead-lined purse.|
+    :id: 243
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 244
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Look"
+    :id: 319
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: look <what>. <what> can be a room, thing, player, or direction. Prints a description of <what>."
+    :owner: 267
+    :triggers: 
+      :pre_get: 319
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Look"
+    :msgfail: It looks like you won't be able to pick up that volume.|
+    :id: 244
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 245
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Open"
+    :id: 320
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @open <direction>[;<other-dir>]*. Create an unlinked exit in the specified direction(s). Once created, you (or any other player) may use the \"@link\" command to specify the room to which the exit leads. See also \"@name\"."
+    :owner: 267
+    :triggers: 
+      :pre_get: 320
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Open"
+    :msgfail: You can't open the lock that secures that volume to the floor.|
+    :id: 245
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 246
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a strange piece of alchemical equipment
+    :id: 321
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a strange piece of alchemical equipment, made up of dozens of twisty little passages, all alike. It stands evenly on five chicken legs, each perpendicular to the other three.
+    :owner: 267
+    :triggers: 
+      :pre_get: 321
+    :location: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a strange piece of alchemical equipment
+    :msgfail: When you try to pick it up, it runs away, laughing hysterically.|tries to pick up the strange piece of alchemical equipment, but it runs away, laughing hysterically, in three different directions.
+    :id: 246
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 247
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Osuccess"
+    :id: 322
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @osuccess <object> [= <message>]. Without a message argument, clear the osuccess message on object, otherwise set it. The osuccess message, prefixed by the player's name, is shown to others when the player successfully uses <object>."
+    :owner: 267
+    :triggers: 
+      :pre_get: 322
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Osuccess"
+    :msgfail: A little old lady comes out from behind the Reference Desk and beats your knuckles with a ruler.|
+    :id: 247
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(268)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 248
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a big club
+    :id: 323
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "You see a large club. On its side is a label reading: \"Employee Wage Negotiation Trans-Frobulator\""
+    :owner: 267
+    :triggers: 
+      :pre_get: 323
+    :location: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a big club
+    :msgfail: "|"
+    :id: 248
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 249
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Password"
+    :id: 324
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @password <old>=<new>. Set a new password; you must specify your old password to verify your identity."
+    :owner: 267
+    :triggers: 
+      :pre_get: 324
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Password"
+    :msgfail: You don't know the password needed to get this book.|
+    :id: 249
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: The lamb bleats forlornly as you sling it over your shoulder.|picks up the white lamb. The lamb bleats forlornly.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see an unblemished white lamb, bleating plaintively.
+    :owner: 267
+    :triggers: {}
+
+    :location: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white lamb
+    :msgfail: "|"
+    :id: 250
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 251
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Find"
+    :id: 325
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @find <name>. Print the name and object number of every room, thing, or player that you control whose name matches <name>. Because the find command is computationally expensive, there is a small charge for using it."
+    :owner: 267
+    :triggers: 
+      :pre_get: 325
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Find"
+    :msgfail: You can't seem to find a way to lift that volume.|
+    :id: 251
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 252
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Rob"
+    :id: 326
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: rob <player>. Attempt to steal a penny from <player>."
+    :owner: 267
+    :triggers: 
+      :pre_get: 326
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Rob"
+    :msgfail: You can't steal this book!|
+    :id: 252
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 253
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Say"
+    :id: 327
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: say <message>. Say <message>."
+    :owner: 267
+    :triggers: 
+      :pre_get: 327
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Say"
+    :msgfail: A little old lady comes out from behind the Reference Desk and shouts for the Library Police.|
+    :id: 253
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 1
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a fierce-looking scimitar
+    :msgfail: "|"
+    :id: 254
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 255
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Four, Homes
+    :id: 328
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Every thing or player has a home. For things, this is the location the thing returns to when sacrificed, when a player carrying it goes home, or when (if STICKY) it is dropped. For players, this is where the player goes when issuing the 'home' command. Homes may be set using the '@link' command, e.g. '@link donut = <room-number>' or '@link me = <room-number>'. Exits may also be linked to the special location 'home', e.g. '@link north = home'.
+    :owner: 267
+    :triggers: 
+      :pre_get: 328
+    :location: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Four, Homes
+    :msgfail: That volume looks so at home here that you can't bear to disturb it.|
+    :id: 255
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 256
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Success"
+    :id: 329
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @success <object> = <message>. Set the success message for <object>. The success message is printed when a player successfully uses <object>."
+    :owner: 267
+    :triggers: 
+      :pre_get: 329
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Success"
+    :msgfail: You are unsuccessful in your attempts to lift that volume.|
+    :id: 256
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 13
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a handsome Persian rug
+    :msgfail: "|"
+    :id: 257
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: One often finds oneself lost in a maze of seemingly-identical options; such a state is not to be feared, but to be seized, as a key to achieving the emotional understanding of Being that is denied the intellect alone.
+    :owner: 267
+    :triggers: {}
+
+    :location: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"No Exit\" by Sartre"
+    :msgfail: "|"
+    :id: 258
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 259
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Six, Recycling
+    :id: 330
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Nothing can be destroyed in TinyMUD. However, it is possible to recycle just about anything. The '@name' command can be used to rename objects, making it easy to turn a silk purse into a sow's ear or vice versa. Extra exits can be unlinked and picked up by their owner using the 'get' command, and dropped like ordinary objects using the 'drop' command in any room controlled by the dropper.
+    :owner: 267
+    :triggers: 
+      :pre_get: 330
+    :location: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Volume Six, Recycling
+    :msgfail: "|"
+    :id: 259
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 260
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Unlock"
+    :id: 331
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: @unlock <object>. Remove the lock on an object."
+    :owner: 267
+    :triggers: 
+      :pre_get: 331
+    :location: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "@Unlock"
+    :msgfail: A little old lady comes out from behind the Reference Desk and threatens you with her sawed-off shotgun.|
+    :id: 260
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 15
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: a gilded scarab
+    :msgfail: "|"
+    :id: 261
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "To begin, we must set forth axioms that are accepted by all. Our first axiom is the following: any object which is not a room, thing, or exit is animate, and capable of free will."
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"Elements\" by Euclid"
+    :msgfail: "|"
+    :id: 262
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: Without private property, none are free. And how can property be private when any stranger can carry it away? For this reason we are granted the power to lock our possessions to ourselves, that no other man may take them.
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"Two Treatises of Government\" by John Locke"
+    :msgfail: "|"
+    :id: 263
+    :contents: []
+
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: The bourgeoisie naturally seeks to protect its capital by whatever means are available. By doing so they lock themselves away from society, trapped in a vicious circle of alienation that can end only in open class warfare.
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: "\"Das Kapital\" by Karl Marx"
+    :msgfail: "|"
+    :id: 264
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 265
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Page"
+    :id: 332
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: "Syntax: page <player>. Used to inform an active player that you are looking for them. The targeted player will get a message telling them your name and location. Cost: 1 penny."
+    :owner: 267
+    :triggers: 
+      :pre_get: 332
+    :location: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands, "Page"
+    :msgfail: The pages of that volume aren't glued in very well. When you pick it up, they all fall out, and you have to gather them up together again under the scornful eye of the librarian.|
+    :id: 265
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 266
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: an owl
+    :id: 333
+- !ruby/object:GameObject 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a curmudgeonly owl sitting between a perch bolted to the floors.
+    :owner: 267
+    :triggers: 
+      :pre_get: 333
+    :location: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: an owl
+    :msgfail: The owl recedes into infinity as you approach, screeching hysterically.|turns into a point and vanishes for a moment.
+    :id: 266
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(240)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Wizard
+    :id: 335
+- !ruby/object:Account 
+  props: 
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a shabby old Wizard who appears to be asleep.
+    :owner: 334
+    :passwd: WiK.4sC27nqso
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Wizard
+    :color: false
+    :characters: 
+    - 267
+    :id: 334
+- !ruby/object:Character 
+  props: 
+    :acctid: 334
+    :msgsucc: "|stole a penny from the Wizard."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a shabby old Wizard who appears to be asleep.
+    :owner: 267
+    :triggers: 
+      :pre_rob: 335
+    :location: 30
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Wizard
+    :msgfail: "|"
+    :id: 267
+    :contents: 
+    - 240
+- !ruby/object:Script 
+  props: 
+    :src: "248"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 268
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Beaker
+    :id: 337
+- !ruby/object:Account 
+  props: 
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a trusty lab assistant with a worried expression on his face.
+    :owner: 336
+    :passwd: BeXVfMZYYpBp2
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Beaker
+    :color: false
+    :characters: 
+    - 268
+    :id: 336
+- !ruby/object:Character 
+  props: 
+    :acctid: 336
+    :msgsucc: Beaker says "mi-mi mi-mi-mi-mi-mi mi-mi-mi-mi-mi-mi!"|hits beakers with the club!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a trusty lab assistant with a worried expression on his face.
+    :owner: 268
+    :triggers: 
+      :pre_rob: 337
+    :location: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Beaker
+    :msgfail: says "mi-mi mi-mi-mi-mi-mi mi-mi-mi-mi-mi-mi!"|
+    :id: 268
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Darooha
+    :id: 339
+- !ruby/object:Account 
+  props: 
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see one incredibly dude.
+    :owner: 338
+    :passwd: Da.lVaYkV3zCI
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Darooha
+    :color: false
+    :characters: 
+    - 269
+    :id: 338
+- !ruby/object:Character 
+  props: 
+    :acctid: 338
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see one incredibly dude.
+    :owner: 269
+    :triggers: 
+      :pre_rob: 339
+    :location: 24
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Darooha
+    :msgfail: Darooha gives you a penny.|tries to steal a penny from Darooha, but fails
+    :id: 269
+    :contents: 
+    - 139
+    - 157
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: guy
+    :id: 341
+- !ruby/object:Account 
+  props: 
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see one helluva Guy.
+    :owner: 340
+    :passwd: gusF6MR24dHSk
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: guy
+    :color: false
+    :characters: 
+    - 270
+    :id: 340
+- !ruby/object:Character 
+  props: 
+    :acctid: 340
+    :msgsucc: The Leprechaun hit. --MORE--|takes a penny out of his pocket, looks at it, and puts it back.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see one helluva Guy.
+    :owner: 270
+    :triggers: 
+      :pre_rob: 341
+    :location: 36
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: guy
+    :msgfail: You stole a penny.|is tricked into thinking he has stolen a penny from guy.
+    :id: 270
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "205"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 47
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 342
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 342
+    :location: 38
+    :to_room: 31
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: punk room;punk
+    :msgfail: (I suggest you take your black jacket with you.)|
+    :id: 47
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|enters the Circulating Collection."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 39
+    :to_room: 45
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: circulating; 2
+    :msgfail: "|"
+    :id: 48
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 49
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 343
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: If you can't help yourself, we can't help you either.|prays, and is assumed into Heaven!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: 
+      :pre_leave: 343
+    :location: 11
+    :to_room: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: pray
+    :msgfail: You feel that the gods are pleased. A golden glow surrounds you.|prays. A lightning cloud forms above their head, and you detect a faint smell of ozone.
+    :id: 49
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 50
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 344
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 344
+    :location: 12
+    :to_room: 27
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: cheat
+    :msgfail: "|"
+    :id: 50
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 51
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 345
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You climb out of the pit.|nimbly walks up the wall and through the flames.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: 
+      :pre_leave: 345
+    :location: 33
+    :to_room: 11
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: climb;climb up;climb out
+    :msgfail: You try to climb out of the pit, but the walls are too slippery.|makes a feeble attempt to climb the slick walls.
+    :id: 51
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|enters the Wizard's Room."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 39
+    :to_room: 4
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 3;wizardry;wizard;wizard's;wizard's room
+    :msgfail: We're very sorry, but there are some things that mere mortals were not meant to know.|
+    :id: 52
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You go through the door labeled "Archives" and follow a long twisty staircase down into the Earth.|wanders down into the Archives.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: A sign on the door says "Library Archives. Serious scholars only."
+    :owner: 267
+    :triggers: {}
+
+    :location: 41
+    :to_room: 22
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Archives; 3
+    :msgfail: "|"
+    :id: 53
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes back to the lobby."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 41
+    :to_room: 39
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: lobby;out;exit;back;leave
+    :msgfail: "|"
+    :id: 54
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You fall asleep, dreaming that you are in some kind of middle-eastern marketplace...|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 36
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: bazaar
+    :msgfail: "|"
+    :id: 55
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes back to the lobby."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 45
+    :to_room: 39
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: lobby; out; exit; back; leave
+    :msgfail: "|"
+    :id: 56
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 40
+    :to_room: 43
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: n;north;fields
+    :msgfail: "|"
+    :id: 57
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|brushes by you, heading north."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You catch a faint glimpse of light through the mist.
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: north; n
+    :msgfail: "|"
+    :id: 58
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: {}
+
+    :location: 12
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: exit;ne;town;square;quit;out;town square
+    :msgfail: "|"
+    :id: 59
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "205"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 60
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 346
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 346
+    :location: 29
+    :to_room: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: entrance;out;lobby;exit;back
+    :msgfail: (You probably ought to take the black jacket with you.)|
+    :id: 60
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes further in to the Supplements."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 42
+    :to_room: 18
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: suppl;supplements;sup;supp;in;further;further in
+    :msgfail: "|"
+    :id: 61
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes back to the lobby."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 4
+    :to_room: 39
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;lobby;leave;exit;back
+    :msgfail: "|"
+    :id: 62
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "208"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 63
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 347
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Please leave your admission price by the door.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 347
+    :location: 40
+    :to_room: 2
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: e;east;visit;camel;crafty camel;crafty;visit crafty camel
+    :msgfail: You can't pay the admission; come back when you have the bread.|
+    :id: 63
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: The maitre d' appears and says "Good evening gentlemen. We'll be serving you supper in our view room tonight. Please make your way there via the white room or the black room."|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: {}
+
+    :location: 12
+    :to_room: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: ring;bell;ring bell
+    :msgfail: "|"
+    :id: 64
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(216)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 65
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 348
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 348
+    :location: 7
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: leave;out;exit;bazaar
+    :msgfail: Omar produces a pistol and insists that you surrender the goat. "It was to be your admission, remember?" he reminds you.|
+    :id: 65
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 66
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 349
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You walk through the magic mirror.|walks through the magic mirror!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see an ugly adventurer.
+    :owner: 267
+    :triggers: 
+      :pre_leave: 349
+    :location: 4
+    :to_room: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: mirror
+    :msgfail: You bump your nose on the magic mirror. The magic mirror reflects on the foolishness of mortals.|bumps into the mirror.
+    :id: 66
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "216"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 67
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 350
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Remember to surrender your goat before you leave!|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 350
+    :location: 40
+    :to_room: 7
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: s;south;trade;omar's;omar;oasis;omar's oasis;omars oasis;omars
+    :msgfail: I'm afraid that Omar declines to admit you on credit. You have no goat and you smell bad.|
+    :id: 67
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes north."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a wide stone staircase, covered with congealed blood. At the top is the glittering gold dome of the Temple of Arkteks-t'leep.
+    :owner: 267
+    :triggers: {}
+
+    :location: 17
+    :to_room: 11
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: north; n
+    :msgfail: "|"
+    :id: 68
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 69
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 351
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 351
+    :location: 27
+    :to_room: 38
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: cheatview
+    :msgfail: "|"
+    :id: 69
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 18
+    :to_room: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: exit; out; back; leave
+    :msgfail: "|"
+    :id: 70
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "214"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 71
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 352
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Abdul kisses you on both cheeks as he leads you to his corner of the tent.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 352
+    :location: 7
+    :to_room: 1
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: abdul;abduls;abdul's;buy scimitar;trade yoghurt for scimitar;scimitar
+    :msgfail: "\"Did you come here to trade, or are you just a stupid tourist?\" says Abdul, who points out that you have no yoghurt to offer him.|"
+    :id: 71
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "218"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 72
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 353
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Don't forget to pay the admission price before you go.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 353
+    :location: 40
+    :to_room: 9
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: w;west;browse;shop;desert;shop of the desert
+    :msgfail: You try to sneak in without paying, but a guy in a turban who makes Swartzeneggar look like Pee-Wee Herman tosses you out.|
+    :id: 72
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You go down the stairs.|goes down the stairs.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a wide stone staircase, covered with the congealed blood of the sacrifices. At its base is the town square.
+    :owner: 267
+    :triggers: {}
+
+    :location: 11
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: south;s;exit;out;back;leave;stair;stairs
+    :msgfail: "|"
+    :id: 73
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 36
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: limbo
+    :msgfail: "|"
+    :id: 74
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "214"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 75
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 354
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Cleopatra takes you by the hand to a corner of the tent she has set up as a stable.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 354
+    :location: 7
+    :to_room: 5
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: cleopatra;cleopatras;cleopatra's;buy horse;horse
+    :msgfail: "Cleopatra hisses at you: \"Are you here for a handout? Come back when you have some yoghurt to trade!\"|"
+    :id: 75
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see Bud's Cafe, an ostentatious eatery.
+    :owner: 269
+    :triggers: {}
+
+    :location: 17
+    :to_room: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: sw;buds
+    :msgfail: "|"
+    :id: 76
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(214)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 77
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 355
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "\"Have a nice day\" says Abdul, obsequiously, as you leave his part of the tent.|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 355
+    :location: 1
+    :to_room: 7
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;exit;leave;back
+    :msgfail: "\"Give up the yoghurt you promised!\" shouts Abdul angrily, as he prevents you from leaving.|"
+    :id: 77
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|trudges off towards the desert to the southeast."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a caravan readying for a journey across the hot sands to the southeast of town.
+    :owner: 270
+    :triggers: {}
+
+    :location: 17
+    :to_room: 35
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: southeast; se
+    :msgfail: "|"
+    :id: 78
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "203"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 79
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 356
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: good job|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 356
+    :location: 12
+    :to_room: 25
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white room;white
+    :msgfail: A waiter dressed entirely in white taps you on the shoulder and says "Please sir, in deference to our sensitive guests, we request that you dress appropriately before entering that room."|
+    :id: 79
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You trudge wearily up the long twisty staircase.|trudges wearily up the stairs.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 22
+    :to_room: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: up;u;back;out;leave;exit
+    :msgfail: "|"
+    :id: 80
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(214)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 81
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 357
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "\"It was a pleasure doing business with you\" says Cleopatra as you return to the main part of the tent.|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 357
+    :location: 5
+    :to_room: 7
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;exit;leave;back
+    :msgfail: A dangerous-looking snake bars your exit. It seems that Cleopatra won't let you get away without giving her the yoghurt.|
+    :id: 81
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: <four-acre plots still available in heaven>
+    :owner: 267
+    :triggers: {}
+
+    :location: 17
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: up; u
+    :msgfail: "|"
+    :id: 82
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 10
+    :to_room: 16
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: l;left
+    :msgfail: "|"
+    :id: 83
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 84
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 358
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 358
+    :location: 12
+    :to_room: 24
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: hideout
+    :msgfail: "|"
+    :id: 84
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 85
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 359
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 359
+    :location: 40
+    :to_room: 1
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: abdul's
+    :msgfail: "|"
+    :id: 85
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You trudge down the staircase for what seems like several hours, brushing aside cobwebs and choking on dust. Suddenly, you notice that there isn't a stair under your foot. You fall...|goes down the stairs.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 22
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: down; d
+    :msgfail: "|"
+    :id: 86
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You slip into the Fourth Dimension!|slips into the Fourth Dimension!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 17
+    :to_room: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: sideways
+    :msgfail: "|"
+    :id: 87
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "203"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 88
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 360
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 360
+    :location: 25
+    :to_room: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: entrance;lobby;exit;back;out
+    :msgfail: (I don't think it would be wise to proceed back to the entrance without your white tie. You'll probably need it later.)|
+    :id: 88
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 10
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: r;right
+    :msgfail: "|"
+    :id: 89
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: {}
+
+    :location: 24
+    :to_room: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;buds;exit;
+    :msgfail: "|"
+    :id: 90
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 91
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 361
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 361
+    :location: 40
+    :to_room: 5
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: cleopatra's
+    :msgfail: "|"
+    :id: 91
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes to the Encyclopedia room."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 41
+    :to_room: 28
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Encyclopedias; 2
+    :msgfail: "|"
+    :id: 92
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 10
+    :to_room: 14
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 93
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 94
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 362
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 362
+    :location: 40
+    :to_room: 13
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: ali baba's
+    :msgfail: "|"
+    :id: 94
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(208)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 95
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 363
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 363
+    :location: 2
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;w;west;leave;exit;bazaar
+    :msgfail: As you try to leave, the management reminds you that you haven't paid your admission of a bushel of wheat.|
+    :id: 95
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: northeast; ne
+    :msgfail: "|"
+    :id: 96
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "209"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 97
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 364
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 364
+    :location: 25
+    :to_room: 27
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: rest room;rest
+    :msgfail: As you begin to walk across the room the pleasant hum of conversation dies into silence. Everyone in the room is staring at you. You hear the sound of quick inhalations. You retreat in shame.|
+    :id: 97
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 14
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: l;left
+    :msgfail: "|"
+    :id: 98
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 99
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 365
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 365
+    :location: 40
+    :to_room: 15
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: samreny's
+    :msgfail: "|"
+    :id: 99
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 28
+    :to_room: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: exit; out; back; leave
+    :msgfail: "|"
+    :id: 100
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: northwest; nw
+    :msgfail: "|"
+    :id: 101
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "209"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 102
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 366
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 366
+    :location: 27
+    :to_room: 25
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: white room;white
+    :msgfail: A waiter calls to you "Sir, you really can't come in here without an appropriate jacket." You return to the rest room.|
+    :id: 102
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 14
+    :to_room: 16
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: r;right
+    :msgfail: "|"
+    :id: 103
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 43
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: s;south;bazaar
+    :msgfail: "|"
+    :id: 104
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(254)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 105
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 367
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 367
+    :location: 13
+    :to_room: 9
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;leave;back;exit
+    :msgfail: Ali Baba refuses to let you out without surrendering the scimitar you promised him.|
+    :id: 105
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: east; e
+    :msgfail: "|"
+    :id: 106
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 14
+    :to_room: 14
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 107
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 43
+    :to_room: 37
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: n;north
+    :msgfail: "|"
+    :id: 108
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(218)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 109
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 368
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 368
+    :location: 9
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;leave;exit;bazaar
+    :msgfail: A security guard stops you on you way out and demands that you give up the horse you have with you.|
+    :id: 109
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: southeast; se
+    :msgfail: "|"
+    :id: 110
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "205"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 111
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 369
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 369
+    :location: 12
+    :to_room: 29
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black room;black
+    :msgfail: A waiter dressed entirely in black taps you on the shoulder and says "Please sir, in deference to our sensitive guests, we request that you dress appropriately before entering that room."|
+    :id: 111
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 16
+    :to_room: 14
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: r;right
+    :msgfail: "|"
+    :id: 112
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(208)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 113
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 370
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 370
+    :location: 43
+    :to_room: 44
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: e;east;wheat;harvest wheat
+    :msgfail: There isn't enough new growth to harvest yet.|
+    :id: 113
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "267"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 114
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 371
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: 
+      :pre_leave: 371
+    :location: 26
+    :to_room: 30
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: left
+    :msgfail: I don't know which left you mean!|
+    :id: 114
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "254"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 115
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 372
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Ali Baba seems very pleased as you approach him.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 372
+    :location: 9
+    :to_room: 13
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: ali baba;ali baba's;ali babas;ali;baba;alis;ali's;babas;baba's;buy rug;buy carpet
+    :msgfail: "\"Where's your scimitar?\" barks Ali Baba, who unceremoniously sends you away.|"
+    :id: 115
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: south; s
+    :msgfail: "|"
+    :id: 116
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "202"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 117
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 373
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 373
+    :location: 29
+    :to_room: 27
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: rest room;rest
+    :msgfail: As you begin to walk across the room the pleasant hum of conversation dies into silence. Everyone in the room is staring at you. You hear the sound of quick inhalations. You retreat in shame.|
+    :id: 117
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 16
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: l;left
+    :msgfail: "|"
+    :id: 118
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(212)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 119
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 374
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 374
+    :location: 43
+    :to_room: 46
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: w;west;harvest corn;corn
+    :msgfail: The corn is as low as an elephant's toe!|
+    :id: 119
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 30
+    :to_room: 26
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: back;out;leave;left
+    :msgfail: "|"
+    :id: 120
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "254"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 121
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 375
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "\"Good, Good!\" exclaims Samreny, as he ushers you toward his little corner of the tent.|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 375
+    :location: 9
+    :to_room: 15
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: samreny;samrenys;samreny's;buy scarab;scarab
+    :msgfail: Samreny just looks at you like you were from Mars.|
+    :id: 121
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "202"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 122
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 376
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 376
+    :location: 27
+    :to_room: 29
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: black room;black
+    :msgfail: As you step out of the rest room, a waiter grabs you by the shoulders, turns you around, says "you'll have to wear a more appropriate tie to enter the black room", and pushes you back into the rest room.|
+    :id: 122
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 16
+    :to_room: 19
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 123
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 44
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: s;south;bazaar
+    :msgfail: "|"
+    :id: 124
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: southwest; sw
+    :msgfail: "|"
+    :id: 125
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(254)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 126
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 377
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 377
+    :location: 15
+    :to_room: 9
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: out;exit;leave;back
+    :msgfail: "\"First you must part with your scimitar!\" Samreny insists.|"
+    :id: 126
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 19
+    :to_room: 16
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: l;left
+    :msgfail: "|"
+    :id: 127
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 44
+    :to_room: 44
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: e;east;n;north
+    :msgfail: "|"
+    :id: 128
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: west; w
+    :msgfail: "|"
+    :id: 129
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 130
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 378
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You slip into the Third Dimension!|slips into the Third Dimension!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: I don't know which one you mean!
+    :owner: 267
+    :triggers: 
+      :pre_leave: 378
+    :location: 26
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: sideways
+    :msgfail: You go eight different directions at once, but all of them take you back to the same place.|suddenly turns eight-dimensional!
+    :id: 130
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 19
+    :to_room: 20
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: r;right
+    :msgfail: "|"
+    :id: 131
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 44
+    :to_room: 46
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: corn;corn field;harvest corn;w;west
+    :msgfail: "|"
+    :id: 132
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: up; u
+    :msgfail: "|"
+    :id: 133
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "203"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 134
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 379
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 379
+    :location: 27
+    :to_room: 31
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: punk room;punk
+    :msgfail: A 6 foot 2, 240 pound, pimply-faced, ring-nosed, purple haired, swastika-tattooed punk, with studs surgically embedded around his wrists, blocks you and says "Where the fuck do you think you're going, looking like that?"|
+    :id: 134
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 19
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 135
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 46
+    :to_room: 40
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: s;south;bazaar
+    :msgfail: "|"
+    :id: 136
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 3
+    :to_room: 3
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: down; d
+    :msgfail: "|"
+    :id: 137
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 138
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 380
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 380
+    :location: 37
+    :to_room: 37
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: eat;date;dates;pick date;pick dates;eat date;eat dates;take date;take dates
+    :msgfail: You sample the tasty dates. What a treat!|
+    :id: 138
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :to_room: 269
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: changing room
+    :msgfail: "|"
+    :id: 139
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 20
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: l;left
+    :msgfail: "|"
+    :id: 140
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 46
+    :to_room: 46
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: w;west;n;north
+    :msgfail: "|"
+    :id: 141
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 142
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 381
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You walk through the magic mirror.|walks through the magic mirror!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see an ugly adventurer.
+    :owner: 267
+    :triggers: 
+      :pre_leave: 381
+    :location: 26
+    :to_room: 4
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: mirror;out
+    :msgfail: You bump your nose on the magic mirror. The magic mirror reflects on the foolishness of mortals.|bumps into the mirror.
+    :id: 142
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 143
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 382
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 382
+    :location: 37
+    :to_room: 37
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: water;swim;swimming;bathe;bath;wash;take bath
+    :msgfail: You splash around for a while in the refreshing water of the Oasis.|
+    :id: 143
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You jump into the pit. You fall! Flames lick at your clothing, threatening to set them on fire. Maybe this wasn't such a good idea...|just jumped into the fiery pit!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a fiery pit. It looks like there may be something at the bottom of it, but the flames hide what it is.
+    :owner: 267
+    :triggers: {}
+
+    :location: 11
+    :to_room: 33
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: down;d;jump;pit;sacrifice;leap;jump down;jump pit;offer;offer sacrifice;jump into pit
+    :msgfail: "|"
+    :id: 144
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "257"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 145
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 383
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: As you mount the carpet, it ascends high into the air above the bazaar, and begins heading off over the desert. You can see a caravan crossing far below you on the boundless sand. You hit some turbulence, and the carpet sputters. CRASH!|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 383
+    :location: 40
+    :to_room: 34
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: fly;ride carpet;ride rug;fly carpet;fly rug;fly magic carpet;up;drop rug;drop carpet
+    :msgfail: "|"
+    :id: 145
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 146
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 384
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 384
+    :location: 27
+    :to_room: 12
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: cheat
+    :msgfail: "|"
+    :id: 146
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 20
+    :to_room: 14
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: r;right
+    :msgfail: "|"
+    :id: 147
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 46
+    :to_room: 44
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: wheat;wheat field;harvest wheat;e;east
+    :msgfail: "|"
+    :id: 148
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "268"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 149
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 385
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You go into the closet. Hey! There's no floor in here!|walks into the closet.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a closet door, labelled "EMPLOYEES ONLY."
+    :owner: 267
+    :triggers: 
+      :pre_leave: 385
+    :location: 26
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: closet
+    :msgfail: The door is stuck.|tugs uselessly at the closet door.
+    :id: 149
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 150
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 386
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 386
+    :location: 37
+    :to_room: 37
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: drink;drink water
+    :msgfail: The water is cool and refreshing as you gulp it down.|
+    :id: 150
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "203"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 151
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 387
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 387
+    :location: 31
+    :to_room: 27
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: rest room;rest
+    :msgfail: (I suggest that you take your white tie with you.)|
+    :id: 151
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 20
+    :to_room: 21
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 152
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "212"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 153
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 388
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: Akhbar shakes your hand warmly, as you approach his corner of the tent.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 388
+    :location: 2
+    :to_room: 8
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: akhbar;buy from akhbar;sell to akhbar;buy yoghurt;yoghurt;vat;buy vat
+    :msgfail: No corn, no deal!|
+    :id: 153
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 154
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 389
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 389
+    :location: 43
+    :to_room: 43
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: harvest;harvest grain;grain;take grain;get grain
+    :msgfail: Which do you mean, the wheat or the corn?|
+    :id: 154
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 155
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 390
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You float upward through the flames.|floats upward through the flames.
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: 
+      :pre_leave: 390
+    :location: 33
+    :to_room: 11
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: u;up;fly;out;leave;back
+    :msgfail: You can't jump that high!|
+    :id: 155
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: It's no use wandering around in the desert. You could be lost for days. Better join the caravan.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 34
+    :to_room: 34
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: n;s;e;w;north;south;east;west;ne;nw;se;sw;northeast;northwest;southeast;southwest
+    :msgfail: "|"
+    :id: 156
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: {}
+
+    :location: 
+    :to_room: 269
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: tubular room
+    :msgfail: "|"
+    :id: 157
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "212"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 158
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 391
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "'Come to my part of the tent' says Jeff with a greedy glint in his eyes.|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 391
+    :location: 2
+    :to_room: 6
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: goat;jeff;buy from jeff;sell to jeff;buy goat
+    :msgfail: Jeff just shakes his head, muttering something inaudible.|
+    :id: 158
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 21
+    :to_room: 23
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: l;left
+    :msgfail: "|"
+    :id: 159
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 160
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 392
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 392
+    :location: 44
+    :to_room: 44
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: harvest;pick;harvest wheat;pick wheat
+    :msgfail: All the wheat that was ripe has already been picked.|
+    :id: 160
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "You crawl through a long, dark passageway which twists and turns through the bowels of the Earth. Finally you reach the end: a manhole cover.|crawls into a tunnel to the south."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You notice a glimmer of light to the south.
+    :owner: 267
+    :triggers: {}
+
+    :location: 33
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: south; s
+    :msgfail: "|"
+    :id: 161
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(257)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 162
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 393
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: On the short caravan ride back to town square, you enjoy a few minutes of rest. Agriculture and trading can certainly be exhausting!|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 393
+    :location: 34
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: town;back to town;join caravan;caravan;ride;hitch;hitch ride
+    :msgfail: The sheik insists that you must drop the rug before he will allow you to join his caravan.|
+    :id: 162
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "202"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 163
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 394
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 394
+    :location: 27
+    :to_room: 32
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: warhol room;warhol
+    :msgfail: A man resembling Andy Warhol (on his death bed) blocks your way with a giant red plastic baseball bat.|
+    :id: 163
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(212)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 164
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 395
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 395
+    :location: 6
+    :to_room: 2
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: leave;out;back;exit
+    :msgfail: "As you try to get away, Jeff objects: 'What of our deal, Sahib? You must give me your corn!'|"
+    :id: 164
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 21
+    :to_room: 10
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: r;right
+    :msgfail: "|"
+    :id: 165
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 166
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 396
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 396
+    :location: 46
+    :to_room: 46
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: harvest;pick;harvest corn;pick corn
+    :msgfail: All the corn that was ripe has already been picked.|
+    :id: 166
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "202"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 167
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 397
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 397
+    :location: 32
+    :to_room: 27
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: rest room;rest
+    :msgfail: (I suggest that you wear your black tie to the rest room.)|
+    :id: 167
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "!(212)"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 168
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 398
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 398
+    :location: 8
+    :to_room: 2
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: leave;out;exit;back
+    :msgfail: "Akhbar grabs your hand: `No one leaves Akhbar with paying!'|"
+    :id: 168
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes north."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: You see a small doorway. On the door is a sign reading "The Cartesian Library of Arkteks-t'leep"
+    :owner: 267
+    :triggers: {}
+
+    :location: 11
+    :to_room: 39
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: north;n;enter;in;door;doorway
+    :msgfail: "|"
+    :id: 169
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 21
+    :to_room: 16
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 170
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "229"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 171
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 399
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: 
+      :pre_leave: 399
+    :location: 41
+    :to_room: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: ask;talk lady;talk to lady;ask lady;ask librarian;ask lady for help;ask old lady;burp
+    :msgfail: The little old lady screams "NO TALKING!" at the top of her lungs.|tries to talk to the little old lady, who screams "NO TALKING!" at the top of her lungs.
+    :id: 171
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 23
+    :to_room: 19
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: b;back
+    :msgfail: "|"
+    :id: 172
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 173
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 400
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 400
+    :location: 37
+    :to_room: 37
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: n;north;e;east;w;west;ne;nw;northeast;northwest
+    :msgfail: I don't think it would be a good idea to wander off into the desert like that. It goes on for miles, and you would certainly die of thirst.|
+    :id: 173
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: A 67 F Bus (Trafford) whisks you down Wilkins, letting you off in the Town Square.|says "rags, take bus"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 36
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: bus; 67 Bus; take bus; town square; town
+    :msgfail: "|"
+    :id: 174
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "209"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 175
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 401
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 401
+    :location: 32
+    :to_room: 38
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: view room;view
+    :msgfail: All the Andy Warhols scream simultaneously "you're not sufficiently Warhol. You can't come in here."|
+    :id: 175
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes south."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 39
+    :to_room: 11
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: south;s;exit;out;leave;temple;back
+    :msgfail: "|"
+    :id: 176
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 37
+    :to_room: 43
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: s;south;fields;grain
+    :msgfail: "|"
+    :id: 177
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "209"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 178
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 402
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 402
+    :location: 38
+    :to_room: 32
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: warhol room;warhol
+    :msgfail: (I suggest you take your white jacket with you.)|
+    :id: 178
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: As you being to speak, you suddenly feel a rush of magical forces not under your control, and flee in terror!|Suddenly flees the room!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 4
+    :to_room: 39
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: pray;plugh;xyzzy;atropos;clotho;lacheisis
+    :msgfail: "|"
+    :id: 179
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You mount one of the camels, and begin to travel southeast through the seemingly endless desert. After some time, you arrive at a beautiful oasis, where you debark. The caravan moves on, leaving you alone.|
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: It seems like the desert stretches on forever.
+    :owner: 270
+    :triggers: {}
+
+    :location: 35
+    :to_room: 37
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: join;join tour;mount;mount camel;join caravan;south;s;e;east;southeast;se
+    :msgfail: "|"
+    :id: 180
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "269"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 181
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 403
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 403
+    :location: 38
+    :to_room: 27
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: cheat
+    :msgfail: "|"
+    :id: 181
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 182
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 404
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 404
+    :location: 40
+    :to_room: 6
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: jeff's
+    :msgfail: "|"
+    :id: 182
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|enters the Reference Library."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 39
+    :to_room: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: reference; 1
+    :msgfail: "|"
+    :id: 183
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "240"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 184
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 405
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: You leap up through the flames!|leaps up through the flames above!
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: 
+      :pre_leave: 405
+    :location: 33
+    :to_room: 11
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: jump;jump up
+    :msgfail: You jump up in the air, then come back down again.|jumps up in the air, then comes back down again.
+    :id: 184
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: {}
+
+    :location: 35
+    :to_room: 17
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: n;north;w;west;nw;northwest
+    :msgfail: "|"
+    :id: 185
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes to the Dictionary room."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 41
+    :to_room: 42
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: Oxford English Dictionary of Commands; Dictionary; Oxford; Commands; 1; oed
+    :msgfail: "|"
+    :id: 186
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "205"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 187
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 406
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 269
+    :triggers: 
+      :pre_leave: 406
+    :location: 31
+    :to_room: 38
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: view room;view
+    :msgfail: A woman with a rigid purple stellated icosahedron of hair screams at you (through a megaphone, otherwise you couldn't have heard it) "get out of here, you slob."|
+    :id: 187
+    :contents: []
+
+- !ruby/object:Script 
+  props: 
+    :src: "270"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 188
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: 
+    :id: 407
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|"
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 270
+    :triggers: 
+      :pre_leave: 407
+    :location: 40
+    :to_room: 8
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: akhbar's
+    :msgfail: "|"
+    :id: 188
+    :contents: []
+
+- !ruby/object:Exit 
+  props: 
+    :msgsucc: "|goes back out to the Reference section."
+    :created_on: 2006-06-27 17:37:51.556883 -04:00
+    :desc: ""
+    :owner: 267
+    :triggers: {}
+
+    :location: 42
+    :to_room: 41
+    :updated_on: 2006-06-27 17:37:51.556883 -04:00
+    :name: reference;door;out;back;exit;leave;ref;temple;lobby
+    :msgfail: "|"
+    :id: 189
+    :contents: []
+

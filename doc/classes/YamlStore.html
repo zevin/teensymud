@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: YamlStore</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">YamlStore</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/storage/yamlstore_rb.html">
+                lib/storage/yamlstore.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Store.html">
+                Store
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="34,113,112,161"      href="YamlStore.html" alt="YamlStore">
+  <area shape="RECT" coords="37,17,109,65"      href="Store.html" alt="Store">
+</map>
+<img src="../dot/f_53.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <p>
+The <a href="YamlStore.html">YamlStore</a> class manages access to all
+object storage.
+</p>
+<dl>
+<dt><tt>db</tt></dt><dd>is a handle to the database implementation (in this iteration a hash).
+
+</dd>
+<dt><tt>dbtop</tt></dt><dd>stores the highest id used in the database.
+
+</dd>
+</dl>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000095">check</a>&nbsp;&nbsp;
+      <a href="#M000093">delete</a>&nbsp;&nbsp;
+      <a href="#M000096">each</a>&nbsp;&nbsp;
+      <a href="#M000094">get</a>&nbsp;&nbsp;
+      <a href="#M000090">new</a>&nbsp;&nbsp;
+      <a href="#M000092">put</a>&nbsp;&nbsp;
+      <a href="#M000091">save</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000090" class="method-detail">
+        <a name="M000090"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000090.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000090.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(dbfile)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000095" class="method-detail">
+        <a name="M000095"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000095.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000095.html');return false;">
+          <span class="method-name">check</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check if an object is in the database by its id.
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>is the id to use in the search.
+
+</dd>
+<dt><tt>return</tt></dt><dd>true or false
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000093" class="method-detail">
+        <a name="M000093"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000093.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000093.html');return false;">
+          <span class="method-name">delete</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes an object from the database.
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>is the id to to be deleted.
+
+</dd>
+<dt><tt>return</tt></dt><dd>Undefined.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000096" class="method-detail">
+        <a name="M000096"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000096.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000096.html');return false;">
+          <span class="method-name">each</span><span class="method-args">(&amp;blk)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Iterate through all objects
+</p>
+<dl>
+<dt><tt>yield</tt></dt><dd>Each object in database to block of caller.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000094" class="method-detail">
+        <a name="M000094"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000094.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000094.html');return false;">
+          <span class="method-name">get</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Finds an object in the database by its id.
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>is the id to use in the search.
+
+</dd>
+<dt><tt>return</tt></dt><dd>Handle to the object or nil.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000092.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000092.html');return false;">
+          <span class="method-name">put</span><span class="method-args">(obj)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds a new object to the database.
+</p>
+<dl>
+<dt><tt>obj</tt></dt><dd>is a reference to object to be added
+
+</dd>
+<dt><tt>return</tt></dt><dd>Undefined.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000091" class="method-detail">
+        <a name="M000091"></a>
+
+        <div class="method-heading">
+          <a href="YamlStore.src/M000091.html" target="Code" class="method-signature"
+            onclick="popupCode('YamlStore.src/M000091.html');return false;">
+          <span class="method-name">save</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Save the world
+</p>
+<dl>
+<dt><tt>return</tt></dt><dd>Undefined.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

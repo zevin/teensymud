@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_options (tmud.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File tmud.rb, line 27</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_options</span>
+  <span class="ruby-comment cmt"># parse options</span>
+  <span class="ruby-keyword kw">begin</span>
+    <span class="ruby-comment cmt"># The myopts specified on the command line will be collected in *myopts*.</span>
+    <span class="ruby-comment cmt"># We set default values here.</span>
+    <span class="ruby-identifier">myopts</span> = {}
+
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-constant">BANNER</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-node">&quot;Usage: ruby #{$0} [options]&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-p&quot;</span>, <span class="ruby-value str">&quot;--port PORT&quot;</span>, <span class="ruby-constant">Integer</span>,
+        <span class="ruby-value str">&quot;Select the port the mud will run on&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'server_port'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-d&quot;</span>, <span class="ruby-value str">&quot;--dbfile DBFILE&quot;</span>, <span class="ruby-constant">String</span>,
+        <span class="ruby-value str">&quot;Select the name of the database file&quot;</span>,
+        <span class="ruby-value str">&quot;  (default is 'db/world.yaml')&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'dbfile'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-c&quot;</span>, <span class="ruby-value str">&quot;--config CONFIGFILE&quot;</span>, <span class="ruby-constant">String</span>,
+        <span class="ruby-value str">&quot;Select the name of the configuration file&quot;</span>,
+        <span class="ruby-value str">&quot;  (default is 'config.yaml')&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'configfile'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-l&quot;</span>, <span class="ruby-value str">&quot;--logfile LOGFILE&quot;</span>, <span class="ruby-constant">String</span>,
+        <span class="ruby-value str">&quot;Select the name of the log file&quot;</span>,
+        <span class="ruby-value str">&quot;  (default is 'logs/server.log')&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'logfile'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-h&quot;</span>, <span class="ruby-value str">&quot;--home LOCATIONID&quot;</span>, <span class="ruby-constant">Integer</span>,
+        <span class="ruby-value str">&quot;Select the object id where new characters will start&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'home'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-t&quot;</span>, <span class="ruby-value str">&quot;--[no-]trace&quot;</span>, <span class="ruby-value str">&quot;Trace execution&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'trace'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-v&quot;</span>, <span class="ruby-value str">&quot;--[no-]verbose&quot;</span>, <span class="ruby-value str">&quot;Run verbosely&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">myopts</span>[<span class="ruby-value str">'verbose'</span>]<span class="ruby-operator">|</span>}
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;-h&quot;</span>, <span class="ruby-value str">&quot;--help&quot;</span>, <span class="ruby-value str">&quot;Show this message&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">help</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;--version&quot;</span>, <span class="ruby-value str">&quot;Show version&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;TeensyMud #{Version}&quot;</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-constant">ARGV</span>)
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">myopts</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ERROR - #{$!}&quot;</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;For help...&quot;</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot; ruby #{$0} --help&quot;</span>
+    <span class="ruby-identifier">exit</span>
+  <span class="ruby-keyword kw">end</span>
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

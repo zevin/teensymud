@@ -1,0 +1,33 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/engine/engine.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Engine [
+        fontcolor = black,
+        URL = "classes/Engine.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Engine"
+    ]
+
+    Singleton [
+        URL = "classes/Singleton.html",
+        shape = box,
+        label = "Singleton"
+    ]
+
+    Singleton -> Engine [
+
+    ]
+
+}
+

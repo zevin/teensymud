@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute (TerminalFilter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/protocol/terminalfilter.rb, line 395</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">b</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">b</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ENQ</span>, <span class="ruby-constant">SO</span>, <span class="ruby-constant">SI</span>, <span class="ruby-constant">DC1</span>, <span class="ruby-constant">DC3</span> <span class="ruby-comment cmt"># not handled</span>
+<span class="ruby-comment cmt"># ENQ  Transmit ANSWERBACK message</span>
+<span class="ruby-comment cmt"># SO   Switch to G1 character set</span>
+<span class="ruby-comment cmt"># SI   Switch to G0 character set</span>
+<span class="ruby-comment cmt"># DC1  Causes terminal to resume transmission (XON).</span>
+<span class="ruby-comment cmt"># DC3  Causes terminal to stop transmitting all codes except XOFF and XON (XOFF).</span>
+      <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">VT</span>, <span class="ruby-constant">FF</span>
+      <span class="ruby-value str">&quot;[UP 1]&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TAB</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) TAB found&quot;</span>)
+      <span class="ruby-value str">&quot;[TAB]&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-constant">BEL</span>
+      <span class="ruby-value str">&quot;[BELL]&quot;</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

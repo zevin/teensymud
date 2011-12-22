@@ -1,0 +1,23 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/engine/event.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Event [
+        fontcolor = black,
+        URL = "classes/Event.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Event"
+    ]
+
+}
+

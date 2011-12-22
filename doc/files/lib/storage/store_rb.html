@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: store.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>store.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/storage/store.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Jun 27 17:40:14 GMT-5:00 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="25,17,97,65"      href="../../../classes/Store.html" alt="Store">
+</map>
+<img src="../../../dot/f_51.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <table>
+<tr><td valign="top">file:</td><td>store.rb
+
+</td></tr>
+<tr><td valign="top">author:</td><td>Jon A. Lambert
+
+</td></tr>
+<tr><td valign="top">version:</td><td>2.10.0
+
+</td></tr>
+<tr><td valign="top">date:</td><td>06/25/2006
+
+</td></tr>
+</table>
+<p>
+This source code copyright (C) 2005, 2006 by Jon A. Lambert All rights
+reserved.
+</p>
+<p>
+Released under the terms of the TeensyMUD Public License See LICENSE file
+for additional information.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MINIMAL_DB</td>
+          <td>=</td>
+          <td class="context-item-value">&lt;&lt;EOH --- - !ruby/object:World   props:     :owner: 0     :id: 0     :desc: &quot;This is the World object.&quot;     :name: World     :msgs: {}     :all_characters: []     :all_accounts: []     :builders: []     :admins: []     :timer_list: []     :created_on: 2006-03-09 22:45:33.695862 -05:00     :updated_on: 2006-03-09 22:45:33.695862 -05:00 - !ruby/object:Room   props:     :location:     :owner: 0     :id: 1     :desc: &quot;This is home.&quot;     :contents: []     :exits: []     :triggers: {}     :name: Home     :created_on: 2006-03-09 22:45:33.695862 -05:00     :updated_on: 2006-03-09 22:45:33.695862 -05:00     :msgfail: &quot;&quot;     :msgsucc: &quot;&quot; EOH</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The minimal database will be used in the absence of detecting one.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

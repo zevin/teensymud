@@ -1,0 +1,76 @@
+
+= Functional Automated Response Triggers System
+
+Programs are stored in the farts directory under the name <program_name.fart>
+
+Command to manipulate triggers online is @fart:
+
+-  Syntax:
+    @fart add #<oid> <progname> <eventtype>
+    @fart del #<oid> <eventtype>
+    @fart show #<oid>
+    
+== Events
+ 
+The following event types are available:
+
+- describe
+- show
+- get
+- drop
+- describe_exits
+- leave
+- arrive
+- timer
+
+== Grammar
+
+	program   : stmts
+
+	stmts     :
+		  | stmts stmt
+
+	stmt      : expr
+		  | command
+		  | if
+		  | END
+		  | END TRUE
+		  | END FALSE
+		  | '#' COMMENT
+
+	if        : IF expr stmts else ENDIF
+
+	else      : ELSE stmts
+		  | command   : ID
+		  | ID STRING
+
+	expr      : '!' expr
+		  | expr '==' expr
+		  | expr '!=' expr
+		  | expr '>' expr
+		  | expr '>=' expr
+		  | expr '<' expr
+		  | expr '<=' expr
+		  | expr <AND|'&&'> expr
+		  | expr <OR|'||'> expr
+		  | '(' expr ')'
+		  | '-' expr 
+		  | function
+		  | atom
+
+	atom      : NUMBER
+		  | FLOAT
+		  | STRING
+		  | ACTOR 
+		  | ACTOR '.' ID
+		  | THIS
+		  | THIS '.' ID
+		  | ARGS
+		  | ARGS '.' ID
+
+	function  : ID '(' args ')'
+
+	args      :
+		  | expr
+		  | args ',' expr
+

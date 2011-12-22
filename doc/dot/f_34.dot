@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/network/protocol/colorfilter.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    ColorFilter [
+        fontcolor = black,
+        URL = "classes/ColorFilter.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "ColorFilter"
+    ]
+
+    Filter [
+        URL = "classes/Filter.html",
+        label = "Filter"
+    ]
+
+    Filter -> ColorFilter [
+
+    ]
+
+}
+

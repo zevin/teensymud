@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>memstats (World)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/core/world.rb, line 157</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">memstats</span>
+    <span class="ruby-comment cmt"># initialize all counters</span>
+    <span class="ruby-identifier">rooms</span> = <span class="ruby-identifier">objs</span> = <span class="ruby-identifier">chars</span> = <span class="ruby-identifier">accounts</span> = <span class="ruby-identifier">scripts</span> = <span class="ruby-identifier">strcount</span> = <span class="ruby-identifier">strsize</span> = <span class="ruby-identifier">ocount</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-comment cmt"># scan the ObjectSpace counting things</span>
+    <span class="ruby-constant">ObjectSpace</span>.<span class="ruby-identifier">each_object</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">x</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">strcount</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">strsize</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Character</span>
+        <span class="ruby-identifier">chars</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Account</span>
+        <span class="ruby-identifier">accounts</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Room</span>
+        <span class="ruby-identifier">rooms</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">GameObject</span>
+        <span class="ruby-identifier">objs</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Script</span>
+        <span class="ruby-identifier">scripts</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">ocount</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># our report  :</span>
+    <span class="ruby-comment cmt"># :NOTE: sprintf would be better</span>
+    <span class="ruby-identifier">memstats</span>=<span class="ruby-value str">&quot;[COLOR Cyan]\n----* Memory Statistics *----\n  Rooms      - \#{rooms}\n  Objects    - \#{objs}\n  Scripts    - \#{scripts}\n  Accounts   - \#{accounts}\n  Characters - \#{chars}\n-----------------------------\n  Strings - \#{strcount}\n     size - \#{strsize} bytes\n  Other   - \#{ocount}\n-----------------------------\n  Total Objects - \#{rooms+objs+chars+accounts+scripts+strcount+ocount}\n----*                   *----\n[/COLOR]\n&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: TernaryTrie</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">TernaryTrie</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/utility/ternarytrie_rb.html">
+                lib/utility/ternarytrie.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="27,17,109,65"      href="TernaryTrie.html" alt="TernaryTrie">
+</map>
+<img src="../dot/f_58.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <p>
+class <a href="TernaryTrie.html">TernaryTrie</a> implements a ternary
+search trie. The keys are are assumed to be strings, but the values can be
+any object. This is a very lightweight and useful object
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000314">find</a>&nbsp;&nbsp;
+      <a href="#M000313">find_exact</a>&nbsp;&nbsp;
+      <a href="#M000312">insert</a>&nbsp;&nbsp;
+      <a href="#M000311">new</a>&nbsp;&nbsp;
+      <a href="#M000315">to_hash</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="TernaryTrie/TNode.html" class="link">TernaryTrie::TNode</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000311" class="method-detail">
+        <a name="M000311"></a>
+
+        <div class="method-heading">
+          <a href="TernaryTrie.src/M000311.html" target="Code" class="method-signature"
+            onclick="popupCode('TernaryTrie.src/M000311.html');return false;">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+constructor simply ensures we have a root
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000314" class="method-detail">
+        <a name="M000314"></a>
+
+        <div class="method-heading">
+          <a href="TernaryTrie.src/M000314.html" target="Code" class="method-signature"
+            onclick="popupCode('TernaryTrie.src/M000314.html');return false;">
+          <span class="method-name">find</span><span class="method-args">(key)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns array of values that are the shortest possible match of the key.
+</p>
+<dl>
+<dt><tt>key</tt></dt><dd>A string
+
+</dd>
+<dt><tt>return</tt></dt><dd>An array of values or nil if nothing found
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000313" class="method-detail">
+        <a name="M000313"></a>
+
+        <div class="method-heading">
+          <a href="TernaryTrie.src/M000313.html" target="Code" class="method-signature"
+            onclick="popupCode('TernaryTrie.src/M000313.html');return false;">
+          <span class="method-name">find_exact</span><span class="method-args">(key)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an exact match only of the key or nil if not found
+</p>
+<dl>
+<dt><tt>key</tt></dt><dd>A string
+
+</dd>
+<dt><tt>return</tt></dt><dd>A values or nil if nothing found
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000312" class="method-detail">
+        <a name="M000312"></a>
+
+        <div class="method-heading">
+          <a href="TernaryTrie.src/M000312.html" target="Code" class="method-signature"
+            onclick="popupCode('TernaryTrie.src/M000312.html');return false;">
+          <span class="method-name">insert</span><span class="method-args">(key, val)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Inserts a key/val pair - no duplicate keys (will replace key if found).
+</p>
+<dl>
+<dt><tt>key</tt></dt><dd>A string
+
+</dd>
+<dt><tt>value</tt></dt><dd>A value which ay be any object.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000315" class="method-detail">
+        <a name="M000315"></a>
+
+        <div class="method-heading">
+          <a href="TernaryTrie.src/M000315.html" target="Code" class="method-signature"
+            onclick="popupCode('TernaryTrie.src/M000315.html');return false;">
+          <span class="method-name">to_hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Routine which converts the trie into a hash table
+</p>
+<dl>
+<dt><tt>return</tt></dt><dd>hash table of key/value pairs
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/storage/sqlite3store.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Sqlite3Store [
+        fontcolor = black,
+        URL = "classes/Sqlite3Store.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Sqlite3Store"
+    ]
+
+    Store [
+        URL = "classes/Store.html",
+        label = "Store"
+    ]
+
+    Store -> Sqlite3Store [
+
+    ]
+
+}
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Connection)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/connection.rb, line 34</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">server</span>, <span class="ruby-identifier">sock</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">server</span>, <span class="ruby-identifier">sock</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_io</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:lineio</span>
+      <span class="ruby-ivar">@sockio</span> = <span class="ruby-constant">LineIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@sock</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:packetio</span>
+      <span class="ruby-ivar">@sockio</span> = <span class="ruby-constant">PacketIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@sock</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@sockio</span> = <span class="ruby-constant">SockIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@sock</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@inbuffer</span> = <span class="ruby-value str">&quot;&quot;</span>              <span class="ruby-comment cmt"># buffer lines waiting to be processed</span>
+    <span class="ruby-ivar">@outbuffer</span> = <span class="ruby-value str">&quot;&quot;</span>             <span class="ruby-comment cmt"># buffer lines waiting to be output</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_filters</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:telnetfilter</span>
+      <span class="ruby-ivar">@initdone</span> = <span class="ruby-keyword kw">false</span>           <span class="ruby-comment cmt"># keeps silent until we're done with negotiations</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@initdone</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@pstack</span> = <span class="ruby-constant">ProtocolStack</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

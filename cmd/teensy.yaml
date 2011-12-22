@@ -1,0 +1,169 @@
+#
+# file::    teensy.yaml
+# author::  Jon A. Lambert
+# version:: 2.8.0
+# date::    02/21/2005
+#
+# This source code copyright (C) 2005, 2006 by Jon A. Lambert
+# All rights reserved.
+#
+# Released under the terms of the TeensyMUD Public License
+# See LICENSE file for additional information.
+#
+
+# These are the character commands for the teensy interface
+--- 
+- !ruby/object:Command 
+  cmd: :cmd_help
+  help: displays help
+  name: help
+- !ruby/object:Command 
+  cmd: :cmd_help
+  help: displays help
+  name: "?"
+- !ruby/object:Command 
+  cmd: :cmd_look
+  help: displays the contents of a room
+  name: look
+- !ruby/object:Command 
+  cmd: :cmd_look
+  help: displays the contents of a room
+  name: examine
+- !ruby/object:Command 
+  cmd: :cmd_quit
+  help: quits the game (saves character)
+  name: quit
+- !ruby/object:Command 
+  cmd: :cmd_inv
+  help: displays character inventory
+  name: inventory
+- !ruby/object:Command 
+  cmd: :cmd_reload
+  help: reloads the command table
+  name: '@reload'
+- !ruby/object:Command 
+  cmd: :cmd_hello
+  help: the hello social
+  name: hello
+- !ruby/object:Command 
+  cmd: :cmd_kill
+  help: attempts to kill character (e.g. kill Bubba)
+  name: kill
+- !ruby/object:Command 
+  cmd: :cmd_say
+  help: "sends <message> to all characters in the room"
+  name: say
+- !ruby/object:Command 
+  cmd: :cmd_say
+  help: "sends <message> to all characters in the room"
+  name: "\""
+- !ruby/object:Command 
+  cmd: :cmd_emote
+  help: "displays <message> to all characters in the room"
+  name: emote
+- !ruby/object:Command 
+  cmd: :cmd_emote
+  help: "displays <message> to all characters in the room"
+  name: "!"
+- !ruby/object:Command 
+  cmd: :cmd_chat
+  help: "sends <message> to all characters in the game"
+  name: chat
+- !ruby/object:Command 
+  cmd: :cmd_get
+  help: gets all objects in the room into your inventory
+  name: get
+- !ruby/object:Command 
+  cmd: :cmd_drop
+  help: drops all objects in your inventory into the room
+  name: drop
+- !ruby/object:Command 
+  cmd: :cmd_object
+  help: "creates a new object (ex. @object rose)"
+  name: '@object'
+- !ruby/object:Command 
+  cmd: :cmd_room
+  help: "creates a new room and autolinks the exits using the exit names provided.\r\n\t\t(ex. @room My Room north south)"
+  name: '@room'
+- !ruby/object:Command 
+  cmd: :cmd_set
+  help: "sets the description or timer for an object\r\n\tSyntax:\r\n\t\t@set desc #<oid><description>\r\n\t\t@set timer #<oid> <on|off>\r\n\t\t(ex. @set desc #1 A beautiful rose.)"
+  name: '@set'
+- !ruby/object:Command 
+  cmd: :cmd_who
+  help: shows a list of all connected characters
+  name: who
+- !ruby/object:Command 
+  cmd: :cmd_stats
+  help: "displays a statistical report of the database"
+  name: '@stats'
+- !ruby/object:Command 
+  cmd: :cmd_memstats
+  help: "displays a report on memory statistics"
+  name: '@memstats'
+- !ruby/object:Command 
+  cmd: :cmd_go
+  help: "go through the exit specified (ex. go west)"
+  name: 'go'
+- !ruby/object:Command 
+  cmd: :cmd_color
+  help: "toggles colors on or off"
+  name: '@color'
+- !ruby/object:Command 
+  cmd: :cmd_status
+  help: "displays session information"
+  name: '@status'
+- !ruby/object:Command 
+  cmd: :cmd_dumpcache
+  help: "displays the contents of the store cache"
+  name: '@dumpcache'
+- !ruby/object:Command 
+  cmd: :cmd_shutdown
+  help: "shuts down the server"
+  name: '@shutdown'
+- !ruby/object:Command 
+  cmd: :cmd_trigger
+  help: |
+    Adds, deletes or shows triggers on an object
+      Syntax:
+        @trigger add #<oid> #<scriptid> <eventtype>
+        @trigger del #<oid> <eventtype>
+        @trigger show #<oid>
+        (ex. @trigger add #1 #5 arrive)
+    
+  name: '@trigger'
+- !ruby/object:Command 
+  cmd: :cmd_script
+  help: |
+    Adds, deletes or shows a script
+      Syntax:
+        @script add <lang> <progname>|<code>
+        @script del #<scriptid>
+        @script show #<scriptid>
+        (ex. @script add fart myprog
+             @script add boolexp (#234|#42)&#34 )
+    
+  name: '@script'
+- !ruby/object:Command 
+  cmd: :cmd_edit
+  help: |
+    Edits a string field on an object or system message.
+      Syntax:
+        @edit sysmsg <name>
+        @edit #<oid> <field>
+        (ex. @edit #7 desc)
+    
+  name: '@edit'
+- !ruby/object:Command 
+  cmd: :cmd_show
+  help: |
+    Displays object
+      Syntax:
+        @show #<oid>|me
+        (ex. @show me)
+    
+  name: '@show'
+- !ruby/object:Command 
+  cmd: :cmd_gc
+  help: runs garbage collection
+  name: @gc

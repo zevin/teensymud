@@ -1,0 +1,9 @@
+if rand(30)
+  echoat "1 The rain pours down."
+else
+  if rand(30)
+    echoat "1 Birds fly out your nose."
+  else
+    echoat "1 Tyche farts."
+  endif
+endif

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>stop (Reactor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/reactor.rb, line 96</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stop</span>
+    <span class="ruby-ivar">@registry</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">closing</span> = <span class="ruby-keyword kw">true</span>}
+    <span class="ruby-ivar">@acceptor</span>.<span class="ruby-identifier">unsubscribe_all</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@acceptor</span>
+    <span class="ruby-ivar">@connector</span>.<span class="ruby-identifier">unsubscribe_all</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connector</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Reactor#shutdown: Reactor shutting down&quot;</span>
+<span class="ruby-comment cmt">#    log.close</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

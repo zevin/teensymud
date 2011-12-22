@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cmd_kill (Cmd)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File cmd/teensy/cmd_kill.rb, line 16</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cmd_kill</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">args</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Who do you want to kill?&quot;</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">d</span> = <span class="ruby-identifier">world</span>.<span class="ruby-identifier">all_characters</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">pid</span><span class="ruby-operator">|</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">pid</span>).<span class="ruby-identifier">name</span> }
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">d</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Can't find them.&quot;</span>)
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">d</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">d</span>)  <span class="ruby-comment cmt"># get object</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rand</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span><span class="ruby-value">.3</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-node">&quot;You kill #{d.name}.&quot;</span>)
+        <span class="ruby-identifier">world</span>.<span class="ruby-identifier">connected_characters</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">pid</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pid</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">id</span>
+            <span class="ruby-identifier">add_event</span>(<span class="ruby-identifier">id</span>,<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{name} kills #{d.name}.&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        }
+        <span class="ruby-identifier">d</span>.<span class="ruby-identifier">account</span>.<span class="ruby-identifier">disconnect</span>(<span class="ruby-value str">&quot;You have been pwn3d!&quot;</span>)
+        <span class="ruby-comment cmt"># delete_object(d)  Dont delete character, it's annoying</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-node">&quot;You attacks and misses #{d.name}.&quot;</span>)
+        <span class="ruby-identifier">world</span>.<span class="ruby-identifier">connected_characters</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">pid</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pid</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">id</span>
+            <span class="ruby-identifier">add_event</span>(<span class="ruby-identifier">id</span>,<span class="ruby-identifier">pid</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{name} attacks and misses #{d.name}.&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        }
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

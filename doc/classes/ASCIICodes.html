@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ASCIICodes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ASCIICodes</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/network/protocol/asciicodes_rb.html">
+                lib/network/protocol/asciicodes.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="17,17,111,61"      href="ASCIICodes.html" alt="ASCIICodes">
+</map>
+<img src="../dot/m_32_0.png" usemap="#map" border=0 alt="Module: ASCIICodes">
+    </div>
+
+    <div id="description">
+      <p>
+This module contains the contants used for Telnet
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NUL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SOH</td>
+          <td>=</td>
+          <td class="context-item-value">0x01</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STX</td>
+          <td>=</td>
+          <td class="context-item-value">0x02</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ETX</td>
+          <td>=</td>
+          <td class="context-item-value">0x03</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EOT</td>
+          <td>=</td>
+          <td class="context-item-value">0x04</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ENQ</td>
+          <td>=</td>
+          <td class="context-item-value">0x05</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACK</td>
+          <td>=</td>
+          <td class="context-item-value">0x06</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BEL</td>
+          <td>=</td>
+          <td class="context-item-value">0x07</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BS</td>
+          <td>=</td>
+          <td class="context-item-value">0x08</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TAB</td>
+          <td>=</td>
+          <td class="context-item-value">0x09</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HT</td>
+          <td>=</td>
+          <td class="context-item-value">0x09</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LF</td>
+          <td>=</td>
+          <td class="context-item-value">0x0a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FF</td>
+          <td>=</td>
+          <td class="context-item-value">0x0c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CR</td>
+          <td>=</td>
+          <td class="context-item-value">0x0d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SO</td>
+          <td>=</td>
+          <td class="context-item-value">0x0e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SI</td>
+          <td>=</td>
+          <td class="context-item-value">0x0f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x10</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC1</td>
+          <td>=</td>
+          <td class="context-item-value">0x11</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC2</td>
+          <td>=</td>
+          <td class="context-item-value">0x12</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC3</td>
+          <td>=</td>
+          <td class="context-item-value">0x13</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC4</td>
+          <td>=</td>
+          <td class="context-item-value">0x14</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAK</td>
+          <td>=</td>
+          <td class="context-item-value">0x15</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYN</td>
+          <td>=</td>
+          <td class="context-item-value">0x16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ETB</td>
+          <td>=</td>
+          <td class="context-item-value">0x17</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CAN</td>
+          <td>=</td>
+          <td class="context-item-value">0x18</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EM</td>
+          <td>=</td>
+          <td class="context-item-value">0x19</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUB</td>
+          <td>=</td>
+          <td class="context-item-value">0x1a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ESC</td>
+          <td>=</td>
+          <td class="context-item-value">0x1b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FS</td>
+          <td>=</td>
+          <td class="context-item-value">0x1c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GS</td>
+          <td>=</td>
+          <td class="context-item-value">0x1d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RS</td>
+          <td>=</td>
+          <td class="context-item-value">0x1e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">US</td>
+          <td>=</td>
+          <td class="context-item-value">0x1f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEL</td>
+          <td>=</td>
+          <td class="context-item-value">0x7f</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/storage/yamlstore.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    YamlStore [
+        fontcolor = black,
+        URL = "classes/YamlStore.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "YamlStore"
+    ]
+
+    Store [
+        URL = "classes/Store.html",
+        label = "Store"
+    ]
+
+    Store -> YamlStore [
+
+    ]
+
+}
+

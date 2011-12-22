@@ -1,0 +1,52 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/utility/log.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Log [
+        fontcolor = black,
+        URL = "classes/Log.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Log"
+    ]
+
+    Module [
+        fontcolor = black,
+        URL = "classes/Module.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Module"
+    ]
+
+    Singleton [
+        URL = "classes/Singleton.html",
+        shape = box,
+        label = "Singleton"
+    ]
+
+    Singleton -> Log [
+
+    ]
+
+    Log4r [
+        URL = "classes/Log4r.html",
+        shape = box,
+        label = "Log4r"
+    ]
+
+    Log4r -> Log [
+
+    ]
+
+}
+

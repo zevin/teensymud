@@ -1,0 +1,173 @@
+= TeensyMUD Server
+= v2.10.0
+
+== Introduction
+TeensyMUD is a very simple mud server written in Ruby.  It uses a multiplexed single-threaded network driver using Acceptor/Reactor and Observer patterns and YAML formatted text files as a database.  It is also a pure event driven system where all game objects communicate with each other via events.  
+
+This server was initially created in response to an Aprils Fool's joke posted by Erwin Andreasen on TheMudConnector forum announcing a 1K mud contest.  Those obfuscated versions can be found in the repository.
+
+== Download
+The latest release can be found at http://teensymud.kicks-ass.org
+
+== System Dependencies
+=== Required
+[Ruby 1.8.4] Can be obtained at the home of Ruby, http://www.ruby-lang.org.  It runs on most platforms.
+[Log4r] All logging done through this now. Install from Ruby Gems, or http://log4r.sourceforge.net/ 
+
+=== Optional
+[RubyGems] To install rake and various things.  See - http://rubyforge.org/projects/rubygems
+[Rake] To build documentation, run tests, etc.  See - http://rake.rubyforge.org
+[Racc] To rebuild FARTS or BoolExp parser.  Ruby comes with Racc runtime so this is not needed for execution. See - http://i.loveruby.net/en/prog/racc.html
+[FlexMock] To run regression tests.  See - http://onestepback.org/software/flexmock/
+[Curses] To run tclient in curses mode under windows.  The Windows one-click installer may be missing the pdcurses.dll, or if you built it yourself from source the curses.so extension probably wasn't built.  You can get binaries for it at http://www.dave.burt.id.au/ruby/curses.zip.  The pdcurses.dll should be placed in your ruby\bin directory and not your windows directories.   See http://jarp.does.notwork.org/win32/ for the sources.
+
+== Features
+* Multiplexed single-threaded network driver using Acceptor/Reactor and Observer patterns
+* Correct standard TELNET protocol implementation
+* Supports TELNET NAWS, TTYPE, ECHO, SGA, and BINARY options
+* VT-52/100/102/220 support
+* Partial Xterm support
+* ZMP protocol support
+* Client detection (18+ clients tested so far)
+* Includes TeensyClient an vt-xxx/xterm capable client for testing.
+* Fully persistent virtual world
+* DBM, GDBM, SDBM, SQLite2, SQLite3 and YAML supported database back ends
+* Includes database load and dump utilities
+* Configurable object caching support for disk-based databases
+* Automatic persistent properties for objects. 
+* Object ownership 
+* Event-driven system with first class game objects communicating via events
+* Supports room-based system currently with unlimited exits
+* Command based online creation
+* Offline creation in YAML 
+* Color and VT-100 highlighting support for builders using TML
+* Dynamic layered command interface 
+* Currently supports chat, say and emote communication commands
+* Currently supports player movement, inventory, get and drop commands
+* Autolook and autoexits 
+* Turn based combat featuring link death and link suicide ;-)
+* Help system 
+* Password encryption
+* Runtime extensible commands.  Add new commands without rebooting.
+* Trigger script programming using Boolean expressions (ala Tiny*) and FARTS language
+* AOP-like cuts for PRE and POST event trigger processing
+* Supports multiple persistent and variable timers
+* Regression test suite included
+* Customizable class level logging support
+* Global configuration file support
+* API documentation included (see 'doc/index.html')
+* Support forum and wiki
+* Portable - runs on Unix, OS/X, Windows
+* Liberal license
+
+== Installation
+
+1. $ tar xzvf tmud*
+2. $ cd tmud*
+3. $ ruby tmud.rb
+
+That's it.  It will boot on port 4000 and build an initial database in the db directory. 
+
+See config.yaml file for more configuration information.  Documentation inside.
+
+== Starting the mud
+
+Usage: ruby ./tmud.rb [options]
+
+    -p, --port PORT                  Select the port the mud will run on
+    -d, --dbfile DBFILE              Select the name of the database file
+                                       (default is 'db/world.yaml')
+    -c, --config CONFIGFILE          Select the name of the configuration file
+                                       (default is 'config.yaml')
+    -l, --logfile LOGFILE            Select the name of the log file
+                                       (default is 'logs/server.log')
+    -h, --home LOCATIONID            Select the object id where new characters will start
+    -t, --[no-]trace                 Trace execution
+    -v, --[no-]verbose               Run verbosely
+        --help                       Show this message
+        --version                    Show version
+
+Options specified on the command line will override those in the config.yaml file.
+
+There is a sample database, db/testworld.yaml that illustrates the use of triggers.  The admin account is 'Wizard' and the password is 'potrzebie'.
+
+To start using the sample database either specify it in the config file or on the command line:
+
+* $ ruby tmud.rb --dbfile db/testworld
+
+There are two converted databases from the original tinymud and dikumud.  The admin account on both is 'Wizard' and the password is 'potrzebie'.  To run with those use:
+
+* $ ruby tmud.rb --dbfile db/tinyworld --home 17
+* $ ruby tmud.rb --dbfile db/dikuworld --home 13
+
+The TinyMud scripts are only partially operable, which may severely restrict your movement.
+
+See db/license.tiny and db/license.diku for more informtion. 
+
+== Operation
+* CTL-C  - Will shut down the server
+* quit   - Will disconnect your session
+* help   - Prints a brief description of the commands
+
+== Help 
+- look       - displays the contents of a room
+- chat       - sends <message> to all characters in the game
+- emote | !  - displays <message> to all characters in the room
+- quit       - quits the game (saves character)
+- help | ?   - displays help
+- get        - gets all objects in the room into your inventory
+- examine    - displays the contents of a room
+- say | "    - sends <message> to all characters in the room
+- go | <ex>  - go through the exit specified (ex. go west)
+- inventory  - displays chracter inventory
+- drop       - drops all objects in your inventory into the room
+- kill       - attempts to kill character (e.g. kill Bubba)
+- hello      - the hello social
+- who        - shows a list of all connected characters
+
+- @echoat    - echos input to location
+- @object    - creates a new object (ex. @object rose)
+- @reload    - reloads the command table
+- @room      - creates a new room and autolinks the exits using the exit names provided.
+                 (ex. @room My Room north south)
+- @set       - sets the description or timer for an object
+        Syntax:
+                @set desc #<oid><description>
+                @set timer #<oid> <on|off>
+                (ex. @set desc #1 A beautiful rose.)
+- @stats     - displays a statistical report of the database and cache if present
+- @color     - toggles colors on or off
+- @status    - displays session information
+- @memstats  - displays the memory statistics by scanning ruby's object space
+- @dumpcache - inspects the cache (for debugging).
+- @shutdown  - shuts down the server
+- @trigger   - adds, deletes or shows triggers on an object
+        Syntax:
+               @trigger add #<oid> #<scriptid> <eventtype>
+               @trigger del #<oid> <eventtype>
+               @trigger show #<oid>
+               (ex. @trigger add #1 #5 arrive)
+- @script    - adds, deletes or shows a script
+        Syntax:
+               @script add <lang> <progname>|<code>
+               @script del #<scriptid>
+               @script show #<scriptid>
+               (ex. @script add fart myprog
+                    @script add boolexp (#234|#42)&#34 )
+- @edit      - Edits a string field on an object or system message.
+        Syntax:
+               @edit sysmsg <name>
+               @edit #<oid> <field>
+               (ex. @edit #7 desc)
+- @gc        - runs garbage collection
+- @show      - Displays object
+        Syntax:
+               @show #<oid>|me
+               (ex. @show me)
+
+== Contributors
+:include:CONTRIBUTORS
+
+== License
+:include:LICENSE
+

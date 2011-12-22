@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (ConsoleClient)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File tclient.rb, line 167</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+    <span class="ruby-identifier">shutdown</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">connection</span> = <span class="ruby-constant">Reactor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">port</span>, <span class="ruby-identifier">$conntype</span>, <span class="ruby-identifier">$connio</span>, <span class="ruby-identifier">$connopts</span>,
+       <span class="ruby-identifier">$connfilters</span>, <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">address</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Unable to start TeensyClient&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">start</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-identifier">conmsg</span> <span class="ruby-node">&quot;Connected to #{@opts.address}:#{@opts.port}.  Use CTL-C to QUIT&quot;</span>
+    <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">shutdown</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">poll</span>(<span class="ruby-value">0</span><span class="ruby-value">.1</span>)
+      <span class="ruby-identifier">c</span> = <span class="ruby-identifier">getkey</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">c</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">32</span><span class="ruby-operator">..</span><span class="ruby-value">127</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">chr</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">13</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\n&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">win32</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">10</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\n&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">win32</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">315</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[11~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">316</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[12~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">317</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[13~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">318</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[14~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">319</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[15~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">320</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[17~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">321</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[18~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">322</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[19~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">323</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[20~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">324</span> <span class="ruby-comment cmt"># Windows F10</span>
+        <span class="ruby-identifier">conmsg</span> <span class="ruby-value str">&quot;Quitting...&quot;</span>
+        <span class="ruby-identifier">shutdown</span> = <span class="ruby-keyword kw">true</span>
+<span class="ruby-comment cmt">#      when 27 # xterm F10</span>
+<span class="ruby-comment cmt">#        if getkey == 91 &amp;&amp; getkey == 50 &amp;&amp; getkey == 49 &amp;&amp; getkey == 126</span>
+<span class="ruby-comment cmt">#          conmsg &quot;Quitting...&quot;</span>
+<span class="ruby-comment cmt">#          shutdown = true</span>
+<span class="ruby-comment cmt">#        end</span>
+
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">338</span>  <span class="ruby-comment cmt"># INS</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[2~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">339</span>  <span class="ruby-comment cmt"># DEL</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\010&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">327</span>  <span class="ruby-comment cmt"># HOME</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[7~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">335</span>  <span class="ruby-comment cmt"># END</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[8~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">329</span>  <span class="ruby-comment cmt"># PAGEUP</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[5~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">337</span>  <span class="ruby-comment cmt"># PAGEDOWN</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[6~&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">328</span>  <span class="ruby-comment cmt"># UP</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[A&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">336</span>  <span class="ruby-comment cmt"># DOWN</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[B&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">333</span>  <span class="ruby-comment cmt"># RIGHT</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[C&quot;</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">331</span>  <span class="ruby-comment cmt"># LEFT</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-value str">&quot;\e[D&quot;</span>)
+
+
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">256</span><span class="ruby-operator">..</span><span class="ruby-value">512</span>
+        <span class="ruby-identifier">conmsg</span> <span class="ruby-node">&quot;Unknown key hit code - #{c.inspect}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">publish</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">chr</span>)
+<span class="ruby-comment cmt">#        conmsg &quot;Unknown key hit code - #{c.inspect}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># until</span>
+    <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">stop</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">SystemExit</span>, <span class="ruby-constant">Interrupt</span>
+    <span class="ruby-identifier">conmsg</span> <span class="ruby-value str">&quot;\nConnection closed exiting&quot;</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+    <span class="ruby-identifier">conmsg</span> <span class="ruby-value str">&quot;\nException caught error in client: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$!</span>
+    <span class="ruby-identifier">conmsg</span> <span class="ruby-identifier">$@</span>
+  <span class="ruby-keyword kw">ensure</span>
+    <span class="ruby-identifier">system</span>(<span class="ruby-value str">'stty -cbreak echo'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">win32</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">echo</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Jun 28 18:44:44 GMT-5:00 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+</map>
+<img src="../dot/f_0.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <h1>TeensyMUD Server</h1>
+<h1>v2.10.0</h1>
+<h2>Introduction</h2>
+<p>
+TeensyMUD is a very simple mud server written in Ruby. It uses a
+multiplexed single-threaded network driver using <a
+href="../classes/Acceptor.html">Acceptor</a>/<a
+href="../classes/Reactor.html">Reactor</a> and Observer patterns and YAML
+formatted text files as a database. It is also a pure event driven system
+where all game objects communicate with each other via events.
+</p>
+<p>
+This server was initially created in response to an Aprils Fool&#8217;s
+joke posted by Erwin Andreasen on TheMudConnector forum announcing a 1K mud
+contest. Those obfuscated versions can be found in the repository.
+</p>
+<h2>Download</h2>
+<p>
+The latest release can be found at <a
+href="http://teensymud.kicks-ass.org">teensymud.kicks-ass.org</a>
+</p>
+<h2>System Dependencies</h2>
+<h3>Required</h3>
+<dl>
+<dt>Ruby 1.8.4</dt><dd>Can be obtained at the home of Ruby, <a
+href="http://www.ruby-lang.org">www.ruby-lang.org</a>. It runs on most
+platforms.
+
+</dd>
+<dt>Log4r</dt><dd>All logging done through this now. Install from Ruby Gems, or <a
+href="http://log4r.sourceforge.net">log4r.sourceforge.net</a>/
+
+</dd>
+</dl>
+<h3>Optional</h3>
+<dl>
+<dt>RubyGems</dt><dd>To install rake and various things. See - <a
+href="http://rubyforge.org/projects/rubygems">rubyforge.org/projects/rubygems</a>
+
+</dd>
+<dt>Rake</dt><dd>To build documentation, run tests, etc. See - <a
+href="http://rake.rubyforge.org">rake.rubyforge.org</a>
+
+</dd>
+<dt>Racc</dt><dd>To rebuild FARTS or BoolExp parser. Ruby comes with Racc runtime so this is
+not needed for execution. See - <a
+href="http://i.loveruby.net/en/prog/racc.html">i.loveruby.net/en/prog/racc.html</a>
+
+</dd>
+<dt>FlexMock</dt><dd>To run regression tests. See - <a
+href="http://onestepback.org/software/flexmock">onestepback.org/software/flexmock</a>/
+
+</dd>
+<dt>Curses</dt><dd>To run tclient in curses mode under windows. The Windows one-click
+installer may be missing the pdcurses.dll, or if you built it yourself from
+source the curses.so extension probably wasn&#8217;t built. You can get
+binaries for it at <a
+href="http://www.dave.burt.id.au/ruby/curses.zip">www.dave.burt.id.au/ruby/curses.zip</a>.
+The pdcurses.dll should be placed in your ruby\bin directory and not your
+windows directories. See <a
+href="http://jarp.does.notwork.org/win32">jarp.does.notwork.org/win32</a>/
+for the sources.
+
+</dd>
+</dl>
+<h2>Features</h2>
+<ul>
+<li>Multiplexed single-threaded network driver using <a
+href="../classes/Acceptor.html">Acceptor</a>/<a
+href="../classes/Reactor.html">Reactor</a> and Observer patterns
+
+</li>
+<li>Correct standard TELNET protocol implementation
+
+</li>
+<li>Supports TELNET NAWS, TTYPE, ECHO, SGA, and BINARY options
+
+</li>
+<li>VT-52/100/102/220 support
+
+</li>
+<li>Partial Xterm support
+
+</li>
+<li>ZMP protocol support
+
+</li>
+<li><a href="../classes/Client.html">Client</a> detection (18+ clients tested
+so far)
+
+</li>
+<li>Includes TeensyClient an vt-xxx/xterm capable client for testing.
+
+</li>
+<li>Fully persistent virtual world
+
+</li>
+<li>DBM, GDBM, SDBM, SQLite2, <a href="../classes/SQLite3.html">SQLite3</a> and
+YAML supported database back ends
+
+</li>
+<li>Includes database load and dump utilities
+
+</li>
+<li>Configurable object caching support for disk-based databases
+
+</li>
+<li>Automatic persistent properties for objects.
+
+</li>
+<li>Object ownership
+
+</li>
+<li><a href="../classes/Event.html">Event</a>-driven system with first class
+game objects communicating via events
+
+</li>
+<li>Supports room-based system currently with unlimited exits
+
+</li>
+<li><a href="../classes/Command.html">Command</a> based online creation
+
+</li>
+<li>Offline creation in YAML
+
+</li>
+<li>Color and VT-100 highlighting support for builders using TML
+
+</li>
+<li>Dynamic layered command interface
+
+</li>
+<li>Currently supports chat, say and emote communication commands
+
+</li>
+<li>Currently supports player movement, inventory, get and drop commands
+
+</li>
+<li>Autolook and autoexits
+
+</li>
+<li>Turn based combat featuring link death and link suicide ;-)
+
+</li>
+<li>Help system
+
+</li>
+<li>Password encryption
+
+</li>
+<li>Runtime extensible commands. Add new commands without rebooting.
+
+</li>
+<li>Trigger script programming using Boolean expressions (ala Tiny*) and FARTS
+language
+
+</li>
+<li>AOP-like cuts for PRE and POST event trigger processing
+
+</li>
+<li>Supports multiple persistent and variable timers
+
+</li>
+<li>Regression test suite included
+
+</li>
+<li>Customizable class level logging support
+
+</li>
+<li>Global configuration file support
+
+</li>
+<li>API documentation included (see &#8216;doc/index.html&#8217;)
+
+</li>
+<li>Support forum and wiki
+
+</li>
+<li>Portable - runs on Unix, OS/X, Windows
+
+</li>
+<li>Liberal license
+
+</li>
+</ul>
+<h2>Installation</h2>
+<ol>
+<li>$ tar xzvf tmud*
+
+</li>
+<li>$ cd tmud*
+
+</li>
+<li>$ ruby tmud.rb
+
+</li>
+</ol>
+<p>
+That&#8217;s it. It will boot on port 4000 and build an initial database in
+the db directory.
+</p>
+<p>
+See config.yaml file for more configuration information. Documentation
+inside.
+</p>
+<h2>Starting the mud</h2>
+<p>
+Usage: ruby ./tmud.rb [options]
+</p>
+<pre>
+    -p, --port PORT                  Select the port the mud will run on
+    -d, --dbfile DBFILE              Select the name of the database file
+                                       (default is 'db/world.yaml')
+    -c, --config CONFIGFILE          Select the name of the configuration file
+                                       (default is 'config.yaml')
+    -l, --logfile LOGFILE            Select the name of the log file
+                                       (default is 'logs/server.log')
+    -h, --home LOCATIONID            Select the object id where new characters will start
+    -t, --[no-]trace                 Trace execution
+    -v, --[no-]verbose               Run verbosely
+        --help                       Show this message
+        --version                    Show version
+</pre>
+<p>
+Options specified on the command line will override those in the
+config.yaml file.
+</p>
+<p>
+There is a sample database, db/testworld.yaml that illustrates the use of
+triggers. The admin account is &#8216;Wizard&#8217; and the password is
+&#8216;potrzebie&#8217;.
+</p>
+<p>
+To start using the sample database either specify it in the config file or
+on the command line:
+</p>
+<ul>
+<li>$ ruby tmud.rb &#8212;dbfile db/testworld
+
+</li>
+</ul>
+<p>
+There are two converted databases from the original tinymud and dikumud.
+The admin account on both is &#8216;Wizard&#8217; and the password is
+&#8216;potrzebie&#8217;. To run with those use:
+</p>
+<ul>
+<li>$ ruby tmud.rb &#8212;dbfile db/tinyworld &#8212;home 17
+
+</li>
+<li>$ ruby tmud.rb &#8212;dbfile db/dikuworld &#8212;home 13
+
+</li>
+</ul>
+<p>
+The TinyMud scripts are only partially operable, which may severely
+restrict your movement.
+</p>
+<p>
+See db/license.tiny and db/license.diku for more informtion.
+</p>
+<h2>Operation</h2>
+<ul>
+<li>CTL-C - Will shut down the server
+
+</li>
+<li>quit - Will disconnect your session
+
+</li>
+<li>help - Prints a brief description of the commands
+
+</li>
+</ul>
+<h2>Help</h2>
+<ul>
+<li>look - displays the contents of a room
+
+</li>
+<li>chat - sends &lt;message&gt; to all characters in the game
+
+</li>
+<li>emote | ! - displays &lt;message&gt; to all characters in the room
+
+</li>
+<li>quit - quits the game (saves character)
+
+</li>
+<li>help | ? - displays help
+
+</li>
+<li>get - gets all objects in the room into your inventory
+
+</li>
+<li>examine - displays the contents of a room
+
+</li>
+<li>say | &quot; - sends &lt;message&gt; to all characters in the room
+
+</li>
+<li>go | &lt;ex&gt; - go through the exit specified (ex. go west)
+
+</li>
+<li>inventory - displays chracter inventory
+
+</li>
+<li>drop - drops all objects in your inventory into the room
+
+</li>
+<li>kill - attempts to kill character (e.g. kill Bubba)
+
+</li>
+<li>hello - the hello social
+
+</li>
+<li>who - shows a list of all connected characters
+
+</li>
+<li>@echoat - echos input to location
+
+</li>
+<li>@object - creates a new object (ex. @object rose)
+
+</li>
+<li>@reload - reloads the command table
+
+</li>
+<li>@room - creates a new room and autolinks the exits using the exit names
+provided.
+
+<pre>
+               (ex. @room My Room north south)
+</pre>
+</li>
+<li>@set - sets the description or timer for an object
+
+<pre>
+      Syntax:
+              @set desc #&lt;oid&gt;&lt;description&gt;
+              @set timer #&lt;oid&gt; &lt;on|off&gt;
+              (ex. @set desc #1 A beautiful rose.)
+</pre>
+</li>
+<li>@stats - displays a statistical report of the database and cache if present
+
+</li>
+<li>@color - toggles colors on or off
+
+</li>
+<li>@status - displays session information
+
+</li>
+<li>@memstats - displays the memory statistics by scanning ruby&#8217;s object
+space
+
+</li>
+<li>@dumpcache - inspects the cache (for debugging).
+
+</li>
+<li>@shutdown - shuts down the server
+
+</li>
+<li>@trigger - adds, deletes or shows triggers on an object
+
+<pre>
+      Syntax:
+             @trigger add #&lt;oid&gt; #&lt;scriptid&gt; &lt;eventtype&gt;
+             @trigger del #&lt;oid&gt; &lt;eventtype&gt;
+             @trigger show #&lt;oid&gt;
+             (ex. @trigger add #1 #5 arrive)
+</pre>
+</li>
+<li>@script - adds, deletes or shows a script
+
+<pre>
+      Syntax:
+             @script add &lt;lang&gt; &lt;progname&gt;|&lt;code&gt;
+             @script del #&lt;scriptid&gt;
+             @script show #&lt;scriptid&gt;
+             (ex. @script add fart myprog
+                  @script add boolexp (#234|#42)&amp;#34 )
+</pre>
+</li>
+<li>@edit - Edits a string field on an object or system message.
+
+<pre>
+      Syntax:
+             @edit sysmsg &lt;name&gt;
+             @edit #&lt;oid&gt; &lt;field&gt;
+             (ex. @edit #7 desc)
+</pre>
+</li>
+<li>@gc - runs garbage collection
+
+</li>
+<li>@show - Displays object
+
+<pre>
+      Syntax:
+             @show #&lt;oid&gt;|me
+             (ex. @show me)
+</pre>
+</li>
+</ul>
+<h2>Contributors</h2>
+<h3>TeensyMUD contributers list</h3>
+<p>
+Copyright&#169; 2005 the contributors. All rights reserved.
+</p>
+<p>
+See LICENSE file for terms and conditions.
+</p>
+<p>
+Contributers
+</p>
+<ul>
+<li>Jon A. Lambert / Tyche <a
+href="mailto:jlsysinc@alltel.net">jlsysinc@alltel.net</a>
+
+</li>
+</ul>
+<p>
+Additional contributions
+</p>
+<ul>
+<li>bbcode.rb is by Thomas-Ivo Heinen and falls under the Ruby License.
+
+</li>
+</ul>
+<h2>License</h2>
+<h3>TeensyMUD Public License</h3>
+<p>
+Copyright&#169; 2005 the contributors. All rights reserved.
+</p>
+<p>
+See CONTRIBUTORS file for list of the contributors.
+</p>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files, the rights to
+use, copy, modify, create derivative works, merge, publish, distribute,
+sublicense, and/or sell copies of this software, and to permit persons to
+whom the software is furnished to do so, subject to the following
+conditions:
+</p>
+<p>
+1) Redistribution in source code must retain the copyright information and
+attributions in the original source code, the above copyright notice, this
+list of conditions, the CONTRIBUTORS file and the following disclaimer.
+</p>
+<p>
+2) Redistribution in binary form must reproduce the above copyright notice,
+this list of conditions, and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+</p>
+<p>
+3) The rights granted to you under this license automatically terminate
+should you attempt to assert any patent claims against the licensor or
+contributors, which in any way restrict the ability of any party to use
+this software or portions thereof in any form under the terms of this
+license.
+</p>
+<p>
+Disclaimer: THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

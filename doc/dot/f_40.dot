@@ -1,0 +1,52 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/network/protocol/terminalfilter.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    TerminalFilter [
+        fontcolor = black,
+        URL = "classes/TerminalFilter.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "TerminalFilter"
+    ]
+
+    ASCIICodes [
+        URL = "classes/ASCIICodes.html",
+        shape = box,
+        label = "ASCIICodes"
+    ]
+
+    ASCIICodes -> TerminalFilter [
+
+    ]
+
+    VT100Codes [
+        URL = "classes/VT100Codes.html",
+        shape = box,
+        label = "VT100Codes"
+    ]
+
+    VT100Codes -> TerminalFilter [
+
+    ]
+
+    Filter [
+        URL = "classes/Filter.html",
+        label = "Filter"
+    ]
+
+    Filter -> TerminalFilter [
+
+    ]
+
+}
+

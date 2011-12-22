@@ -1,0 +1,23 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/engine/timer.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Timer [
+        fontcolor = black,
+        URL = "classes/Timer.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Timer"
+    ]
+
+}
+

@@ -1,0 +1,52 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/network/protocol/telnetfilter.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    TelnetFilter [
+        fontcolor = black,
+        URL = "classes/TelnetFilter.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "TelnetFilter"
+    ]
+
+    ASCIICodes [
+        URL = "classes/ASCIICodes.html",
+        shape = box,
+        label = "ASCIICodes"
+    ]
+
+    ASCIICodes -> TelnetFilter [
+
+    ]
+
+    TelnetCodes [
+        URL = "classes/TelnetCodes.html",
+        shape = box,
+        label = "TelnetCodes"
+    ]
+
+    TelnetCodes -> TelnetFilter [
+
+    ]
+
+    Filter [
+        URL = "classes/Filter.html",
+        label = "Filter"
+    ]
+
+    Filter -> TelnetFilter [
+
+    ]
+
+}
+

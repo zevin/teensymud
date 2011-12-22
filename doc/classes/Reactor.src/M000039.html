@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Reactor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/reactor.rb, line 55</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">service_port</span>, <span class="ruby-identifier">service_type</span>, <span class="ruby-identifier">service_io</span>, <span class="ruby-identifier">service_negotiation</span>,
+                 <span class="ruby-identifier">service_filters</span>, <span class="ruby-identifier">address</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">service_port</span>      <span class="ruby-comment cmt"># port server will listen on</span>
+    <span class="ruby-ivar">@shutdown</span> = <span class="ruby-keyword kw">false</span>  <span class="ruby-comment cmt"># Flag to indicate that server is shutting down.</span>
+    <span class="ruby-ivar">@acceptor</span> = <span class="ruby-keyword kw">nil</span>    <span class="ruby-comment cmt"># Listening socket for incoming connections.</span>
+    <span class="ruby-ivar">@connector</span> = <span class="ruby-keyword kw">nil</span>   <span class="ruby-comment cmt"># Connecting socket for outgoing connections.</span>
+    <span class="ruby-ivar">@registry</span> = []     <span class="ruby-comment cmt"># list of sessions</span>
+    <span class="ruby-ivar">@address</span> = <span class="ruby-identifier">address</span> <span class="ruby-comment cmt"># Address for Connector.</span>
+
+    <span class="ruby-ivar">@service_type</span> = <span class="ruby-identifier">service_type</span>
+    <span class="ruby-ivar">@service_io</span> = <span class="ruby-identifier">service_io</span>
+    <span class="ruby-ivar">@service_negotiation</span> = <span class="ruby-identifier">service_negotiation</span>
+    <span class="ruby-ivar">@service_filters</span> = <span class="ruby-identifier">service_filters</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inspect</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

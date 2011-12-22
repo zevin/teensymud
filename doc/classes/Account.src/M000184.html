@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Account)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/core/account.rb, line 32</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">conn</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-value str">&quot;&quot;</span>,<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">passwd</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">color</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">characters</span> = []
+    <span class="ruby-ivar">@conn</span> = <span class="ruby-identifier">conn</span>                <span class="ruby-comment cmt"># Reference to network session (connection)</span>
+    <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">:initialize</span>
+    <span class="ruby-ivar">@echo</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-ivar">@termsize</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@terminal</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@checked</span> = <span class="ruby-value">3</span>                <span class="ruby-comment cmt"># Login retry counter - on 0 disconnect</span>
+    <span class="ruby-ivar">@account</span> = <span class="ruby-keyword kw">nil</span>              <span class="ruby-comment cmt"># used only during sign-in process</span>
+    <span class="ruby-ivar">@character</span> = <span class="ruby-keyword kw">nil</span>            <span class="ruby-comment cmt"># reference to the currently played Character.</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

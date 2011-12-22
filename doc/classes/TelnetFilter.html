@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: TelnetFilter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">TelnetFilter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/network/protocol/telnetfilter_rb.html">
+                lib/network/protocol/telnetfilter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Filter.html">
+                Filter
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="107,113,187,161"      href="TelnetFilter.html" alt="TelnetFilter">
+  <area shape="RECT" coords="7,17,84,65"      href="ASCIICodes.html" alt="ASCIICodes">
+  <area shape="RECT" coords="108,17,185,65"      href="TelnetCodes.html" alt="TelnetCodes">
+  <area shape="RECT" coords="209,17,281,65"      href="Filter.html" alt="Filter">
+</map>
+<img src="../dot/f_39.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <p>
+The <a href="TelnetFilter.html">TelnetFilter</a> class implements the
+Telnet protocol.
+</p>
+<p>
+This implements most of basic Telnet as per RFCs 854/855/1129/1143 and
+options in RFCs 857/858/1073/1091
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000128">desired?</a>&nbsp;&nbsp;
+      <a href="#M000129">echo</a>&nbsp;&nbsp;
+      <a href="#M000127">enabled?</a>&nbsp;&nbsp;
+      <a href="#M000125">filter_in</a>&nbsp;&nbsp;
+      <a href="#M000126">filter_out</a>&nbsp;&nbsp;
+      <a href="#M000124">init</a>&nbsp;&nbsp;
+      <a href="#M000130">init_subneg</a>&nbsp;&nbsp;
+      <a href="#M000123">new</a>&nbsp;&nbsp;
+      <a href="#M000131">send_naws</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="ASCIICodes.html">ASCIICodes</a></span>
+        <span class="include-name"><a href="TelnetCodes.html">TelnetCodes</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000123.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(pstack, server)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initialize state of filter
+</p>
+<dl>
+<dt><tt>pstack</tt></dt><dd>The <a href="ProtocolStack.html">ProtocolStack</a> associated with this
+filter
+
+</dd>
+<dt><tt>server</tt></dt><dd>An optional hash of desired initial options
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000128.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000128.html');return false;">
+          <span class="method-name">desired?</span><span class="method-args">(opt)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Test to see which state we prefer this option to be in
+</p>
+<dl>
+<dt><tt>opt</tt></dt><dd>The Telnet option code
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000129.html');return false;">
+          <span class="method-name">echo</span><span class="method-args">(ch)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Handle server-side echo
+</p>
+<dl>
+<dt><tt>ch</tt></dt><dd>character string to echo
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000127.html');return false;">
+          <span class="method-name">enabled?</span><span class="method-args">(opt, who)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Test to see if option is enabled
+</p>
+<dl>
+<dt><tt>opt</tt></dt><dd>The Telnet option code
+
+</dd>
+<dt><tt>who</tt></dt><dd>The side to check :us or :him
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000125.html');return false;">
+          <span class="method-name">filter_in</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="TelnetFilter.html#M000125">filter_in</a> method filters input
+data
+</p>
+<dl>
+<dt><tt>str</tt></dt><dd>The string to be processed
+
+</dd>
+<dt><tt>return</tt></dt><dd>The filtered data
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000126.html');return false;">
+          <span class="method-name">filter_out</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="TelnetFilter.html#M000126">filter_out</a> method filters
+output data
+</p>
+<dl>
+<dt><tt>str</tt></dt><dd>The string to be processed
+
+</dd>
+<dt><tt>return</tt></dt><dd>The filtered data
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000124.html');return false;">
+          <span class="method-name">init</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Negotiate starting wanted options
+</p>
+<dl>
+<dt><tt>args</tt></dt><dd>Optional initial options
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000130.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000130.html');return false;">
+          <span class="method-name">init_subneg</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Negotiate starting wanted options that imply subnegotation So far only
+terminal type
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+          <a href="TelnetFilter.src/M000131.html" target="Code" class="method-signature"
+            onclick="popupCode('TelnetFilter.src/M000131.html');return false;">
+          <span class="method-name">send_naws</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

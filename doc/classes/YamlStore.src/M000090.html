@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (YamlStore)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/yamlstore.rb, line 27</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">dbfile</span>)
+    <span class="ruby-keyword kw">super</span>()
+    <span class="ruby-ivar">@dbfile</span> = <span class="ruby-node">&quot;#{dbfile}.yaml&quot;</span>
+
+    <span class="ruby-comment cmt"># check if database exists and build it if not</span>
+    <span class="ruby-identifier">build_database</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Loading world...&quot;</span>
+    <span class="ruby-ivar">@db</span> = {}
+
+    <span class="ruby-comment cmt"># load the yaml database and sets @dbtop to highest object id</span>
+    <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load_file</span>(<span class="ruby-ivar">@dbfile</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@dbtop</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dbtop</span>
+      <span class="ruby-ivar">@db</span>[<span class="ruby-identifier">o</span>.<span class="ruby-identifier">id</span>]=<span class="ruby-identifier">o</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Database '#{@dbfile}' loaded...highest id = #{@dbtop}.&quot;</span>
+<span class="ruby-comment cmt">#    log.debug @db.inspect</span>
+  <span class="ruby-keyword kw">rescue</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-value str">&quot;Error loading database&quot;</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-identifier">$!</span>
+    <span class="ruby-identifier">raise</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/engine/eventmanager.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    EventManager [
+        fontcolor = black,
+        URL = "classes/EventManager.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "EventManager"
+    ]
+
+}
+

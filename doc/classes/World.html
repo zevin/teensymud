@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: World</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">World</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/core/world_rb.html">
+                lib/core/world.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Root.html">
+                Root
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="20,113,92,161"      href="World.html" alt="World">
+  <area shape="RECT" coords="20,17,92,65"      href="Root.html" alt="Root">
+</map>
+<img src="../dot/f_16.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <p>
+The <a href="World.html">World</a> class is the mother of all worlds.
+</p>
+<p>
+It contains world state information, the world timer, utility functions,
+and delegates to the <a href="Engine.html">Engine</a>.
+</p>
+<dl>
+<dt><tt>cmds</tt></dt><dd>is a handle to the character commands table.
+
+</dd>
+<dt><tt>ocmds</tt></dt><dd>is a handle to the object commands table.
+
+</dd>
+<dt><tt>timer_list</tt></dt><dd>is a list of all installed timer objects (persistent)
+
+</dd>
+<dt><tt>all_characters</tt></dt><dd>is a list of all characters (persistent)
+
+</dd>
+<dt><tt>timer_list</tt></dt><dd>is a list of all connected characters
+
+</dd>
+</dl>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000238">add_admin</a>&nbsp;&nbsp;
+      <a href="#M000240">add_builder</a>&nbsp;&nbsp;
+      <a href="#M000237">is_admin?</a>&nbsp;&nbsp;
+      <a href="#M000236">is_builder?</a>&nbsp;&nbsp;
+      <a href="#M000242">is_owner?</a>&nbsp;&nbsp;
+      <a href="#M000243">memstats</a>&nbsp;&nbsp;
+      <a href="#M000231">new</a>&nbsp;&nbsp;
+      <a href="#M000239">rem_admin</a>&nbsp;&nbsp;
+      <a href="#M000241">rem_builder</a>&nbsp;&nbsp;
+      <a href="#M000234">set_timer</a>&nbsp;&nbsp;
+      <a href="#M000233">shutdown</a>&nbsp;&nbsp;
+      <a href="#M000232">startup</a>&nbsp;&nbsp;
+      <a href="#M000235">unset_timer</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">cmds</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">connected_characters</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ocmds</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000231" class="method-detail">
+        <a name="M000231"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000231.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000231.html');return false;">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create the <a href="World.html">World</a>. This loads or creates the
+database depending on whether it finds it.
+</p>
+<dl>
+<dt><tt>return</tt></dt><dd>A handle to the <a href="World.html">World</a> object.
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000238" class="method-detail">
+        <a name="M000238"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000238.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000238.html');return false;">
+          <span class="method-name">add_admin</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Make the character an admin
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>undefined
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000240" class="method-detail">
+        <a name="M000240"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000240.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000240.html');return false;">
+          <span class="method-name">add_builder</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Make the character a builder
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>undefined
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000237" class="method-detail">
+        <a name="M000237"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000237.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000237.html');return false;">
+          <span class="method-name">is_admin?</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is character an admin?
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>true or false
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000236" class="method-detail">
+        <a name="M000236"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000236.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000236.html');return false;">
+          <span class="method-name">is_builder?</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is character a builder?
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>true or false
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000242" class="method-detail">
+        <a name="M000242"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000242.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000242.html');return false;">
+          <span class="method-name">is_owner?</span><span class="method-args">(pid, oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does character own the object?
+</p>
+<dl>
+<dt><tt>pid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>oid</tt></dt><dd>object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>true or false
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000243" class="method-detail">
+        <a name="M000243"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000243.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000243.html');return false;">
+          <span class="method-name">memstats</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+memstats scans all objects in memory and produces a report
+</p>
+<dl>
+<dt><tt>return</tt></dt><dd>a string
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000239" class="method-detail">
+        <a name="M000239"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000239.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000239.html');return false;">
+          <span class="method-name">rem_admin</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove admin priviledges from character
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>undefined
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000241" class="method-detail">
+        <a name="M000241"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000241.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000241.html');return false;">
+          <span class="method-name">rem_builder</span><span class="method-args">(oid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove admin priviledges from character
+</p>
+<dl>
+<dt><tt>oid</tt></dt><dd>character object id
+
+</dd>
+<dt><tt>return</tt></dt><dd>undefined
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000234" class="method-detail">
+        <a name="M000234"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000234.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000234.html');return false;">
+          <span class="method-name">set_timer</span><span class="method-args">(id, name, time)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set/add a timer for an object
+</p>
+<dl>
+<dt><tt>id</tt></dt><dd>The id of the object that wants to get a timer event
+
+</dd>
+<dt><tt>name</tt></dt><dd>The symbolic name of the timer event
+
+</dd>
+<dt><tt>time</tt></dt><dd>The interval time in seconds of the timer event
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000233" class="method-detail">
+        <a name="M000233"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000233.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000233.html');return false;">
+          <span class="method-name">shutdown</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000232" class="method-detail">
+        <a name="M000232"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000232.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000232.html');return false;">
+          <span class="method-name">startup</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000235" class="method-detail">
+        <a name="M000235"></a>
+
+        <div class="method-heading">
+          <a href="World.src/M000235.html" target="Code" class="method-signature"
+            onclick="popupCode('World.src/M000235.html');return false;">
+          <span class="method-name">unset_timer</span><span class="method-args">(id, name=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unset/remove a timer for an object
+</p>
+<dl>
+<dt><tt>id</tt></dt><dd>The id of the object to remove a timer event
+
+</dd>
+<dt><tt>name</tt></dt><dd>The symbolic name of the timer event to remove (or nil for all events)
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

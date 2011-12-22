@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get (CacheManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/cache.rb, line 151</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">oid</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:reads</span>)
+    <span class="ruby-identifier">hv</span> = <span class="ruby-identifier">hash</span>(<span class="ruby-identifier">oid</span>)
+
+    <span class="ruby-comment cmt"># search the cache</span>
+    <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ce</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">oid</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">oid</span>
+        <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:cache_read_hits</span>)
+        <span class="ruby-comment cmt"># need to try putting hot hit to the head of the list?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">obj</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># cache miss - search the database</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">ret</span> = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">decode</span>(<span class="ruby-ivar">@db</span>[<span class="ruby-identifier">oid</span>.<span class="ruby-identifier">to_s</span>])
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:database_read_fails</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:database_reads</span>)
+
+    <span class="ruby-comment cmt"># get and remove the last entry off this list</span>
+    <span class="ruby-identifier">ch</span> = <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">pop</span>
+    <span class="ruby-comment cmt"># if its dirty we write it to the database</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">dirty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">ch</span>.<span class="ruby-identifier">dead?</span>
+      <span class="ruby-ivar">@db</span>[<span class="ruby-identifier">ch</span>.<span class="ruby-identifier">oid</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">ch</span>.<span class="ruby-identifier">obj</span>)
+      <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:database_writes</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">noswap?</span>  <span class="ruby-comment cmt"># here we have a problem we can't use this</span>
+        <span class="ruby-comment cmt"># first push it back onto the list</span>
+        <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">unshift</span> <span class="ruby-identifier">ch</span>
+        <span class="ruby-comment cmt"># get ourselves a brand new</span>
+        <span class="ruby-identifier">ch</span> = <span class="ruby-constant">CacheEntry</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-comment cmt"># problem solved</span>
+        <span class="ruby-comment cmt"># the depth of any list chains will be cache_depth + # noswap entries</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># assign our new object to the cache entry</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">obj</span> = <span class="ruby-identifier">ret</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">oid</span> = <span class="ruby-identifier">oid</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">clean!</span>
+    <span class="ruby-comment cmt"># push it to the head of the list</span>
+    <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">unshift</span> <span class="ruby-identifier">ch</span>
+
+    <span class="ruby-identifier">ret</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

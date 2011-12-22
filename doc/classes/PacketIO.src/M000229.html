@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>read (PacketIO)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/packetio.rb, line 43</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read</span>
+    <span class="ruby-ivar">@inbuffer</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@sock</span>.<span class="ruby-identifier">recv</span>(<span class="ruby-ivar">@bufsize</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@prefix_found</span>
+      <span class="ruby-comment cmt"># start of packet</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@inbuffer</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">4</span>
+        <span class="ruby-identifier">sizest</span> = <span class="ruby-ivar">@inbuffer</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>)
+        <span class="ruby-ivar">@packet_size</span> = <span class="ruby-identifier">sizest</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;N&quot;</span>)[<span class="ruby-value">0</span>]
+        <span class="ruby-ivar">@prefix_found</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@packet_size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@bufsize</span>
+          <span class="ruby-ivar">@inbuffer</span> = <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-ivar">@packet_size</span> = <span class="ruby-value">0</span>
+          <span class="ruby-ivar">@prefix_found</span> = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Discarding packet: Buffer size exceeded (PACKETSIZE=#{@packet_size} STRING='#{sizest}')&quot;</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># not enough data yet</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@prefix_found</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@inbuffer</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@packet_size</span>
+        <span class="ruby-comment cmt"># We have it</span>
+        <span class="ruby-ivar">@prefix_found</span> = <span class="ruby-keyword kw">false</span>
+        <span class="ruby-identifier">ps</span> = <span class="ruby-ivar">@packet_size</span>
+        <span class="ruby-ivar">@packet_size</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@inbuffer</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">ps</span>).<span class="ruby-identifier">chop</span>  <span class="ruby-comment cmt"># chop off NUL</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Dont have it all yet.</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

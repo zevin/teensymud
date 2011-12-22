@@ -1,0 +1,42 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/utility/configuration.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Configuration [
+        fontcolor = black,
+        URL = "classes/Configuration.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Configuration"
+    ]
+
+    Module [
+        fontcolor = black,
+        URL = "classes/Module.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Module"
+    ]
+
+    Singleton [
+        URL = "classes/Singleton.html",
+        shape = box,
+        label = "Singleton"
+    ]
+
+    Singleton -> Configuration [
+
+    ]
+
+}
+

@@ -1,0 +1,59 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "tclient.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    CursesClient [
+        fontcolor = black,
+        URL = "classes/CursesClient.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "CursesClient"
+    ]
+
+    Client [
+        fontcolor = black,
+        URL = "classes/Client.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Client"
+    ]
+
+    ConsoleClient [
+        fontcolor = black,
+        URL = "classes/ConsoleClient.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "ConsoleClient"
+    ]
+
+    Client -> CursesClient [
+
+    ]
+
+    Publisher [
+        URL = "classes/Publisher.html",
+        shape = box,
+        label = "Publisher"
+    ]
+
+    Publisher -> Client [
+
+    ]
+
+    Client -> ConsoleClient [
+
+    ]
+
+}
+

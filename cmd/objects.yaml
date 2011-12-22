@@ -1,0 +1,19 @@
+#
+# file::    objects.yaml
+# author::  Jon A. Lambert
+# version:: 2.7.0
+# date::    01/12/2006
+#
+# This source code copyright (C) 2005 by Jon A. Lambert
+# All rights reserved.
+#
+# Released under the terms of the TeensyMUD Public License
+# See LICENSE file for additional information.
+#
+
+# These are the GameObject commands used by the FARTS triggers
+--- 
+- !ruby/object:Command 
+  cmd: :ocmd_echoat
+  help: echos input to location
+  name: echoat

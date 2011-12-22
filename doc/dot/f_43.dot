@@ -1,0 +1,32 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/storage/dbmstore.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    DbmStore [
+        fontcolor = black,
+        URL = "classes/DbmStore.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "DbmStore"
+    ]
+
+    Store [
+        URL = "classes/Store.html",
+        label = "Store"
+    ]
+
+    Store -> DbmStore [
+
+    ]
+
+}
+

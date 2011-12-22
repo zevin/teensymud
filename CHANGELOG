@@ -1,0 +1,971 @@
+------------------------------------------------------------------------
+r145 | jlambert | 2006-03-18 13:11:14 -0500 (Sat, 18 Mar 2006) | 1 line
+
+tagged release 2.9.0
+------------------------------------------------------------------------
+r144 | jlambert | 2006-03-18 13:11:06 -0500 (Sat, 18 Mar 2006) | 1 line
+
+create new packages for 2.9.0
+------------------------------------------------------------------------
+r143 | jlambert | 2006-03-18 13:02:07 -0500 (Sat, 18 Mar 2006) | 1 line
+
+Rakefile and doc updates
+------------------------------------------------------------------------
+r142 | jlambert | 2006-03-18 12:22:43 -0500 (Sat, 18 Mar 2006) | 1 line
+
+Fixed up tests and documentation
+------------------------------------------------------------------------
+r141 | jlambert | 2006-03-18 09:04:24 -0500 (Sat, 18 Mar 2006) | 12 lines
+
+Added support for sqlite v3, sqlite3hash.rb and sqlite3store.rb..
+Refactored state machines in account to multiple routines and added
+  comments..
+Fixed order of message issues with disconnection, moved disconnect 
+  to account.
+Add support to @edit command to edit World.msgs.
+Removed :logged_out event in favor of one :disconnected event.
+Changed :logged_out event issued from Engine side to :quit to prevent
+ confusion.
+
+
+
+------------------------------------------------------------------------
+r140 | jlambert | 2006-03-17 08:03:42 -0500 (Fri, 17 Mar 2006) | 1 line
+
+Added support for SQLite
+------------------------------------------------------------------------
+r139 | jlambert | 2006-03-16 13:07:38 -0500 (Thu, 16 Mar 2006) | 6 lines
+
+Removed player.rb and tests.
+Added @gc command to run garbage collection.
+Fixed up some remaining references to @session from 
+  Character and GameObject.
+
+
+------------------------------------------------------------------------
+r138 | jlambert | 2006-03-16 07:32:46 -0500 (Thu, 16 Mar 2006) | 7 lines
+
+Moved all accunt related stuff from Player to Account.
+Renamed Player to Character everywhere. 
+All messaging now goes through Account.
+Added Guest accounts, and multiple character accounts.
+
+
+
+------------------------------------------------------------------------
+r137 | jlambert | 2006-03-14 01:07:49 -0500 (Tue, 14 Mar 2006) | 4 lines
+
+Updated show command and added inspect method to root.
+Added utility module for various routines that don't seem to go anywhere.
+
+
+------------------------------------------------------------------------
+r136 | jlambert | 2006-03-12 00:54:13 -0500 (Sun, 12 Mar 2006) | 1 line
+
+Added cmd_show and a Tiny interface directory
+------------------------------------------------------------------------
+r135 | jlambert | 2006-03-12 00:52:05 -0500 (Sun, 12 Mar 2006) | 27 lines
+
+Added create/update timestamp properties to Root.
+Added msgfail/msgsucc properties to Gameobject.
+Code to support fail/success messages in EventManager.
+Added CLEARLINE, SCRRESET, and POS  VT-100 handling in 
+  TerminalFilter.
+Hook for XmlStore.
+Added admins/builders arrays to World and code to support them.
+Made a pretty prompt routine for vtxxx/xterm clients.
+Changed Telnetfilter#init to invert logic if :client used.
+Added EOREC Telnet option and EOR handling.
+Changed Telnet to allow 8-bit NVT through.
+Changed CRNUL handling to xlate to CR when :client used.
+Fixed SB negotiation to check for SE then unscan if not present.
+Similarly, checked for eos? in IAC command then unscan if 
+  option not present.
+Optimized TelnetFilter#filter_out to not create a new string. 
+Fixed NAWS sending which was broken in tclient.rb.
+  NOTE: We still need to find out how to get terminal dimensions
+  from Windows side.
+TelnetFilter ECHO option changed so client will never echo on
+  behalf of server.  This could be triggered by a mud server
+  sending IAC DO ECHO.
+  NOTE: Some options need bi-directional configuration ability.
+Fixed ColorFilter to handle search misses on bad color names.
+  
+
+
+------------------------------------------------------------------------
+r134 | jlambert | 2006-03-09 14:13:32 -0500 (Thu, 09 Mar 2006) | 4 lines
+
+Changed color codes to match TML.
+Deleted bbcode.rb, using colorcodes.rb in colorfilter now.
+
+
+------------------------------------------------------------------------
+r133 | jlambert | 2006-03-09 11:28:04 -0500 (Thu, 09 Mar 2006) | 5 lines
+
+Added @edit command for editing strings.
+Added client detection for vt-xxx/xterm terminals and windowing.
+
+
+
+------------------------------------------------------------------------
+r132 | jlambert | 2006-03-04 22:35:15 -0500 (Sat, 04 Mar 2006) | 1 line
+
+tagged release 2.8.0
+------------------------------------------------------------------------
+r131 | jlambert | 2006-03-04 22:35:09 -0500 (Sat, 04 Mar 2006) | 1 line
+
+create new packages for 2.8.0
+------------------------------------------------------------------------
+r130 | jlambert | 2006-03-04 22:26:24 -0500 (Sat, 04 Mar 2006) | 1 line
+
+Updated tests
+------------------------------------------------------------------------
+r129 | jlambert | 2006-03-04 19:47:04 -0500 (Sat, 04 Mar 2006) | 5 lines
+
+Removed doc from repository.
+Updated documention files.
+
+
+
+------------------------------------------------------------------------
+r128 | jlambert | 2006-03-04 17:33:47 -0500 (Sat, 04 Mar 2006) | 6 lines
+
+Added Scripts as objects.
+Updated testworld.yaml with new objects.
+Added Boolexp parser.
+Added more client detection code.
+
+
+------------------------------------------------------------------------
+r127 | jlambert | 2006-02-22 10:34:14 -0500 (Wed, 22 Feb 2006) | 8 lines
+
+Made :yaml default database type.
+Move processing of events from Engine to EventManager#process_events.
+Changed GameObject#farts to GameObject#triggers.
+Moved trigger processing to EventManager and added PRE triggers.
+Refactored #ass method into direct calls to methods using event names.
+Rebuilt ticktock.fart script and testworld.yaml database based on above changes.
+
+
+------------------------------------------------------------------------
+r126 | jlambert | 2006-02-05 09:59:05 -0500 (Sun, 05 Feb 2006) | 4 lines
+
+Created benchmark directory.
+Changed serialization method from yaml to marshal in Xdbm's.
+
+
+------------------------------------------------------------------------
+r125 | jlambert | 2006-02-04 15:14:08 -0500 (Sat, 04 Feb 2006) | 5 lines
+
+Test methods updated.  They run as individual tests `rake test TEST="test_foo.rb"` 
+ but there's a problem running them with `rake test`.
+
+
+
+------------------------------------------------------------------------
+r124 | jlambert | 2006-02-04 15:10:48 -0500 (Sat, 04 Feb 2006) | 5 lines
+
+Added @shutdown command.
+Created graceful_shutdown method to be called from signal handling and
+ @shutdown ==true
+
+
+------------------------------------------------------------------------
+r123 | jlambert | 2006-01-24 03:47:36 -0500 (Tue, 24 Jan 2006) | 1 line
+
+Updated requires for directory changes
+------------------------------------------------------------------------
+r122 | jlambert | 2006-01-24 02:40:25 -0500 (Tue, 24 Jan 2006) | 1 line
+
+directory changes
+------------------------------------------------------------------------
+r121 | jlambert | 2006-01-24 02:38:14 -0500 (Tue, 24 Jan 2006) | 1 line
+
+directory changes
+------------------------------------------------------------------------
+r120 | jlambert | 2006-01-24 02:37:39 -0500 (Tue, 24 Jan 2006) | 1 line
+
+directory chamges
+------------------------------------------------------------------------
+r119 | jlambert | 2006-01-24 02:36:15 -0500 (Tue, 24 Jan 2006) | 1 line
+
+directory chamges
+------------------------------------------------------------------------
+r118 | jlambert | 2006-01-24 02:34:02 -0500 (Tue, 24 Jan 2006) | 1 line
+
+directory structure changes
+------------------------------------------------------------------------
+r117 | jlambert | 2006-01-24 02:33:46 -0500 (Tue, 24 Jan 2006) | 1 line
+
+directory structure changes
+------------------------------------------------------------------------
+r116 | jlambert | 2006-01-23 07:13:58 -0500 (Mon, 23 Jan 2006) | 1 line
+
+Moved event code to engine directory. Deleted hamster
+------------------------------------------------------------------------
+r115 | jlambert | 2006-01-23 03:53:38 -0500 (Mon, 23 Jan 2006) | 13 lines
+
+In rakefile rdoc task, removed config.yaml , added new cmd subdirectory.
+Refactored out engine and world. Made Engine singleton object.
+Added get_object, put_object, delete_object to Root object.
+Removed all references to powered and Hamster.  Timers stored in global
+ list on World object. No need for reading entire database to install timers.
+Added set_timer and unset_timer to World.
+World contains all_players and connected_players list.  No need for reading
+  entire database to discover this information.
+Moved containment of storage operations from World to Engine.
+Removed global variable $engine, all access through Engine#instance.
+Updated all commands affected by the above changes.  
+
+
+------------------------------------------------------------------------
+r114 | jlambert | 2006-01-21 02:19:01 -0500 (Sat, 21 Jan 2006) | 4 lines
+
+Uppdated comments on return values for mark, makeswap, makenoswap.
+Added World object to minimal database.
+
+
+------------------------------------------------------------------------
+r113 | jlambert | 2006-01-19 01:05:46 -0500 (Thu, 19 Jan 2006) | 1 line
+
+regened doc with utilities
+------------------------------------------------------------------------
+r112 | jlambert | 2006-01-18 12:59:17 -0500 (Wed, 18 Jan 2006) | 4 lines
+
+Added empty makeswap and makenoswap methods to store.rb, YamlStore
+ crashing.  Thank you Massaria.
+
+
+------------------------------------------------------------------------
+r111 | jlambert | 2006-01-17 00:31:21 -0500 (Tue, 17 Jan 2006) | 1 line
+
+tagged release 2.7.0
+------------------------------------------------------------------------
+r110 | jlambert | 2006-01-17 00:30:35 -0500 (Tue, 17 Jan 2006) | 1 line
+
+create new packages for 2.7.0
+------------------------------------------------------------------------
+r109 | jlambert | 2006-01-17 00:09:06 -0500 (Tue, 17 Jan 2006) | 7 lines
+
+Updated rakefile to include newly distributed files.
+Added owner ids to testworld database.
+Added to features and dependencies in README.
+Hamster sends nil from id on events causing CacheManager to flip 
+ out.  Fixed up routines to handle nil objects and object ids.
+
+
+------------------------------------------------------------------------
+r108 | jlambert | 2006-01-17 00:01:31 -0500 (Tue, 17 Jan 2006) | 1 line
+
+Newer rdoc
+------------------------------------------------------------------------
+r107 | jlambert | 2006-01-16 23:58:33 -0500 (Mon, 16 Jan 2006) | 1 line
+
+Updated rdoc
+------------------------------------------------------------------------
+r106 | jlambert | 2006-01-16 23:19:43 -0500 (Mon, 16 Jan 2006) | 19 lines
+
+Added Root class to be the mother of all objects.  The thought is
+ GameObject contains way to much info and one may need objects that
+ aren't containers. 
+Publisher changed to use id's of objects to send messages as using
+ references screw up cacheing.
+Object ownership property added.  Players own themselves and what
+  they create.  No code behind it yet.  This is a precursor to
+  a security system..
+'safe_read' option added to configuration.  Controls whether 
+  Properties module will mark objects dirty when read accessors
+  accessed.  Default is true as false requires code changes.
+Cache code finally added.  
+Player objects marked nonswappable in Account on login and swappable
+ in Player#update upon disconnect.
+Change the Hamster to store ids rather than references. Same reason
+ as Publisher.
+
+
+
+------------------------------------------------------------------------
+r105 | jlambert | 2006-01-15 06:42:34 -0500 (Sun, 15 Jan 2006) | 1 line
+
+Added headers to inv and who, and fixed @reload command
+------------------------------------------------------------------------
+r104 | jlambert | 2006-01-15 06:40:17 -0500 (Sun, 15 Jan 2006) | 1 line
+
+Added @dumpcache command for examining store cache
+------------------------------------------------------------------------
+r103 | jlambert | 2006-01-15 06:34:29 -0500 (Sun, 15 Jan 2006) | 4 lines
+
+Moved options parsing back out of Configuration and into tmud.rb
+  as it was screwing up all the rest of the programs.
+
+
+------------------------------------------------------------------------
+r102 | jlambert | 2006-01-15 06:31:48 -0500 (Sun, 15 Jan 2006) | 1 line
+
+Added options parsing to database loader and dumper
+------------------------------------------------------------------------
+r101 | jlambert | 2006-01-14 23:59:05 -0500 (Sat, 14 Jan 2006) | 1 line
+
+Added check and mark methods to tests and fot them working
+------------------------------------------------------------------------
+r100 | jlambert | 2006-01-14 17:20:34 -0500 (Sat, 14 Jan 2006) | 6 lines
+
+Added memstats command to walk through memory counting stuff.
+Removed database and replaced it with store.
+Added support for yaml, dbm, sdbm, and gdbm stores.
+Moved find_player_by_name and players_connected to World class.
+
+
+------------------------------------------------------------------------
+r99 | jlambert | 2006-01-13 11:03:21 -0500 (Fri, 13 Jan 2006) | 15 lines
+
+Added support for gdbm, sdbm, and dbm for use as backend.
+Added tests for properties module.
+Moved the loading of objects into location contents outside of initialization. 
+  (Thanks to Massaria for discovering the problem).
+Added query support for discovering the Connection ip and host.  Changed
+  account.rb to use it instend.
+Changed Command to load a commands in layered sets.  With each layer 
+  overriding similarly named commands at a lower level.  This is 
+  configurable in config.yaml.
+Added a clone method to GameObject which will deepcopy an object, assign 
+  it a brand new database id, and put
+New programs dbload.rb and dbdump.rb to load and dump any of the 
+  supported databases to and from yaml.
+
+
+------------------------------------------------------------------------
+r98 | jlambert | 2006-01-12 20:32:53 -0500 (Thu, 12 Jan 2006) | 1 line
+
+renamed object commands yaml file
+------------------------------------------------------------------------
+r97 | jlambert | 2006-01-12 20:31:43 -0500 (Thu, 12 Jan 2006) | 4 lines
+
+Rearranged cmds directory in preparation for interfaces code.
+Added tests for properties module.
+
+
+------------------------------------------------------------------------
+r96 | jlambert | 2006-01-12 15:29:59 -0500 (Thu, 12 Jan 2006) | 3 lines
+
+Converted all the network classes to use Configuration.
+
+
+------------------------------------------------------------------------
+r95 | jlambert | 2006-01-11 23:02:17 -0500 (Wed, 11 Jan 2006) | 8 lines
+
+Added Configuration class for accessing global configuration info.
+Added Moved default configuration into config.yaml
+Added test/test_config.yaml and modified Rakefile to use for tests.
+Moved Version and BANNER to lib/version.rb
+Moved options parsing from tmud.rb to Configuration class.
+Moved signal handling into Engine.
+
+
+------------------------------------------------------------------------
+r94 | jlambert | 2006-01-11 13:38:32 -0500 (Wed, 11 Jan 2006) | 1 line
+
+Complete rewrite of logging
+------------------------------------------------------------------------
+r93 | jlambert | 2006-01-08 22:53:47 -0500 (Sun, 08 Jan 2006) | 1 line
+
+removed stray trunk directory in release branch
+------------------------------------------------------------------------
+r92 | jlambert | 2006-01-08 21:29:38 -0500 (Sun, 08 Jan 2006) | 5 lines
+
+Added properties module to store all persitent attributes on GameObjects
+ in a hash.
+Changed all references to oid to id.  
+
+
+------------------------------------------------------------------------
+r91 | jlambert | 2005-10-29 21:04:40 -0400 (Sat, 29 Oct 2005) | 1 line
+
+tagged release 2.6.0
+------------------------------------------------------------------------
+r90 | jlambert | 2005-10-29 21:04:28 -0400 (Sat, 29 Oct 2005) | 1 line
+
+create new packages for 2.6.0
+------------------------------------------------------------------------
+r89 | jlambert | 2005-10-29 20:01:38 -0400 (Sat, 29 Oct 2005) | 1 line
+
+Updated rakefile with new libraries
+------------------------------------------------------------------------
+r88 | jlambert | 2005-10-29 04:45:33 -0400 (Sat, 29 Oct 2005) | 6 lines
+
+Renamed Incoming to Account and move to lib/game.
+Factored out Hamster, Event from tmud.rb to lib/event.
+Created EventManager class.
+Regened documentation.
+
+
+------------------------------------------------------------------------
+r87 | jlambert | 2005-10-29 03:32:23 -0400 (Sat, 29 Oct 2005) | 4 lines
+
+Finished tests for GameObject, Player and Room.
+Added fancy ascii logon graphics.
+
+
+------------------------------------------------------------------------
+r86 | jlambert | 2005-10-24 14:02:03 -0400 (Mon, 24 Oct 2005) | 5 lines
+
+More VT100 changes.  TML includes VT100 markup.
+Updated TML doc to include usable 
+
+
+
+------------------------------------------------------------------------
+r85 | jlambert | 2005-10-24 03:39:24 -0400 (Mon, 24 Oct 2005) | 7 lines
+
+Much fixing of VT100 support.
+Added set and query methods to connection to replace publishing.
+Changed tmud and tclient to use set and query.
+Added prompt method to Incoming to do LF for non-echoing clients.
+
+
+
+------------------------------------------------------------------------
+r84 | jlambert | 2005-10-24 03:35:35 -0400 (Mon, 24 Oct 2005) | 1 line
+
+Updated commands to do session#query and session#set rather than publish
+------------------------------------------------------------------------
+r83 | jlambert | 2005-10-24 03:34:22 -0400 (Mon, 24 Oct 2005) | 1 line
+
+Added unit tests for gameobjects and database
+------------------------------------------------------------------------
+r82 | jlambert | 2005-10-24 03:33:34 -0400 (Mon, 24 Oct 2005) | 1 line
+
+Removed session info from Player and remove query stuff from update
+------------------------------------------------------------------------
+r81 | jlambert | 2005-10-24 03:31:20 -0400 (Mon, 24 Oct 2005) | 1 line
+
+Where to get ruby curses libraries for windows
+------------------------------------------------------------------------
+r80 | jlambert | 2005-10-15 04:15:58 -0400 (Sat, 15 Oct 2005) | 8 lines
+
+Created lib/db directory and moved database.rb there.
+Split out game object classes in tmud.rb to lib/db.
+Renamed Obj to GameObject.
+Added test modules for game objects.
+Added TML documentation file.
+
+
+
+------------------------------------------------------------------------
+r79 | jlambert | 2005-10-06 23:50:24 -0400 (Thu, 06 Oct 2005) | 5 lines
+
+Test code for filters added.
+bbcode_to_ansi was appending LF to all conversions.
+Added shebang line to executables.
+
+
+------------------------------------------------------------------------
+r78 | jlambert | 2005-10-06 15:49:55 -0400 (Thu, 06 Oct 2005) | 1 line
+
+Replaced Observer with Publisher class
+------------------------------------------------------------------------
+r77 | jlambert | 2005-10-05 19:45:41 -0400 (Wed, 05 Oct 2005) | 4 lines
+
+Split filter.rb and net.rb into separate classes.
+Added regression tests for net classes.
+
+
+------------------------------------------------------------------------
+r76 | jlambert | 2005-10-01 09:05:30 -0400 (Sat, 01 Oct 2005) | 1 line
+
+Created net subdirectory and split net.rb into separate class files
+------------------------------------------------------------------------
+r75 | jlambert | 2005-09-30 16:53:34 -0400 (Fri, 30 Sep 2005) | 7 lines
+
+Added SGR to BBCode-like translation table. 
+Coded initial VT100 parsing to TerminalFilter.
+Added Windows key-haling to tclient.rb
+Fixed up EC handling to look back in already processed inputbuffer.
+Made BS, DEL and VT100 DEL all work like EC.
+
+
+------------------------------------------------------------------------
+r74 | jlambert | 2005-09-29 06:52:40 -0400 (Thu, 29 Sep 2005) | 1 line
+
+tagged release 2.5.4
+------------------------------------------------------------------------
+r73 | jlambert | 2005-09-29 06:52:30 -0400 (Thu, 29 Sep 2005) | 1 line
+
+create new packages for 2.5.4
+------------------------------------------------------------------------
+r72 | jlambert | 2005-09-29 06:43:07 -0400 (Thu, 29 Sep 2005) | 3 lines
+
+Updated documentation.
+
+
+------------------------------------------------------------------------
+r71 | jlambert | 2005-09-29 06:35:47 -0400 (Thu, 29 Sep 2005) | 1 line
+
+Added tclient.
+------------------------------------------------------------------------
+r70 | jlambert | 2005-09-29 06:08:24 -0400 (Thu, 29 Sep 2005) | 1 line
+
+Added reconnect logic to handle condition of 2nd Player connection.
+------------------------------------------------------------------------
+r69 | jlambert | 2005-09-27 11:58:24 -0400 (Tue, 27 Sep 2005) | 5 lines
+
+Changed CR handling in TelnetFilter to forgive Diku.
+Fixed bug in LineIO that processed one character beyond EOL.
+
+
+
+------------------------------------------------------------------------
+r68 | jlambert | 2005-09-27 11:54:41 -0400 (Tue, 27 Sep 2005) | 1 line
+
+Made bbcode stripping case insensitive
+------------------------------------------------------------------------
+r67 | jlambert | 2005-09-27 11:53:28 -0400 (Tue, 27 Sep 2005) | 4 lines
+
+Added some queryable session variables to commands and logic to 
+  handle the return messages..
+
+
+------------------------------------------------------------------------
+r66 | jlambert | 2005-09-25 04:08:04 -0400 (Sun, 25 Sep 2005) | 4 lines
+
+Added options passing from Reactor to Sessions to ProtocolStack to Filters.
+Added Connector class and modifications for Reacter to run a client Connection.
+
+
+------------------------------------------------------------------------
+r65 | jlambert | 2005-09-23 02:05:41 -0400 (Fri, 23 Sep 2005) | 1 line
+
+Changed BBCode.strip_bbcode to not be so brain dead in excising data
+------------------------------------------------------------------------
+r64 | jlambert | 2005-09-23 02:03:56 -0400 (Fri, 23 Sep 2005) | 33 lines
+
+Create ProtocolStack class and refactored all filter management 
+  functions from net.rb and Filters to it.  filter_call, filter_set 
+  and filter_query.
+Changed log format.
+Commented out BS processing in TelnetFilter.
+Added requires and includes for ASCIICodes and VT100Codes.
+Gave ProtocolStack it's own log to manage and changed filters to 
+  use it instead of Reactor's log.
+Created or moved state variables of more global interest from the 
+  Filters into ProtocolStack.  They include :color, :echo, :terminal,
+  etc.
+Modified TelnetFilter to only allow 7-bit ascii through it unless
+  BINARY negotiated. 
+ProtocolStack contains the reference for the Connection and Filters
+  are intialized with reference to ProtocolStack now.
+StringScanner#peep changed to StringScanner#unscan - Need to verify
+  correct operation.
+In TelnetFilter after a Telnet negotiation various states are checked
+  and the appropraited attributes in ProtocolFilter are updated.
+Fixed parse_subneg to undouble IAC for any and all subnegotiations 
+  data.
+Fixed zmp.check in zmp_handle to indicate we support zmp. package and
+  all methods.
+Added TerminalFilter class - it's not installed on the stack and is 
+  just a stub.
+Added DebugFilter class which prints everything going in and out to
+  the ProtocolStack log.  This is chatty obviously but is installed
+  first before TelnetFilter.  NOTE: Maybe use ruby DEBUG flag to
+  enable it.
+Updated documentation on Connection#update.
+
+
+
+------------------------------------------------------------------------
+r63 | jlambert | 2005-09-23 00:41:28 -0400 (Fri, 23 Sep 2005) | 4 lines
+
+Changed log format.
+Documented Incoming#update and Player#update better.
+
+
+------------------------------------------------------------------------
+r62 | jlambert | 2005-09-23 00:37:25 -0400 (Fri, 23 Sep 2005) | 4 lines
+
+Added ASCIICodes and VT100Codes modules that define useful constants.
+Moved soem ascii constants from TelnetCodes to ASCIICodes.
+
+
+------------------------------------------------------------------------
+r61 | jlambert | 2005-09-21 06:06:03 -0400 (Wed, 21 Sep 2005) | 1 line
+
+Changed SE to IAC SE in ZMP commands.
+------------------------------------------------------------------------
+r60 | jlambert | 2005-09-21 05:26:12 -0400 (Wed, 21 Sep 2005) | 5 lines
+
+Change Connection#filter_call to scan filters in reverse order for 
+  :filter_out.
+Added ZMP core support.
+
+
+------------------------------------------------------------------------
+r59 | jlambert | 2005-09-21 02:00:48 -0400 (Wed, 21 Sep 2005) | 1 line
+
+tagged release 2.5.3
+------------------------------------------------------------------------
+r58 | jlambert | 2005-09-21 02:00:38 -0400 (Wed, 21 Sep 2005) | 1 line
+
+create new packages for 2.5.3
+------------------------------------------------------------------------
+r57 | jlambert | 2005-09-21 01:58:19 -0400 (Wed, 21 Sep 2005) | 1 line
+
+Commented out filter debugging log messages
+------------------------------------------------------------------------
+r56 | jlambert | 2005-09-21 01:44:22 -0400 (Wed, 21 Sep 2005) | 4 lines
+
+Add CHANGELOG to distribution.
+Updated documentation.
+
+
+------------------------------------------------------------------------
+r55 | jlambert | 2005-09-21 01:33:31 -0400 (Wed, 21 Sep 2005) | 24 lines
+
+Implemented Telnet BINARY option.
+Changed Filter hash into a filter stack, added Connection#filter_call 
+  to manage it, and changed code to use it.
+Added filter_set and filter_query capability to Filters.
+Changed Sync and urgent notification to use filter_set.
+Added buffer flushing capability to SockIO to implement Telnet AO 
+  and IP commands.
+Changed name of observer notifiers to from sendmsg to message to 
+  avoid confusion with differently used Connection#sendmsg.
+Fixed Connection#handle_inputs treatment of single LF to pass it
+  as message.
+Added error detection in all Observable update handlers as well
+  as detection of parameter types from filter set and query changes.
+Added @color and @status commands.
+Created ColorFilter class to parse BBCODE syntax via bbcode.rb module.
+Created vendor directory for non-TeensyMud code.
+Changed all text to use new color markup.
+Added command line trace option.
+Added new state to Incoming to handle new players manually instead
+  of automatically assuming creation.
+
+
+
+
+------------------------------------------------------------------------
+r54 | jlambert | 2005-09-20 05:55:30 -0400 (Tue, 20 Sep 2005) | 1 line
+
+Improved TTYPE handling to cycle through and pick preferred ones
+------------------------------------------------------------------------
+r53 | jlambert | 2005-09-19 23:57:09 -0400 (Mon, 19 Sep 2005) | 1 line
+
+tagged release 2.5.2
+------------------------------------------------------------------------
+r52 | jlambert | 2005-09-19 23:56:50 -0400 (Mon, 19 Sep 2005) | 1 line
+
+create new packages for 2.5.2
+------------------------------------------------------------------------
+r51 | jlambert | 2005-09-19 21:25:55 -0400 (Mon, 19 Sep 2005) | 1 line
+
+tagged release 2.5.1
+------------------------------------------------------------------------
+r50 | jlambert | 2005-09-19 21:25:46 -0400 (Mon, 19 Sep 2005) | 1 line
+
+create new packages for 2.5.1
+------------------------------------------------------------------------
+r49 | jlambert | 2005-09-19 16:09:23 -0400 (Mon, 19 Sep 2005) | 1 line
+
+tagged release 2.5.1
+------------------------------------------------------------------------
+r48 | jlambert | 2005-09-19 16:09:12 -0400 (Mon, 19 Sep 2005) | 1 line
+
+create new packages for 2.5.1
+------------------------------------------------------------------------
+r47 | jlambert | 2005-09-19 16:03:10 -0400 (Mon, 19 Sep 2005) | 5 lines
+
+Added oob handling routines to SockIO,
+Added handling for Synch/Datamark.
+Updated documentation.
+
+
+------------------------------------------------------------------------
+r46 | jlambert | 2005-09-19 11:36:10 -0400 (Mon, 19 Sep 2005) | 11 lines
+
+Completed ECHO option by actually doing the echoing.
+Changed :hide to echo asterixes.
+Moved BANNER display into Incoming.
+Added :initdone event to indicate suboption negotiation completion.
+Reactor makes a call Connection's TelnetFilter#init_subneg for each 
+  Connection not yet in initdone state.  init_subneg gives up after
+  15 calls.
+
+
+
+
+------------------------------------------------------------------------
+r45 | jlambert | 2005-09-18 21:15:10 -0400 (Sun, 18 Sep 2005) | 1 line
+
+tagged release 2.5.0
+------------------------------------------------------------------------
+r44 | jlambert | 2005-09-18 21:15:01 -0400 (Sun, 18 Sep 2005) | 1 line
+
+create new packages for 2.5.0
+------------------------------------------------------------------------
+r43 | jlambert | 2005-09-18 21:10:19 -0400 (Sun, 18 Sep 2005) | 1 line
+
+Updated docuementation
+------------------------------------------------------------------------
+r42 | jlambert | 2005-09-18 20:53:22 -0400 (Sun, 18 Sep 2005) | 4 lines
+
+Fix early references to $engine bug by setting it in initialize.
+Fixed bug in wrongly defining multiple accessors with attr.
+
+
+------------------------------------------------------------------------
+r41 | jlambert | 2005-09-18 20:42:18 -0400 (Sun, 18 Sep 2005) | 25 lines
+
+Add logs directory and README to distfiles.
+Added NOSY logger support to Reactor and Engine.  All cooperating classes
+  will use the appropriate log.
+Moved $world to be instance variable of $engine.
+Changed all references to $world to $engine.world.
+Added TelnetCodes module which contains constants usefule for Telnet.
+Added Filter and TelnetFilter classes to pre-process input and post-process
+  output.
+Altered net.rb to use setup and use filters.  
+Connection uses SockIO instead of LineIO.
+New events :hide and :unhide to turn on and off server side ECHO from 
+  Engine.
+Added Error:ECONNABORTED to rescue clause in Connecion input/output handlers.
+Prettied up all logging in net.rb
+Changed all farts stuff to use engine log.
+Removed use of EOL code in communications in tmud.rb.  Will use LF as EOL 
+  and lef Telnet filter do it's magic.
+Added digits to regexp matching for cmd in Obj/Player#parse methods. Also
+  escaped ? and # in cmd to fix bug in exit matching.
+Fixed up linefeed usage in login processing.
+Moved World initialization to Engine initialization.
+
+
+
+
+------------------------------------------------------------------------
+r40 | jlambert | 2005-09-18 20:17:00 -0400 (Sun, 18 Sep 2005) | 1 line
+
+Fixed TernaryTrie to return emtpy array on bad par argsnil
+------------------------------------------------------------------------
+r39 | jlambert | 2005-09-18 20:14:14 -0400 (Sun, 18 Sep 2005) | 1 line
+
+Changed all references to  to .world in cmds.
+------------------------------------------------------------------------
+r38 | jlambert | 2005-09-17 03:37:08 -0400 (Sat, 17 Sep 2005) | 4 lines
+
+Created logs directory and README stub.
+Modified net.rb to use logger.
+
+
+------------------------------------------------------------------------
+r37 | jlambert | 2005-09-13 13:37:40 -0400 (Tue, 13 Sep 2005) | 1 line
+
+tagged release 2.4.0
+------------------------------------------------------------------------
+r36 | jlambert | 2005-09-13 13:37:34 -0400 (Tue, 13 Sep 2005) | 1 line
+
+create new packages for 2.4.0
+------------------------------------------------------------------------
+r35 | jlambert | 2005-09-13 13:33:52 -0400 (Tue, 13 Sep 2005) | 1 line
+
+package fixes
+------------------------------------------------------------------------
+r34 | jlambert | 2005-09-13 12:14:54 -0400 (Tue, 13 Sep 2005) | 1 line
+
+Missed packaging ticktock.fart
+------------------------------------------------------------------------
+r33 | jlambert | 2005-09-13 12:12:18 -0400 (Tue, 13 Sep 2005) | 7 lines
+
+Created Hamster class for issuing timer events.
+Modified @set command to allow registering objects with Hamster.
+Players are automatically registered.
+Added ticktick program to illustrate hamster in action.
+Updated documentation.
+
+
+------------------------------------------------------------------------
+r32 | jlambert | 2005-09-13 09:39:42 -0400 (Tue, 13 Sep 2005) | 5 lines
+
+Created a testworld.yaml database to illustrate triggers.
+Added arrival trigger.
+Updated all events to call triggers and documentation.
+ 
+
+------------------------------------------------------------------------
+r31 | jlambert | 2005-09-13 08:13:23 -0400 (Tue, 13 Sep 2005) | 4 lines
+
+Functional Automated Response Triggers System modules added and hooked up.
+Added @fart command, grammar description and updated documentation.
+ 
+
+------------------------------------------------------------------------
+r30 | jlambert | 2005-09-13 04:56:56 -0400 (Tue, 13 Sep 2005) | 3 lines
+
+New directory for farts programs.
+
+
+------------------------------------------------------------------------
+r29 | jlambert | 2005-09-13 03:59:44 -0400 (Tue, 13 Sep 2005) | 4 lines
+
+Added parse routine to Obj, new commands table for Objs, and logic to manage it.
+Added echoat command.
+
+
+------------------------------------------------------------------------
+r28 | jlambert | 2005-09-13 02:43:49 -0400 (Tue, 13 Sep 2005) | 1 line
+
+Changed parameter to all commands to expect a single parameter.
+------------------------------------------------------------------------
+r27 | jlambert | 2005-09-12 09:09:10 -0400 (Mon, 12 Sep 2005) | 5 lines
+
+Added stats report to Database for @stats command.
+TernaryTrie#find now returns empty array instead of nil for not found conditions.
+Made Command#initialize to allow creating commands on the fly.
+
+
+------------------------------------------------------------------------
+r26 | jlambert | 2005-09-12 09:05:40 -0400 (Mon, 12 Sep 2005) | 5 lines
+
+Added emote and stats commands.
+Made help display show regular columns.
+Added shorcuts ! and " for emote and say respectively.
+
+
+------------------------------------------------------------------------
+r25 | jlambert | 2005-09-12 09:03:09 -0400 (Mon, 12 Sep 2005) | 6 lines
+
+Fancier formatting for exits.
+Added go cmd and changed Player#parse to use it when just typing the exit name.
+Player#parse now uses grep to search for exits and concats to list of commands.
+Protected startup code in tmud.rb so we can require the file elsewhere.
+
+
+------------------------------------------------------------------------
+r24 | jlambert | 2005-09-07 11:22:02 -0400 (Wed, 07 Sep 2005) | 5 lines
+
+Factored out database routines into their own class.
+Added contents attribute to objects and logic to maintain it.
+Changed database queries to use contents.
+
+
+------------------------------------------------------------------------
+r23 | jlambert | 2005-08-31 12:55:46 -0400 (Wed, 31 Aug 2005) | 1 line
+
+tagged release 2.3.0
+------------------------------------------------------------------------
+r22 | jlambert | 2005-08-31 12:55:40 -0400 (Wed, 31 Aug 2005) | 1 line
+
+create new packages for 2.3.0
+------------------------------------------------------------------------
+r21 | jlambert | 2005-08-31 12:44:21 -0400 (Wed, 31 Aug 2005) | 10 lines
+
+Changed database to be hash table instead of array.  YAML still loads
+ and dumps database as an array though.
+Added TITS event system and updated commands to use it.
+Added command line parsing, can specify port on command line now.
+Added who and examine commands.
+New connected_players routine along with TITS replaces global_message 
+ and global_message_others routines. 
+Added ass methods to Room, Player and Obj to respond to events.
+
+
+------------------------------------------------------------------------
+r20 | jlambert | 2005-08-30 02:06:29 -0400 (Tue, 30 Aug 2005) | 1 line
+
+tagged release 2.2.0
+------------------------------------------------------------------------
+r19 | jlambert | 2005-08-30 02:06:26 -0400 (Tue, 30 Aug 2005) | 1 line
+
+create new packages for 2.2.0
+------------------------------------------------------------------------
+r18 | jlambert | 2005-08-30 01:53:15 -0400 (Tue, 30 Aug 2005) | 1 line
+
+Fixed chat command and added missing doc files
+------------------------------------------------------------------------
+r17 | jlambert | 2005-08-30 01:41:27 -0400 (Tue, 30 Aug 2005) | 6 lines
+
+Added dynamic command loading and new parsing table.
+New commands hello and @reload.
+Changed O R S commands to @object @room and @set.
+Changed help to get it from the Commands definitions.
+
+
+------------------------------------------------------------------------
+r16 | jlambert | 2005-08-29 19:27:51 -0400 (Mon, 29 Aug 2005) | 1 line
+
+created cmd and lib directories for supporting code
+------------------------------------------------------------------------
+r15 | jlambert | 2005-08-28 22:26:50 -0400 (Sun, 28 Aug 2005) | 1 line
+
+tagged release 2.1.0
+------------------------------------------------------------------------
+r14 | jlambert | 2005-08-28 22:26:44 -0400 (Sun, 28 Aug 2005) | 1 line
+
+create new packages for 2.1.0
+------------------------------------------------------------------------
+r13 | jlambert | 2005-08-28 22:23:19 -0400 (Sun, 28 Aug 2005) | 6 lines
+
+Modified teensymud to use a ruby version of the Mesh multiplexer 
+single select server network code.  This uses the Observer pattern
+to interface the game engine to the network code  rather than 
+message queues.  We should be careful to preserve strict separation.
+
+
+------------------------------------------------------------------------
+r12 | jlambert | 2005-08-25 11:29:07 -0400 (Thu, 25 Aug 2005) | 1 line
+
+tagged release 2.0.2
+------------------------------------------------------------------------
+r11 | jlambert | 2005-08-25 11:29:04 -0400 (Thu, 25 Aug 2005) | 1 line
+
+create new packages for 2.0.2
+------------------------------------------------------------------------
+r10 | jlambert | 2005-08-25 11:28:34 -0400 (Thu, 25 Aug 2005) | 1 line
+
+Some minor additions and formatting fixes in docs.
+------------------------------------------------------------------------
+r9 | jlambert | 2005-08-25 11:22:46 -0400 (Thu, 25 Aug 2005) | 5 lines
+
+Added long descriptions and a new command to set them.
+Only room descriptions are visible currently.
+Added color.
+
+
+------------------------------------------------------------------------
+r8 | jlambert | 2005-08-24 08:13:54 -0400 (Wed, 24 Aug 2005) | 6 lines
+
+Added password to Player, Player#encrypt and Player#check_passwd to manage it.
+Added stateful login code in network routine. 
+Fixed dbtop calculation.  Should be highest oid not db#size.
+Moved socket cleanup to Player#disconnect.
+
+
+------------------------------------------------------------------------
+r7 | jlambert | 2005-08-17 00:08:42 -0400 (Wed, 17 Aug 2005) | 1 line
+
+tagged release 2.0.0
+------------------------------------------------------------------------
+r6 | jlambert | 2005-08-17 00:08:40 -0400 (Wed, 17 Aug 2005) | 1 line
+
+create new packages for 2.0.0
+------------------------------------------------------------------------
+r5 | jlambert | 2005-08-17 00:07:00 -0400 (Wed, 17 Aug 2005) | 1 line
+
+tagged release 2.0.0
+------------------------------------------------------------------------
+r4 | jlambert | 2005-08-17 00:06:58 -0400 (Wed, 17 Aug 2005) | 1 line
+
+create new packages for 2.0.0
+------------------------------------------------------------------------
+r3 | jlambert | 2005-08-17 00:03:19 -0400 (Wed, 17 Aug 2005) | 1 line
+
+fixed rdoc problems with removing subversion info by generating docs to tmp directory first and then copying
+------------------------------------------------------------------------
+r2 | jlambert | 2005-08-16 23:55:08 -0400 (Tue, 16 Aug 2005) | 1 line
+
+initial checkin
+------------------------------------------------------------------------
+r1 | jlambert | 2005-08-16 22:35:37 -0400 (Tue, 16 Aug 2005) | 1 line
+
+Setup directory tree
+------------------------------------------------------------------------

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>makenoswap (CacheManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/cache.rb, line 319</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">makenoswap</span>(<span class="ruby-identifier">oid</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:cache_noswap</span>)
+    <span class="ruby-identifier">hv</span> = <span class="ruby-identifier">hash</span>(<span class="ruby-identifier">oid</span>)
+
+    <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">hv</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ce</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">oid</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">oid</span>
+      <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">noswap!</span>
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># This would indicate we've tried marking it noswap before we did a put.</span>
+    <span class="ruby-comment cmt"># A logic error</span>
+    <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:cache_noswap_misses</span>)
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Marking object nonswappable before put - #{oid}&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

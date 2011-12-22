@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cmd_trigger (Cmd)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File cmd/teensy/cmd_trigger.rb, line 21</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cmd_trigger</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">args</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;What??&quot;</span>)
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/del\s+#(\d+)\s+(\w+)/</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">GameObject</span>, <span class="ruby-constant">Room</span>, <span class="ruby-constant">Character</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">get_trigger</span>(<span class="ruby-identifier">$2</span>)
+          <span class="ruby-identifier">o</span>.<span class="ruby-identifier">delete_trigger</span>(<span class="ruby-identifier">$2</span>)
+          <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Object ##$1 trigger deleted.&quot;</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Trigger ##$2 not found on object.&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No object.&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/add\s+#(\d+)\s+#(\d+)\s+(\w+)/i</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">GameObject</span>, <span class="ruby-constant">Room</span>, <span class="ruby-constant">Character</span>
+        <span class="ruby-identifier">s</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>)
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">s</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Script</span>
+          <span class="ruby-identifier">o</span>.<span class="ruby-identifier">add_trigger</span>(<span class="ruby-identifier">$3</span>, <span class="ruby-identifier">s</span>.<span class="ruby-identifier">id</span>)
+          <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;Object ##$1 trigger added.&quot;</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No script.&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No object.&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/show\s+#(\d+)/</span>
+      <span class="ruby-identifier">o</span> = <span class="ruby-identifier">get_object</span>(<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">GameObject</span>, <span class="ruby-constant">Room</span>, <span class="ruby-constant">Character</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;===========TRIGGERS============&quot;</span>)
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%-15s %-15s&quot;</span>, <span class="ruby-value str">&quot;Event&quot;</span>, <span class="ruby-value str">&quot;Program&quot;</span>))
+        <span class="ruby-identifier">o</span>.<span class="ruby-identifier">triggers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span>, <span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%-15s #%d&quot;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">id2name</span>, <span class="ruby-identifier">t</span>))
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;No object.&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">sendto</span>(<span class="ruby-value str">&quot;What??&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

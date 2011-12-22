@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Filter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Filter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/network/protocol/filter_rb.html">
+                lib/network/protocol/filter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="45,17,117,65"      href="Filter.html" alt="Filter">
+</map>
+<img src="../dot/f_36.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <p>
+The <a href="Filter.html">Filter</a> class is an abstract class defining
+the minimal methods needed to filter data.
+</p>
+<p>
+A <a href="Filter.html">Filter</a> can keep state and partial data
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000164">filter_in</a>&nbsp;&nbsp;
+      <a href="#M000165">filter_out</a>&nbsp;&nbsp;
+      <a href="#M000163">init</a>&nbsp;&nbsp;
+      <a href="#M000162">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000162" class="method-detail">
+        <a name="M000162"></a>
+
+        <div class="method-heading">
+          <a href="Filter.src/M000162.html" target="Code" class="method-signature"
+            onclick="popupCode('Filter.src/M000162.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(pstack)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Construct filter
+</p>
+<dl>
+<dt><tt>pstack</tt></dt><dd>The <a href="ProtocolStack.html">ProtocolStack</a> associated with this
+filter
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000164" class="method-detail">
+        <a name="M000164"></a>
+
+        <div class="method-heading">
+          <a href="Filter.src/M000164.html" target="Code" class="method-signature"
+            onclick="popupCode('Filter.src/M000164.html');return false;">
+          <span class="method-name">filter_in</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="Filter.html#M000164">filter_in</a> method filters input data
+</p>
+<dl>
+<dt><tt>str</tt></dt><dd>The string to be processed
+
+</dd>
+<dt><tt>return</tt></dt><dd>The filtered data
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000165" class="method-detail">
+        <a name="M000165"></a>
+
+        <div class="method-heading">
+          <a href="Filter.src/M000165.html" target="Code" class="method-signature"
+            onclick="popupCode('Filter.src/M000165.html');return false;">
+          <span class="method-name">filter_out</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="Filter.html#M000165">filter_out</a> method filters output data
+</p>
+<dl>
+<dt><tt>str</tt></dt><dd>The string to be processed
+
+</dd>
+<dt><tt>return</tt></dt><dd>The filtered data
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <div id="method-M000163" class="method-detail">
+        <a name="M000163"></a>
+
+        <div class="method-heading">
+          <a href="Filter.src/M000163.html" target="Code" class="method-signature"
+            onclick="popupCode('Filter.src/M000163.html');return false;">
+          <span class="method-name">init</span><span class="method-args">(args=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run any post-contruction initialization
+</p>
+<dl>
+<dt><tt>args</tt></dt><dd>Optional initial options
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

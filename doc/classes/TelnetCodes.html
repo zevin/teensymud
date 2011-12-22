@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: TelnetCodes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">TelnetCodes</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/network/protocol/telnetcodes_rb.html">
+                lib/network/protocol/telnetcodes.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="RECT" coords="17,17,111,61"      href="TelnetCodes.html" alt="TelnetCodes">
+</map>
+<img src="../dot/m_38_0.png" usemap="#map" border=0 alt="Module: TelnetCodes">
+    </div>
+
+    <div id="description">
+      <p>
+This module contains the contants used for Telnet
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IAC</td>
+          <td>=</td>
+          <td class="context-item-value">255</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WILL</td>
+          <td>=</td>
+          <td class="context-item-value">251</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+2 byte commands
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WONT</td>
+          <td>=</td>
+          <td class="context-item-value">252</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DO</td>
+          <td>=</td>
+          <td class="context-item-value">253</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DONT</td>
+          <td>=</td>
+          <td class="context-item-value">254</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SB</td>
+          <td>=</td>
+          <td class="context-item-value">250</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SE</td>
+          <td>=</td>
+          <td class="context-item-value">240</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GA</td>
+          <td>=</td>
+          <td class="context-item-value">249</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+1 byte commands
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOP</td>
+          <td>=</td>
+          <td class="context-item-value">241</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BRK</td>
+          <td>=</td>
+          <td class="context-item-value">243</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AYT</td>
+          <td>=</td>
+          <td class="context-item-value">246</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+In RFC 854
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AO</td>
+          <td>=</td>
+          <td class="context-item-value">245</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IP</td>
+          <td>=</td>
+          <td class="context-item-value">244</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EL</td>
+          <td>=</td>
+          <td class="context-item-value">248</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EC</td>
+          <td>=</td>
+          <td class="context-item-value">247</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DM</td>
+          <td>=</td>
+          <td class="context-item-value">242</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EOR</td>
+          <td>=</td>
+          <td class="context-item-value">239</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ABORT</td>
+          <td>=</td>
+          <td class="context-item-value">238</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUSP</td>
+          <td>=</td>
+          <td class="context-item-value">237</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EOF</td>
+          <td>=</td>
+          <td class="context-item-value">236</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BINARY</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Options
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ECHO</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RCP</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SGA</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAMS</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STATUS</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TM</td>
+          <td>=</td>
+          <td class="context-item-value">6</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RCTE</td>
+          <td>=</td>
+          <td class="context-item-value">7</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOL</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOP</td>
+          <td>=</td>
+          <td class="context-item-value">9</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOCRD</td>
+          <td>=</td>
+          <td class="context-item-value">10</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOHTS</td>
+          <td>=</td>
+          <td class="context-item-value">11</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOHTD</td>
+          <td>=</td>
+          <td class="context-item-value">12</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOFFD</td>
+          <td>=</td>
+          <td class="context-item-value">13</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOVTS</td>
+          <td>=</td>
+          <td class="context-item-value">14</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOVTD</td>
+          <td>=</td>
+          <td class="context-item-value">15</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAOLFD</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">XASCII</td>
+          <td>=</td>
+          <td class="context-item-value">17</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOGOUT</td>
+          <td>=</td>
+          <td class="context-item-value">18</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BM</td>
+          <td>=</td>
+          <td class="context-item-value">19</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DET</td>
+          <td>=</td>
+          <td class="context-item-value">20</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUPDUP</td>
+          <td>=</td>
+          <td class="context-item-value">21</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUPDUPOUTPUT</td>
+          <td>=</td>
+          <td class="context-item-value">22</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SNDLOC</td>
+          <td>=</td>
+          <td class="context-item-value">23</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TTYPE</td>
+          <td>=</td>
+          <td class="context-item-value">24</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EOREC</td>
+          <td>=</td>
+          <td class="context-item-value">25</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TUID</td>
+          <td>=</td>
+          <td class="context-item-value">26</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OUTMRK</td>
+          <td>=</td>
+          <td class="context-item-value">27</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TTYLOC</td>
+          <td>=</td>
+          <td class="context-item-value">28</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REGIME3270</td>
+          <td>=</td>
+          <td class="context-item-value">29</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">X3PAD</td>
+          <td>=</td>
+          <td class="context-item-value">30</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAWS</td>
+          <td>=</td>
+          <td class="context-item-value">31</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TSPEED</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LFLOW</td>
+          <td>=</td>
+          <td class="context-item-value">33</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LINEMODE</td>
+          <td>=</td>
+          <td class="context-item-value">34</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">XDISPLOC</td>
+          <td>=</td>
+          <td class="context-item-value">35</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ENVIRON</td>
+          <td>=</td>
+          <td class="context-item-value">36</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AUTHENTICATION</td>
+          <td>=</td>
+          <td class="context-item-value">37</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ENCRYPT</td>
+          <td>=</td>
+          <td class="context-item-value">38</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NEW_ENVIRON</td>
+          <td>=</td>
+          <td class="context-item-value">39</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TN3270</td>
+          <td>=</td>
+          <td class="context-item-value">40</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">XAUTH</td>
+          <td>=</td>
+          <td class="context-item-value">41</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">42</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RSP</td>
+          <td>=</td>
+          <td class="context-item-value">43</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CPCO</td>
+          <td>=</td>
+          <td class="context-item-value">44</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUPLECHO</td>
+          <td>=</td>
+          <td class="context-item-value">45</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TLS</td>
+          <td>=</td>
+          <td class="context-item-value">46</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KERMIT</td>
+          <td>=</td>
+          <td class="context-item-value">47</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SENDURL</td>
+          <td>=</td>
+          <td class="context-item-value">48</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORWARDX</td>
+          <td>=</td>
+          <td class="context-item-value">49</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PLOGON</td>
+          <td>=</td>
+          <td class="context-item-value">138</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SSPI</td>
+          <td>=</td>
+          <td class="context-item-value">139</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PHEARTBEAT</td>
+          <td>=</td>
+          <td class="context-item-value">140</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EXOPL</td>
+          <td>=</td>
+          <td class="context-item-value">255</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESS</td>
+          <td>=</td>
+          <td class="context-item-value">85</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESS2</td>
+          <td>=</td>
+          <td class="context-item-value">86</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MSP</td>
+          <td>=</td>
+          <td class="context-item-value">90</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MSP2</td>
+          <td>=</td>
+          <td class="context-item-value">92</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MUSIC</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SOUND</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ZMP</td>
+          <td>=</td>
+          <td class="context-item-value">93</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

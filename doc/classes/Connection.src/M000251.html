@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>handle_oob (Connection)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/connection.rb, line 146</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">handle_oob</span>
+    <span class="ruby-identifier">buf</span> = <span class="ruby-ivar">@sockio</span>.<span class="ruby-identifier">read_urgent</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;(#{self.object_id}) Connection urgent data received - '#{buf[0]}'&quot;</span>
+    <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">set</span>(<span class="ruby-identifier">:urgent</span>, <span class="ruby-keyword kw">true</span>)
+    <span class="ruby-identifier">buf</span> = <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">filter_call</span>(<span class="ruby-identifier">:filter_in</span>,<span class="ruby-identifier">buf</span>)
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;(#{self.object_id}) Connection#handle_oob&quot;</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">$!</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

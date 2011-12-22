@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sync_chain (CacheManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/storage/cache.rb, line 305</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sync_chain</span>(<span class="ruby-identifier">i</span>)
+    <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:chain_syncs</span>)
+    <span class="ruby-ivar">@cache</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ce</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">dirty?</span>
+        <span class="ruby-ivar">@db</span>[<span class="ruby-identifier">ce</span>.<span class="ruby-identifier">oid</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-constant">Utility</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">ce</span>.<span class="ruby-identifier">obj</span>)
+        <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">inc</span>(<span class="ruby-identifier">:database_writes</span>)
+        <span class="ruby-identifier">ce</span>.<span class="ruby-identifier">clean!</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

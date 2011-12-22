@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>filter_in (TelnetFilter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/network/protocol/telnetfilter.rb, line 84</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filter_in</span>(<span class="ruby-identifier">str</span>)
+<span class="ruby-comment cmt">#    init_subneg</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">buf</span> = <span class="ruby-value str">&quot;&quot;</span>
+
+    <span class="ruby-ivar">@sc</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">str</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@sc</span> = <span class="ruby-constant">StringScanner</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">str</span>)
+    <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">b</span> = <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">get_byte</span>
+
+      <span class="ruby-comment cmt"># OOB sync data</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">urgent_on</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">DM</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) Sync mode on&quot;</span>)
+        <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">urgent_on</span> = <span class="ruby-keyword kw">false</span>
+        <span class="ruby-ivar">@synch</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mode?</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:normal</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">CR</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:cr</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">binary_on</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">LF</span>  <span class="ruby-comment cmt"># LF or LF/CR may be issued by broken mud servers and clients</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:lf</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">binary_on</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">LF</span>.<span class="ruby-identifier">chr</span>
+          <span class="ruby-identifier">echo</span>(<span class="ruby-constant">CR</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">LF</span>.<span class="ruby-identifier">chr</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">IAC</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:cmd</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">NUL</span>  <span class="ruby-comment cmt"># ignore NULs in stream when in normal mode</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">binary_on</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">b</span>
+            <span class="ruby-identifier">echo</span>(<span class="ruby-identifier">b</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) unexpected NUL found in stream&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">BS</span>, <span class="ruby-constant">DEL</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-comment cmt"># Leaves BS, DEL in input stream for higher filter to deal with.</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">b</span>
+          <span class="ruby-identifier">echo</span>(<span class="ruby-constant">BS</span>.<span class="ruby-identifier">chr</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-comment cmt">### NOTE - we will allow 8-bit NVT against RFC 1123 recommendation &quot;should not&quot;</span>
+          <span class="ruby-comment cmt">###</span>
+          <span class="ruby-comment cmt"># Only let 7-bit values through in normal mode</span>
+          <span class="ruby-comment cmt">#if (b[0] &amp; 0x80 == 0) &amp;&amp; !@pstack.binary_on</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">b</span>
+            <span class="ruby-identifier">echo</span>(<span class="ruby-identifier">b</span>)
+          <span class="ruby-comment cmt">#else</span>
+          <span class="ruby-comment cmt">#  log.debug(&quot;(#{@pstack.conn.object_id}) unexpected 8-bit byte found in stream '#{b[0]}'&quot;)</span>
+          <span class="ruby-comment cmt">#end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:cr</span>
+        <span class="ruby-comment cmt"># handle CRLF and CRNUL by insertion of LF into buffer</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">LF</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">LF</span>.<span class="ruby-identifier">chr</span>
+          <span class="ruby-identifier">echo</span>(<span class="ruby-constant">CR</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">LF</span>.<span class="ruby-identifier">chr</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">NUL</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">service_type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:client</span>  <span class="ruby-comment cmt"># Don't xlate CRNUL when client</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">CR</span>.<span class="ruby-identifier">chr</span>
+            <span class="ruby-identifier">echo</span>(<span class="ruby-constant">CR</span>.<span class="ruby-identifier">chr</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">LF</span>.<span class="ruby-identifier">chr</span>
+            <span class="ruby-identifier">echo</span>(<span class="ruby-constant">CR</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">LF</span>.<span class="ruby-identifier">chr</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># eat lone CR</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">b</span>
+          <span class="ruby-identifier">echo</span>(<span class="ruby-identifier">b</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:lf</span>
+        <span class="ruby-comment cmt"># liberally handle LF, LFCR for clients that aren't telnet correct</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">CR</span> <span class="ruby-comment cmt"># Handle LFCR by swallowing CR</span>
+        <span class="ruby-keyword kw">else</span>  <span class="ruby-comment cmt"># Handle other stuff that follows - single LF</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">b</span>
+          <span class="ruby-identifier">echo</span>(<span class="ruby-identifier">b</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:cmd</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">IAC</span>
+          <span class="ruby-comment cmt"># IAC escapes IAC</span>
+          <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">IAC</span>.<span class="ruby-identifier">chr</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">AYT</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) AYT sent - Msg returned&quot;</span>)
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sock</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value str">&quot;TeensyMUD is here.\n&quot;</span>,<span class="ruby-value">0</span>)
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">AO</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) AO sent - Synch returned&quot;</span>)
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sockio</span>.<span class="ruby-identifier">write_flush</span>
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sock</span>.<span class="ruby-identifier">send</span>(<span class="ruby-constant">IAC</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-constant">DM</span>.<span class="ruby-identifier">chr</span>, <span class="ruby-value">0</span>)
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sockio</span>.<span class="ruby-identifier">write_urgent</span>(<span class="ruby-constant">DM</span>.<span class="ruby-identifier">chr</span>)
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">IP</span>
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sockio</span>.<span class="ruby-identifier">read_flush</span>
+          <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">sockio</span>.<span class="ruby-identifier">write_flush</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) IP sent&quot;</span>)
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">GA</span>, <span class="ruby-constant">NOP</span>, <span class="ruby-constant">BRK</span>  <span class="ruby-comment cmt"># not implemented or ignored</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) GA, NOP or BRK sent&quot;</span>)
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">DM</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) Synch mode off&quot;</span>)
+          <span class="ruby-ivar">@synch</span> = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">EC</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) EC sent&quot;</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">-1</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">inbuffer</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+            <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">inbuffer</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">-1</span>)
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">EL</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@synch</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) EL sent&quot;</span>)
+          <span class="ruby-identifier">p</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">rindex</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">p</span>
+            <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-identifier">p</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">buf</span> = <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">p</span> = <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">inbuffer</span>.<span class="ruby-identifier">rindex</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">p</span>
+              <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">conn</span>.<span class="ruby-identifier">inbuffer</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-identifier">p</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">DO</span>, <span class="ruby-constant">DONT</span>, <span class="ruby-constant">WILL</span>, <span class="ruby-constant">WONT</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">eos?</span>
+            <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">unscan</span>
+            <span class="ruby-keyword kw">break</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">opt</span> = <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">get_byte</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">WILL</span>
+            <span class="ruby-identifier">replies_him</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-value">0</span>],<span class="ruby-keyword kw">true</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">WONT</span>
+            <span class="ruby-identifier">replies_him</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-value">0</span>],<span class="ruby-keyword kw">false</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">DO</span>
+            <span class="ruby-identifier">requests_us</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-value">0</span>],<span class="ruby-keyword kw">true</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">DONT</span>
+            <span class="ruby-identifier">requests_us</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-value">0</span>],<span class="ruby-keyword kw">false</span>)
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-comment cmt"># Update interesting things in ProtocolStack after negotiation</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ECHO</span>
+            <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">echo_on</span> = <span class="ruby-identifier">enabled?</span>(<span class="ruby-constant">ECHO</span>, <span class="ruby-identifier">:us</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">BINARY</span>
+            <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">binary_on</span> = <span class="ruby-identifier">enabled?</span>(<span class="ruby-constant">BINARY</span>, <span class="ruby-identifier">:us</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ZMP</span>
+            <span class="ruby-ivar">@pstack</span>.<span class="ruby-identifier">zmp_on</span> = <span class="ruby-identifier">enabled?</span>(<span class="ruby-constant">ZMP</span>, <span class="ruby-identifier">:us</span>)
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SB</span>
+          <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">unscan</span>
+          <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">check_until</span>(<span class="ruby-node">/#{IAC.chr}#{SE.chr}/</span>).<span class="ruby-identifier">nil?</span>
+          <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">get_byte</span>
+          <span class="ruby-identifier">opt</span> = <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">get_byte</span>
+          <span class="ruby-identifier">data</span> = <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">scan_until</span>(<span class="ruby-node">/#{IAC.chr}#{SE.chr}/</span>).<span class="ruby-identifier">chop</span>.<span class="ruby-identifier">chop</span>
+          <span class="ruby-identifier">parse_subneg</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-value">0</span>],<span class="ruby-identifier">data</span>)
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;(#{@pstack.conn.object_id}) Unknown Telnet command - #{b[0]}&quot;</span>)
+          <span class="ruby-identifier">set_mode</span>(<span class="ruby-identifier">:normal</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>  <span class="ruby-comment cmt"># while b</span>
+
+    <span class="ruby-ivar">@sc</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@sc</span>.<span class="ruby-identifier">eos?</span>
+    <span class="ruby-identifier">buf</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

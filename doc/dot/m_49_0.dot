@@ -1,0 +1,39 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    subgraph cluster_SQLite {
+        fillcolor = palegreen1
+        URL = "classes/SQLite.html"
+        fontname = Arial
+        color = blue
+        label = "SQLite"
+        style = filled
+        SQLite [
+            shape = plaintext,
+            height = 0.01,
+            width = 0.01,
+            label = ""
+        ]
+
+        SQLite__Database [
+            fontcolor = black,
+            URL = "classes/SQLite/Database.html",
+            shape = ellipse,
+            color = palegoldenrod,
+            style = filled,
+            label = "Database"
+        ]
+
+    }
+
+}
+

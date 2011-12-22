@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process_events (EventManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/engine/eventmanager.rb, line 52</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process_events</span>
+    <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">e</span> = <span class="ruby-identifier">get_event</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-comment cmt"># pre triggers</span>
+        <span class="ruby-identifier">obj</span> = <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">to</span>)
+        <span class="ruby-identifier">obj2</span> = <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">from</span>)
+        <span class="ruby-identifier">sid</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">get_trigger</span>(<span class="ruby-value str">&quot;pre_&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">kind</span>.<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sid</span>
+          <span class="ruby-identifier">script</span> = <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">sid</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">script</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">script</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-identifier">e</span>)
+              <span class="ruby-comment cmt"># success</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Character</span>
+                <span class="ruby-identifier">s</span>,<span class="ruby-identifier">o</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">msgsucc</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;|&quot;</span>)
+                <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">s</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">o</span>.<span class="ruby-identifier">empty?</span>
+                  <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">characters</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">add_event</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{obj2.name} #{o}&quot;</span>)
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-comment cmt"># failure</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Character</span>
+                <span class="ruby-identifier">s</span>,<span class="ruby-identifier">o</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">msgfail</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;|&quot;</span>)
+                <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">s</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">o</span>.<span class="ruby-identifier">empty?</span>
+                  <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">characters</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">add_event</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{obj2.name} #{o}&quot;</span>)
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">next</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Script not found: #{sid} for Event: #{e}&quot;</span>
+            <span class="ruby-comment cmt"># We fail the action slently</span>
+            <span class="ruby-keyword kw">next</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># action receiver</span>
+        <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">kind</span>,<span class="ruby-identifier">e</span>)
+
+        <span class="ruby-comment cmt"># post triggers</span>
+        <span class="ruby-identifier">sid</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">get_trigger</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">kind</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sid</span>
+          <span class="ruby-identifier">script</span> = <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">sid</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">script</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">script</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-identifier">e</span>)
+              <span class="ruby-comment cmt"># success</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Character</span>
+                <span class="ruby-identifier">s</span>,<span class="ruby-identifier">o</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">msgsucc</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;|&quot;</span>)
+                <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">s</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">o</span>.<span class="ruby-identifier">empty?</span>
+                  <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">characters</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">add_event</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{obj2.name} #{o}&quot;</span>)
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-comment cmt"># failure</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Character</span>
+                <span class="ruby-identifier">s</span>,<span class="ruby-identifier">o</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">msgfail</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;|&quot;</span>)
+                <span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">sendto</span>(<span class="ruby-identifier">s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">s</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">o</span>.<span class="ruby-identifier">empty?</span>
+                  <span class="ruby-constant">Engine</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">characters</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">add_event</span>(<span class="ruby-identifier">obj2</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">:show</span>,<span class="ruby-node">&quot;#{obj2.name} #{o}&quot;</span>)
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Script not found: #{sid} for Event: #{e.inspect}&quot;</span>
+            <span class="ruby-comment cmt"># We fail the action slently</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Event failed: #{e.inspect}&quot;</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">$!</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

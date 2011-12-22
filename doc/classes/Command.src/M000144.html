@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>load (Command)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/command.rb, line 37</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">load</span>
+    <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Loading commands...&quot;</span>
+
+    <span class="ruby-comment cmt"># first load the commands for objects</span>
+    <span class="ruby-identifier">ocmdtable</span> = <span class="ruby-constant">TernaryTrie</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'object_interface'</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-value str">'object_interface'</span>].<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'object_interface'</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">cmds</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load_file</span>(<span class="ruby-node">&quot;cmd/#{i}.yaml&quot;</span>)
+        <span class="ruby-identifier">cmds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-constant">Kernel</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-node">&quot;cmd/#{i}/#{c.cmd}.rb&quot;</span>)
+          <span class="ruby-identifier">ocmdtable</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-constant">GameObject</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:include</span>,<span class="ruby-constant">ObjCmd</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;No command interfaces for GameObject&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># now load the commands for characters</span>
+    <span class="ruby-identifier">cmdtable</span> = <span class="ruby-constant">TernaryTrie</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'character_interface'</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-value str">'character_interface'</span>].<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'character_interface'</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">cmds</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load_file</span>(<span class="ruby-node">&quot;cmd/#{i}.yaml&quot;</span>)
+        <span class="ruby-identifier">cmds</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+          <span class="ruby-constant">Kernel</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-node">&quot;cmd/#{i}/#{c.cmd}.rb&quot;</span>)
+          <span class="ruby-identifier">cmdtable</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">c</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-constant">Character</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:include</span>,<span class="ruby-constant">Cmd</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;No command interfaces for Character&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;Done.&quot;</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">cmdtable</span>, <span class="ruby-identifier">ocmdtable</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+    <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">$!</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "lib/core/account.rb"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Account [
+        fontcolor = black,
+        URL = "classes/Account.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Account"
+    ]
+
+    Publisher [
+        URL = "classes/Publisher.html",
+        shape = box,
+        label = "Publisher"
+    ]
+
+    Publisher -> Account [
+
+    ]
+
+    Root [
+        URL = "classes/Root.html",
+        label = "Root"
+    ]
+
+    Root -> Account [
+
+    ]
+
+}
+

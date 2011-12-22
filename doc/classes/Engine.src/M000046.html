@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (Engine)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/engine/engine.rb, line 57</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbtype'</span>]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:yaml</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/yamlstore'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">YamlStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:xml</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/xmlstore'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">XmlStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:gdbm</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/gdbmstore'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">GdbmStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sdbm</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/sdbmstore'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">SdbmStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:dbm</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/dbmstore'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">DbmStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sqlite</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/sqlitestore'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">SqliteStore</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sqlite3</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'storage/sqlite3store'</span>
+      <span class="ruby-ivar">@db</span> = <span class="ruby-constant">Sqlite3Store</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'dbfile'</span>])
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-value str">&quot;Invalid 'dbtype' in Configuration&quot;</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">RunTimeError</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Get the world object</span>
+    <span class="ruby-ivar">@world</span> = <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value">0</span>)
+<span class="ruby-comment cmt">#    log.debug @world.inspect</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">makenoswap</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">startup</span>
+
+    <span class="ruby-ivar">@eventmgr</span> = <span class="ruby-constant">EventManager</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;Booting server on port #{options['server_port'] || 4000}&quot;</span>
+    <span class="ruby-ivar">@server</span> = <span class="ruby-constant">Reactor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">'server_port'</span>] <span class="ruby-operator">||</span> <span class="ruby-value">4000</span>,
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server_type'</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server_io'</span>],
+      <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server_negotiation'</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server_filters'</span>],
+      <span class="ruby-identifier">address</span>=<span class="ruby-keyword kw">nil</span>)
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Unable to start server&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">start</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;TMUD is ready&quot;</span>
+
+    <span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;INT&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-identifier">:handle_signal</span>))
+    <span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;TERM&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-identifier">:handle_signal</span>))
+    <span class="ruby-constant">Signal</span>.<span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;KILL&quot;</span>, <span class="ruby-identifier">method</span>(<span class="ruby-identifier">:handle_signal</span>))
+    <span class="ruby-keyword kw">until</span> <span class="ruby-ivar">@shutdown</span>
+      <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">poll</span>(<span class="ruby-value">0</span><span class="ruby-value">.3</span>)
+      <span class="ruby-ivar">@eventmgr</span>.<span class="ruby-identifier">process_events</span>
+    <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># until</span>
+    <span class="ruby-identifier">graceful_shutdown</span>
+  <span class="ruby-keyword kw">rescue</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-value str">&quot;Engine failed in run&quot;</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span> <span class="ruby-identifier">$!</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

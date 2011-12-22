@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: TML</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>TML</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>TML
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Mar 09 14:27:38 GMT-5:00 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+</map>
+<img src="../dot/f_2.png" usemap="#map" border=0 alt="TopLevel">
+    </div>
+
+    <div id="description">
+      <h1>Teensy Markup Language</h1>
+<h2>Introduction</h2>
+<p>
+Teensy Markup Language is a general mechanism used to markup mud text.
+Markup directives are translated to the best format the client can handle
+whether it be VTxxx/ANSI, HTML, MXP, ZMP or raw text. If the client cannot
+handle a particular directive, then it is stripped from the stream before
+sending it to the client.
+</p>
+<h2>Syntax</h2>
+<p>
+Markup is placed inline in strings using keywords in brackets. Keywords are
+case insensitive. Normal use of brackets is allowed and needs no special
+escaping.
+</p>
+<h2>Text Markup</h2>
+<h3>[COLOR name] or [COLOR name ON name]</h3>
+<p>
+Color changes the foreground and background color of the enclosed text. The
+first form specifies only the foreground, the latter both foreground and
+background. Color is terminated to the default value using [/COLOR]. The
+names of the colors are those names valid under SVG 1.0. See colors.rb
+module.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [color fuchsia on blue]Hello World[/color]
+</pre>
+<h3>[CLASS name]</h3>
+<p>
+Classes are used to tag text as to belonging to an arbitrary category. A
+class may be used by the client to color text, send it to a window or area,
+or otherwise process it differently. A class is terminated by [/CLASS]. For
+clients with no capability, a class directive may be translated server side
+into other directives like color or windows.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [class speech]Bubba says, &quot;Hi Biffy&quot;[/class]
+  [class description]The sword has a ruby encrusted hilt.[/class]
+</pre>
+<h3>[FONT name]</h3>
+<p>
+Font changes the character font of the enclosed text. Names are not
+currently not checked, just passed to the client. A font change is
+terminated using [/FONT].
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [font wingdings]your text[/font]
+</pre>
+<h3>[SIZE name]</h3>
+<p>
+Size changes the size of the characters of the enclosed text. Names are not
+currently not checked and are just passed to the client. The may be
+relative sizes like +1 or -2. A size change is terminated using [/SIZE].
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [size +3]My big text[/size]
+</pre>
+<h3>[B] or [BOLD]</h3>
+<p>
+This directs the enclosed text to be marked as bold. It&#8217;s terminated
+by [/B] or [/BOLD]
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [b]My bolded text[/b]
+</pre>
+<h3>[I] or [ITALICS]</h3>
+<p>
+This directs the enclosed text to be marked as italics. It&#8217;s
+terminated by [/I] or [/ITALICS]
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [i]My italicized text[/i]
+</pre>
+<h3>[U] or [UNDERLINE]</h3>
+<p>
+This directs the enclosed text to be marked as underlined. It&#8217;s
+terminated by [/U] or [/UNDERLINE]
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [u]My underlined text[/u]
+</pre>
+<h2>Display Control</h2>
+<p>
+Some of these are meaningless when sent to the client, and are more likely
+to be received. The terminalfilter protocol layer will translate these
+VT100 codes to this format before sending on the the player parser. All are
+unterminated.
+</p>
+<h3>[SCROLLDOWN]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> scroll down a line.
+</p>
+<h3>[SCROLLUP]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> scroll up a line.
+</p>
+<h3>[UP n] | [DOWN n] | [RIGHT n] | [LEFT n]</h3>
+<p>
+Move the cursor up, down, right or left n positions.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [up 5]text[down 5]more text
+</pre>
+<h3>[TAB] | &quot;\t&quot;</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit the tab key, or send client
+tab.
+</p>
+<h3>[BELL] | &quot;\b&quot;</h3>
+<p>
+Send client annoying belltone, or client sent us annoying belltone.
+</p>
+<h3>[BS] | &quot;\b&quot;</h3>
+<p>
+Send client a backspace.
+</p>
+<h3>[HOME n,n]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit home key, or tell client to
+move the cursor to row, col
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [HOME 15,40]Center of screen
+</pre>
+<h3>[CURREPT| | [CURSOR n,n]</h3>
+<p>
+Ask client to tell us the position of the cursor. <a
+href="../classes/Client.html">Client</a> sends us the position of the
+cursor in row, col.
+</p>
+<h3>[CLEAR]</h3>
+<p>
+Clear the client screen
+</p>
+<h3>[CLEARLINE]</h3>
+<p>
+Clear the current line
+</p>
+<h3>[CURSAVE] | [CURREST]</h3>
+<p>
+Ask client to save cursor or restore the saved cursor
+</p>
+<p>
+Example:
+</p>
+<pre>
+  [CURSAVE][HOME 1,1]Title[CURREST]
+</pre>
+<h3>[SCRREG n,n]</h3>
+<p>
+Tell client to setup a scroll region with start and end rows.
+</p>
+<h3>[SCRRESET]</h3>
+<p>
+Clear the setup scroll region.
+</p>
+<h3>[INSERT]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit insert key.
+</p>
+<h3>[END]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit end key.
+</p>
+<h3>[PAGEDOWN]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit page down key.
+</p>
+<h3>[PAGEUP]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit page down key.
+</p>
+<h3>[Fn]</h3>
+<p>
+<a href="../classes/Client.html">Client</a> hit function key. We support
+F1-F10
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
